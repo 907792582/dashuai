@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context="com.example.myapplication.shopping_cart">
+    <include layout="@layout/title" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            >
+
+            <CheckBox
+                android:id="@+id/all_chekbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="4dp"
+                android:button="@drawable/check_box_bg"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:gravity="center"
+                android:minHeight="64dp"
+                android:paddingLeft="5dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:visibility="visible" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="全选"
+                android:textSize="16dp"
+                android:paddingRight="15dp"
+
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="合计:"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥0.00"
+
+                android:textSize="18dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_go_to_pay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#E24146"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="去结算(0)"
+            android:textSize="16dp"
+            android:textColor="#FAFAFA" />
+    </LinearLayout>
+</LinearLayout>

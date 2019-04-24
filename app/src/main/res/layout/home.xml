@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.myapplication.MainActivity"
+    android:background="@drawable/background"
+    >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    android:stretchColumns="0"
+    >
+        <include layout="@layout/title"/>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_span="2"
+            android:id="@+id/image_poster"
+            android:layout_height="120dp"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="15dp"
+            android:foreground="@drawable/dragon"
+            android:scaleType="matrix"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TableLayout
+            android:layout_height="230dp"
+            android:layout_width="250dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="10dp"
+            android:background="#ffffff"
+            >
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <ImageView
+
+                    android:layout_width="120dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/tag_pro"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="268dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+
+                    android:id="@+id/image_book_pro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:foreground="@drawable/swallow"
+                    android:scaleType="matrix" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        >
+
+                        <TextView
+                            android:layout_span="2"
+                            android:id="@+id/textbook_pro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="数据库系统教程"
+                            android:textSize="17dp"
+                            android:textStyle="bold" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:text="编号："
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:id="@+id/number_pro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="10dp"
+                            android:text="666-01                                          "
+                            android:textSize="14dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="库存："
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:id="@+id/inventory_pro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4"
+                            android:textSize="14dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="￥"
+                            android:textColor="#c1272d"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/price_pro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-30dp"
+                            android:text="45.90"
+                            android:textColor="#c1272d"
+                            android:textSize="18dp" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_span="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="7dp"
+                    android:background="#FF909090" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+
+                android:layout_marginBottom="10dp"
+                android:background="#ffffff">
+
+                <ImageView
+                    android:id="@+id/image_book_pro1"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/swallow"
+                    android:scaleType="matrix" />
+
+                <ImageView
+                    android:id="@+id/image_book_pro2"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/swallow"
+                    android:scaleType="matrix" />
+
+                <ImageView
+                    android:id="@+id/image_book_pro2"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/swallow"
+                    android:scaleType="matrix" />
+
+                <ImageView
+                    android:id="@+id/image_book_pro3"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/swallow"
+                    android:scaleType="matrix" />
+
+                <ImageView
+                    android:id="@+id/image_book_pro4"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/swallow"
+                    android:scaleType="matrix" />
+
+                <Button
+                    android:id="@+id/btn_more_pro"
+                    android:layout_width="0dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1.5"
+                    android:background="@null"
+                    android:text=">点此查看更多"
+                    android:textSize="10dp"
+                    android:textColor="#999999"
+                    />
+            </TableRow>
+
+        </TableLayout>
+
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TableLayout
+            android:layout_height="230dp"
+            android:layout_width="250dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:background="#ffffff"
+            >
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <ImageView
+
+                    android:layout_width="120dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/tag_pub"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="268dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+
+                    android:id="@+id/image_book_pub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:foreground="@drawable/bob"
+                    android:scaleType="matrix" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        >
+
+                        <TextView
+                            android:layout_span="2"
+                            android:id="@+id/textbook_pub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="毛泽东思想和中国特色社会主义理论体系概论"
+                            android:textSize="17dp"
+                            android:textStyle="bold" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:text="编号："
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:id="@+id/number_pub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="10dp"
+                            android:text="666-08                                          "
+                            android:textSize="14dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="库存："
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:id="@+id/inventory_pub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4"
+                            android:textSize="14dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="￥"
+                            android:textColor="#c1272d"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/price_pub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-30dp"
+                            android:text="33.80"
+                            android:textColor="#c1272d"
+                            android:textSize="18dp" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_span="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="7dp"
+                    android:background="#FF909090" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ffffff">
+
+                <ImageView
+                    android:id="@+id/image_book_pub1"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/bob"
+                    android:scaleType="matrix" />
+
+                <ImageView
+                    android:id="@+id/image_book_pub2"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/bob"
+                    android:scaleType="matrix" />
+
+                <ImageView
+                    android:id="@+id/image_book_pro2"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/bob"
+                    android:scaleType="matrix" />
+
+                <ImageView
+                    android:id="@+id/image_book_pub3"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/bob"
+                    android:scaleType="matrix" />
+
+                <ImageView
+                    android:id="@+id/image_book_pub4"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/bob"
+                    android:scaleType="matrix" />
+
+                <Button
+                    android:id="@+id/btn_more_pub"
+                    android:layout_width="0dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1.5"
+                    android:background="@null"
+                    android:text=">点此查看更多"
+                    android:textSize="10dp"
+                    android:textColor="#999999"
+                    />
+            </TableRow>
+
+        </TableLayout>
+
+    </TableRow>
+
+</TableLayout>
+</LinearLayout>
