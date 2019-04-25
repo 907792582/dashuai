@@ -1,11 +1,37 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/lightGray</item>
+        <item name="colorPrimaryDark">@color/lightGray</item>
+        <item name="colorAccent">@color/lightGray</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--自定义对话框需要透明原来的对话框-->
+    <style name="NormalDialogStyle">
+        <!--对话框背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--边框取消 -->
+        <item name="android:windowFrame">@null</item>
+        <!--取消标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 是否浮现在Activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!--背景透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 没有覆盖 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!--背景变暗-->
+        <item name="android:backgroundDimEnabled">true</item> </style>
 
 </resources>
