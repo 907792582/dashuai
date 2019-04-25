@@ -2,4 +2,16 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="large_margin">50dp</dimen>
+    <dimen name="small_margin">5dp</dimen>
+
+    <!-- 字体大小设置 -->
+    <dimen name="small">12sp</dimen>
+    <dimen name="common">14sp</dimen>
+    <dimen name="title">18sp</dimen>
+    <dimen name="large">28sp</dimen>
+
+    <!-- 登陆注册页面 -->
+    <dimen name="input_height">50dp</dimen>
+
 </resources>

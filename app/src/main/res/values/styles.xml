@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/lightGray</item>
-        <item name="colorPrimaryDark">@color/lightGray</item>
-        <item name="colorAccent">@color/lightGray</item>
+        <item name="colorPrimary">@color/light_gray</item>
+        <item name="colorPrimaryDark">@color/light_gray</item>
+        <item name="colorAccent">@color/light_gray</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
