@@ -5,9 +5,144 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.myapplication.MainActivity"
-    android:background="@drawable/background"
-    >
+    android:background="@drawable/background">
+    <include layout="@layout/title"/>
+    <include layout="@layout/show_homepage_picture"></include>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tag_pro"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/image_book_pro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bob"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:padding="50dp"
+                android:layout_marginBottom="10dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            <TextView
+                android:id="@+id/pro_book_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="数据库系统教程"
+                android:textSize="16dp"
+                android:layout_marginLeft="30dp"
+                android:paddingRight="10dp"
+                android:textStyle="bold"
+                />
+                <TextView
+                android:id="@+id/pro_book_num_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="30dp"
+                android:paddingRight="10dp"
+                android:text="编号："
+                />
+                <TextView
+                    android:id="@+id/pro_book_inventory_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:paddingRight="10dp"
+                    android:text="库存："
+                    />
+                <TextView
+                    android:id="@+id/pro_book_price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="￥ 45.90"
+                    android:textSize="15dp"
+                    android:textColor="#c1272d"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#cccccc"
+            >
+        </View>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/image_book_pro2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bob"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+            <ImageView
+                android:id="@+id/image_book_pro3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bob"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                />
+            <ImageView
+                android:id="@+id/image_book_pro4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bob"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id="@+id/btn_more_pub"
+                android:layout_width="0dp"
+                android:layout_height="18dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1.5"
+                android:background="@null"
+                android:text=">点此查看更多"
+                android:textSize="10dp"
+                android:textColor="#999999"
+                />
+    </LinearLayout>
+    </LinearLayout>
+
+    <!--
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -457,5 +592,5 @@
 
     </TableRow>
 
-</TableLayout>
+</TableLayout>-->
 </LinearLayout>

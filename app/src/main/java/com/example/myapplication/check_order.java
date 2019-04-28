@@ -51,7 +51,7 @@ public class check_order extends AppCompatActivity {
         ButterKnife.bind(this);
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
         mTvTitle.setText("确认订单");
-        stu_num.setText("学号 ：" + "161310612");
+        stu_num.setText("学号 ：" + "161310611");
         stu_name.setText("姓名 ：" + "DHU");
         initView();
         priceContro();
