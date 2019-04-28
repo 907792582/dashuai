@@ -35,7 +35,7 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
         imagePath.add(R.drawable.patrik);
         imageTitle.add("我是海鸟一号");
         imageTitle.add("我是海鸟二号");
-        imageTitle.add("我是海鸟三号");
+        imageTitle.add("我是海鸟3号");
     }
 
     private void initView() {
