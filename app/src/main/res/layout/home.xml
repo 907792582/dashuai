@@ -135,7 +135,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1.5"
                 android:background="@null"
-                android:text=">点此查看更多"
+                android:text=">查看更多"
                 android:textSize="10dp"
                 android:textColor="#999999"
                 />
@@ -318,6 +318,15 @@
                 android:background="#ffffff">
 
                 <ImageView
+                    android:id="@+id/image_book_pro0"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/swallow"
+                    android:scaleType="matrix" />
+
+                <ImageView
                     android:id="@+id/image_book_pro1"
                     android:layout_width="0dp"
                     android:layout_height="55dp"
@@ -336,16 +345,7 @@
                     android:scaleType="matrix" />
 
                 <ImageView
-                    android:id="@+id/image_book_pro2"
-                    android:layout_width="0dp"
-                    android:layout_height="55dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_weight="1"
-                    android:foreground="@drawable/swallow"
-                    android:scaleType="matrix" />
-
-                <ImageView
-                    android:id="@+id/image_book_pro3"
+                    android:id="@+id/image_book_pro5"
                     android:layout_width="0dp"
                     android:layout_height="55dp"
                     android:layout_marginRight="6dp"
@@ -548,7 +548,7 @@
                     android:scaleType="matrix" />
 
                 <ImageView
-                    android:id="@+id/image_book_pro2"
+                    android:id="@+id/image_book_pro3"
                     android:layout_width="0dp"
                     android:layout_height="55dp"
                     android:layout_marginRight="6dp"
