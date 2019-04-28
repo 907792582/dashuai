@@ -38,4 +38,10 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.android.support:design:27.1.1'
+    implementation files('libs/commons-io-2.4.jar')
+    implementation files('libs/commons-lang3-3.8.1.jar')
+    implementation files('libs/fastjson-1.1.36.jar')
+    implementation files('libs/gson-2.8.2.jar')
+    implementation files('libs/Okhttp3Helper.jar')
+    implementation files('libs/volley.jar')
 }

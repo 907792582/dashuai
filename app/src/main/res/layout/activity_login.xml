@@ -143,7 +143,9 @@
                 android:background="@drawable/shapet"
                 android:gravity="center"
                 android:layout_gravity="center_horizontal"
-                android:textSize="@dimen/common" />
+                android:textSize="@dimen/common"
+                android:maxLength="9"
+                android:inputType="number"/>
 
             <EditText
                 android:id="@+id/student_pwd_edit"
