@@ -44,7 +44,7 @@ public class shopping_cart extends AppCompatActivity implements com.example.myap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopping_cart);
-        ButterKnife.bind(this);
+        //ButterKnife.bind(this);
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
         mTvTitle.setText("购物车");
 

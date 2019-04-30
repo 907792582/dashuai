@@ -182,6 +182,7 @@
             android:layout_weight="1.8"/>
 
         <ImageButton
+            android:id="@+id/book_image_button"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center_vertical"
@@ -197,6 +198,7 @@
             android:layout_weight="3"/>
 
         <ImageButton
+            android:id="@+id/cart_image_button"
             android:layout_width="28dp"
             android:layout_height="25dp"
             android:layout_gravity="center_vertical"
@@ -208,6 +210,7 @@
             android:layout_weight="3"/>
 
         <ImageButton
+            android:id="@+id/user_image_button"
             android:layout_width="23dp"
             android:layout_height="25dp"
             android:layout_gravity="center_vertical"

@@ -1,8 +1,12 @@
 package com.example.myapplication;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.youth.banner.Banner;
@@ -18,18 +22,31 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
     private MyImageLoader mMyImageLoader;
     private ArrayList<Integer> imagePath;
     private ArrayList<String> imageTitle;
-
+    // 下方导航栏控件
+    private ImageButton book_image_button,cart_image_button,user_image_button;
+    // 上方搜索控件
+    private ImageButton search_image;
+    private TextView search_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         init();
+        // 设置搜索跳转
+        setSearchJump();
+        // 设置下方导航栏跳转
+        setNavBarJump();
     }
+
 
     private void init() {
         initData();
         initBanner();
-
+        book_image_button = findViewById(R.id.book_image_button);
+        cart_image_button = findViewById(R.id.cart_image_button);
+        user_image_button = findViewById(R.id.user_image_button);
+        search_image = findViewById(R.id.search_image);
+        search_text = findViewById(R.id.search_text);
     }
 
     private void initData() {
@@ -90,5 +107,44 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
                     .load(path)
                     .into(imageView);
         }
+    }
+
+    private void setSearchJump() {
+        search_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(homepage.this, search.class);
+                //intent.putExtra("user",(Serializable) user);
+                startActivity(intent);
+            }
+        });
+        search_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(homepage.this, search.class);
+                //intent.putExtra("user",(Serializable) user);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void setNavBarJump() {
+        cart_image_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(homepage.this, shopping_cart.class);
+                //intent.putExtra("user",(Serializable) user);
+                startActivity(intent);
+            }
+        });
+
+        user_image_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(homepage.this, UserInfoActivity.class);
+                //intent.putExtra("user",(Serializable) user);
+                startActivity(intent);
+            }
+        });
     }
 }
