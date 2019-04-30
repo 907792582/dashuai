@@ -22,9 +22,14 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.show_homepage_picture);
+        setContentView(R.layout.home);
+        init();
+    }
+
+    private void init() {
         initData();
-        initView();
+        initBanner();
+
     }
 
     private void initData() {
@@ -38,7 +43,7 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
         imageTitle.add("我是海鸟3号");
     }
 
-    private void initView() {
+    private void initBanner() {
         mMyImageLoader = new MyImageLoader();
         mBanner = findViewById(R.id.banner);
         //设置样式，里面有很多种样式可以自己都看看效果

@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                     // 发送给后台核对
                     if(sendToServer(studentID,pwd)){
                         // 登陆成功，跳转到主页
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, homepage.class);
                         //intent.putExtra("user",(Serializable) user);
                         startActivity(intent);
                     }else{
@@ -70,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFocusChange(View view, boolean b) {
                 student_pwd_edit.setBackgroundResource(R.drawable.shapet);
                 student_ID_edit.setBackgroundResource(R.drawable.shapet2);
+                student_pwd_edit.setHint("");
             }
         });
         student_ID_edit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -77,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFocusChange(View view, boolean b) {
                 student_ID_edit.setBackgroundResource(R.drawable.shapet);
                 student_pwd_edit.setBackgroundResource(R.drawable.shapet2);
+                student_ID_edit.setHint("");
             }
         });
 
@@ -133,6 +135,6 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
                     mQueue.add(jsonObjectRequest);*/
-        return false;
+        return true;
     }
 }
