@@ -161,13 +161,14 @@
     </ScrollView>
 
 
-    <TextView
+    <!-- 下方导航栏 -->
+
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:background="@drawable/bg_shadow_rectangle"
-        android:alpha="0.4"/>
+        android:alpha="0.2"/>-->
 
-    <!-- 下方导航栏 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

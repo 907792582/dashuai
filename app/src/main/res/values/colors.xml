@@ -10,4 +10,7 @@
     <color name="sky_blue">#87b8fd</color>
     <color name="hint_color">#cccccc</color>
     <color name="light_blue">#cce1ff</color>
+    <color name="nav_color">#c8d7fe</color>
+    <color name="light_purple">#d7d3f8</color>
+    <color name="light_pink">#fcd9f7</color>
 </resources>
