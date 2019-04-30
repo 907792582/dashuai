@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval" >
+
+    <size android:width="30dp"/>
+    <size android:height="30dp"/>
+    <!-- 这个标签表示纯色填充，通过android:color即可指定shape中填充的颜色 -->
+    <solid android:color="@color/light_blue" />
+
+</shape>

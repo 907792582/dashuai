@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 student_pwd_edit.setBackgroundResource(R.drawable.shapet);
                 student_ID_edit.setBackgroundResource(R.drawable.shapet2);
                 student_pwd_edit.setHint("");
+                student_ID_edit.setHint("请输入账号");
             }
         });
         student_ID_edit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -79,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                 student_ID_edit.setBackgroundResource(R.drawable.shapet);
                 student_pwd_edit.setBackgroundResource(R.drawable.shapet2);
                 student_ID_edit.setHint("");
+                student_pwd_edit.setHint("请输入密码");
             }
         });
 

@@ -77,13 +77,13 @@ public class shopping_cart extends AppCompatActivity implements com.example.myap
 
 
 
-    @OnClick({R.id.all_chekbox, R.id.tv_go_to_pay,R.id.search})
+    @OnClick({R.id.all_chekbox, R.id.tv_go_to_pay,R.id.search_image})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.all_chekbox:
                 AllTheSelected(true);
                 break;
-            case R.id.search:
+            case R.id.search_image:
                 Intent intent_s=new Intent();
                 intent_s.setClass(this,search.class);
                 startActivity(intent_s);

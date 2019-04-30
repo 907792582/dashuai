@@ -14,8 +14,8 @@
 
             <ImageButton
                 android:id="@+id/search_image"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/ic_search"
@@ -29,7 +29,7 @@
             android:layout_alignParentEnd="@+id/search_image"
             android:layout_alignParentRight="true"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="@dimen/title"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:text="搜索"/>
 
