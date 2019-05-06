@@ -33,7 +33,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //侧滑删除
-    compile 'com.github.anzaizai:EasySwipeMenuLayout:1.1.2'
+    implementation 'com.github.anzaizai:EasySwipeMenuLayout:1.1.2'
     //水波纹
     compile 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'

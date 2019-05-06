@@ -5,12 +5,20 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="#c8d7fe"
-        android:gravity="center_vertical"
         >
-
-
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="5dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="25dp" />
 
             <ImageButton
                 android:id="@+id/search_image"
@@ -18,6 +26,7 @@
                 android:layout_height="25dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/ic_search"
                 android:layout_marginRight="64dp"
                />
@@ -27,11 +36,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="@+id/search_image"
+            android:layout_marginTop="20dp"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="18dp"
+            android:text="搜索"
             android:textColor="@color/white"
-            android:textSize="@dimen/title"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:text="搜索"/>
+            android:textSize="@dimen/title" />
 
         </RelativeLayout>
 

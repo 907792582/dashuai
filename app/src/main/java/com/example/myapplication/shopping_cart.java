@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.myapplication.CartAdapter;
@@ -19,11 +18,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
 public class shopping_cart extends AppCompatActivity implements com.example.myapplication.CartAdapter.ItemClickListener {
-
-
-    @BindView(R.id.title)
+    @BindView(R.id.titleView)
     TextView mTvTitle;
     @BindView(R.id.listView)
     ListView mListView;
@@ -33,7 +29,6 @@ public class shopping_cart extends AppCompatActivity implements com.example.myap
     TextView mTvTotalPrice;
     @BindView(R.id.tv_go_to_pay)
     TextView mTvGoToPay;
-
     private double totalPrice = 0.00;
     private int totalCount = 0;
     private List<HashMap<String, String>> goodsList;
@@ -44,13 +39,11 @@ public class shopping_cart extends AppCompatActivity implements com.example.myap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopping_cart);
-        //ButterKnife.bind(this);
+        ButterKnife.bind(this);
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
         mTvTitle.setText("购物车");
-
         //模拟一些数据
         initDate();
-
         initView();
     }
 

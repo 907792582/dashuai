@@ -297,8 +297,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/nav_height"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="horizontal"
             >
@@ -334,8 +333,8 @@
 
             <ImageButton
                 android:id="@+id/user_image_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_user"
                 android:background="@drawable/bg_circle_blue"
@@ -348,7 +347,6 @@
                 android:layout_weight="1.8"/>
 
         </LinearLayout>
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -27,10 +27,13 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
     // 上方搜索控件
     private ImageButton search_image;
     private TextView search_text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+        TextView title=findViewById(R.id.titleView);
+        title.setText("书城");
         init();
         // 设置搜索跳转
         setSearchJump();
