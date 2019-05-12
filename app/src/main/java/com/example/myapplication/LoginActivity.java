@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                     // 发送给后台核对
                     if(sendToServer(studentID,pwd)){
                         // 登陆成功，跳转到主页
-                        Intent intent = new Intent(LoginActivity.this, homepage.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         //intent.putExtra("user",(Serializable) user);
                         startActivity(intent);
                     }else{

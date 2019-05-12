@@ -1,6 +1,7 @@
 package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
@@ -17,12 +18,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-public class check_order extends AppCompatActivity {
+import android.os.Parcelable;
+import android.os.Parcel;
+public class check_order extends AppCompatActivity  {
 
     @BindView(R.id.title)
     TextView mTvTitle;
@@ -41,7 +42,8 @@ public class check_order extends AppCompatActivity {
 
     private double totalPrice = 0.00;
     private int totalCount = 0;
-    private ArrayList<HashMap<String, String>> goodsList_order = (ArrayList<HashMap<String, String>>) getIntent().getSerializableExtra("goodsList_order");
+    private Intent intent=getIntent();
+    private List<HashMap<String, String>> goodsList_order = (List<HashMap<String, String>>)intent.getSerializableExtra("goodsList_order");
     private com.example.myapplication.OrderAdapter adapter;
 
     @Override
@@ -71,9 +73,7 @@ public class check_order extends AppCompatActivity {
             double goodsPrice = Integer.valueOf(goodsList_order.get(i).get("count")) * Double.valueOf(goodsList_order.get(i).get("price"));
             totalPrice = totalPrice + goodsPrice;
         }
-
         mTvTotalPrice.setText("￥ " + totalPrice);
-
 }
     @OnClick({R.id.tv_go_to_pay_wechat, R.id.tv_go_to_pay_ali, R.id.tv_back})
     public void onViewClicked(View view) {

@@ -23,7 +23,7 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
     private ArrayList<Integer> imagePath;
     private ArrayList<String> imageTitle;
     // 下方导航栏控件
-    private ImageButton book_image_button,cart_image_button,user_image_button;
+
     // 上方搜索控件
     private ImageButton search_image;
     private TextView search_text;
@@ -37,17 +37,12 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
         init();
         // 设置搜索跳转
         setSearchJump();
-        // 设置下方导航栏跳转
-        setNavBarJump();
     }
 
 
     private void init() {
         initData();
         initBanner();
-        book_image_button = findViewById(R.id.book_image_button);
-        cart_image_button = findViewById(R.id.cart_image_button);
-        user_image_button = findViewById(R.id.user_image_button);
         search_image = findViewById(R.id.search_image);
         search_text = findViewById(R.id.search_text);
     }
@@ -131,23 +126,4 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
         });
     }
 
-    private void setNavBarJump() {
-        cart_image_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(homepage.this, shopping_cart.class);
-                //intent.putExtra("user",(Serializable) user);
-                startActivity(intent);
-            }
-        });
-
-        user_image_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(homepage.this, UserInfoActivity.class);
-                //intent.putExtra("user",(Serializable) user);
-                startActivity(intent);
-            }
-        });
-    }
 }
