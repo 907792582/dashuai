@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@mipmap/fanhui"
             android:layout_alignBottom="@id/titleView"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="20dp"
             android:ellipsize="end"
             android:gravity="center"
             android:lines="1"

@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:text="用户中心"
                 android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <!-- user info -->

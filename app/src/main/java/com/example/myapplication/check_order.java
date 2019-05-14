@@ -43,13 +43,13 @@ public class check_order extends AppCompatActivity  {
     private double totalPrice = 0.00;
     private int totalCount = 0;
     private Intent intent=getIntent();
-    private List<HashMap<String, String>> goodsList_order = (List<HashMap<String, String>>)intent.getSerializableExtra("goodsList_order");
+    private Bundle bundle=intent.getBundleExtra("name");
+    private List<HashMap<String, String>> goodsList_order = new ArrayList<>();
     private com.example.myapplication.OrderAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.check_order);
         ButterKnife.bind(this);
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
         mTvTitle.setText("确认订单");
