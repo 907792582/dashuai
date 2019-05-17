@@ -24,7 +24,6 @@ import butterknife.OnClick;
 import android.os.Parcelable;
 import android.os.Parcel;
 public class check_order extends AppCompatActivity  {
-
     @BindView(R.id.title)
     TextView mTvTitle;
     @BindView(R.id.listView_order)
@@ -39,20 +38,20 @@ public class check_order extends AppCompatActivity  {
     ImageButton mTvGoToPaywc;
     @BindView(R.id.tv_go_to_pay_ali)
     ImageButton mTvGoToPayali;
-
     private double totalPrice = 0.00;
     private int totalCount = 0;
-    private Intent intent=getIntent();
-    private Bundle bundle=intent.getBundleExtra("name");
-    private List<HashMap<String, String>> goodsList_order = new ArrayList<>();
+    public List<HashMap<String, String>> goodsList_order;
     private com.example.myapplication.OrderAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.check_order);
         ButterKnife.bind(this);
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
-        mTvTitle.setText("确认订单");
+        goodsList_order=new ArrayList<>();
+        Intent intent=getIntent();
+        Bundle bundle=intent.getExtras();
+        goodsList_order=(List<HashMap<String, String>>) bundle.getSerializable("goodsList_order");
         stu_num.setText("学号 ：" + "161310611");
         stu_name.setText("姓名 ：" + "DHU");
         initView();
@@ -61,7 +60,6 @@ public class check_order extends AppCompatActivity  {
 
 
     private void initView() {
-        goodsList_order = new ArrayList<>();
         adapter = new OrderAdapter(this, goodsList_order, R.layout.item_order);
         mListView.setAdapter(adapter);
         adapter.notifyDataSetChanged();

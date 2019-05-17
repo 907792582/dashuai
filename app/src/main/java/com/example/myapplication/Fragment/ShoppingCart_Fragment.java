@@ -125,9 +125,10 @@ public class ShoppingCart_Fragment extends Fragment implements com.example.myapp
                             goodsList_order.add(goodsList.get(i));
                         }
                     }
-                    bundle.putString("name",name);
-                    //bundle.putSerializable("goodsList_order",(Serializable) goodsList_order);
-                    intent.putExtra("name",bundle);
+                    intent.setClass(mcontext,check_order.class);
+                    bundle.putSerializable("goodsList_order",(Serializable)goodsList_order);
+                    System.out.println(goodsList_order.get(1).get("name"));
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
                 break;

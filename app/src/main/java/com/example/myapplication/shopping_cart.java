@@ -32,9 +32,8 @@ public class shopping_cart extends AppCompatActivity implements com.example.myap
     private double totalPrice = 0.00;
     private int totalCount = 0;
     private List<HashMap<String, String>> goodsList;
-    private List<HashMap<String, String>> goodsList_order;
+    public List<HashMap<String, String>> goodsList_order;
     private com.example.myapplication.CartAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +88,7 @@ public class shopping_cart extends AppCompatActivity implements com.example.myap
                     Bundle bundle=new Bundle();
                     Intent intent=new Intent();
                     goodsList_order=new ArrayList<>();
+
                     for (int i = 0; i < goodsList.size(); i++)
                         {
                             if (goodsList.get(i).get("id").equals("1"))
@@ -97,9 +97,9 @@ public class shopping_cart extends AppCompatActivity implements com.example.myap
                             }
                         }
 
-
-                  bundle.putParcelableArrayList("goodList_order",(ArrayList)goodsList_order);
                   intent.setClass(this,check_order.class);
+                    bundle.putSerializable("goodsList_order",(Serializable)goodsList_order);
+                    System.out.println(goodsList_order.get(1).get("name"));
                   intent.putExtras(bundle);
                   startActivity(intent);
                 }
