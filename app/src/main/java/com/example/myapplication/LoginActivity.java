@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -114,9 +115,9 @@ public class LoginActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    String url = "http://193.112.98.224:8080/shopapp/user/login";
+                    String url = "http://193.112.98.224:8080/shopapp/user/login/"+studentID+"/"+pwd;
 
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, jsonObject, new Response.Listener<org.json.JSONObject>() {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<org.json.JSONObject>() {
 
                         public void onResponse(org.json.JSONObject jsonObject) {
                             Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
