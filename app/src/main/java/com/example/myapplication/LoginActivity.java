@@ -14,6 +14,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myapplication.model.Msg;
+import com.example.myapplication.model.User;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 
@@ -52,14 +55,16 @@ public class LoginActivity extends AppCompatActivity {
                 String pwd = student_pwd_edit.getText().toString();
                 if(checkRules(studentID,pwd)){
                     // 发送给后台核对
-                    if(sendToServer(studentID,pwd)){
+                    /*if(sendToServer(studentID,pwd)){
                         // 登陆成功，跳转到主页
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         //intent.putExtra("user",(Serializable) user);
                         startActivity(intent);
                     }else{
                         Toast.makeText(getApplicationContext(), "登陆失败", Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
+                    Log.e("##", "信息发送开始");
+                    sendToServer(studentID,pwd);
                 }
             }
         });
@@ -93,50 +98,57 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
         // 查看账号格式是否为学号,xml已限制只能输入数字
-        if(studentID.length()!=9){
+        /*if(studentID.length()!=9){
             Toast.makeText(getApplicationContext(), "账号为9位学号", Toast.LENGTH_SHORT).show();
             return false;
-        }
+        }*/
         return true;
     }
 
-    private Boolean sendToServer(String studentID, String pwd) {
-        /*org.json.JSONObject jsonObject = new org.json.JSONObject();
+    private void sendToServer(final String studentID, String pwd) {
+        org.json.JSONObject jsonObject = new org.json.JSONObject();
                     try {
-                        jsonObject.put("studentId", );
-                        jsonObject.put("password", );
+                        jsonObject.put("username", studentID);
+                        jsonObject.put("userpassword", pwd);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-                    //String url = "http://47.100.226.176:8080/XueBaJun/GetMyNews";
+                    String url = "http://193.112.98.224:8080/shopapp/user/login";
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, jsonObject, new Response.Listener<org.json.JSONObject>() {
 
                         public void onResponse(org.json.JSONObject jsonObject) {
-                            User tempuser = new Gson().fromJson(jsonObject.toString(), User.class);
+                            Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
                             Log.e("##", jsonObject.toString());
-                            if (tempuser != null) {
-                                Log.e("##", "我的消息已返回");
-                                List<News> MyNews = tempuser.getMyNews();
 
-                                for (News n : MyNews) {
-                                    news.add(n);
-                                    Log.e("##", "new's content" + n.getContent()+ "Id: "+n.getId());
+                            if(message.getCode() == 100){
+                                // 操作成功
+                                if(message.getExtend().get("va_msg").toString().compareTo("此时登录成功为用户") == 0){
+                                    // 用户登陆成功跳转
+                                    Toast.makeText(getApplicationContext(), message.getExtend().get("欢迎登陆"+studentID).toString() , Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(LoginActivity.this, homepage.class);
+                                    // intent.putExtra("user",(Serializable) user);
+                                    startActivity(intent);
+                                }else{
+                                    // 管理员登陆成功跳转
+                                    Intent intent = new Intent(LoginActivity.this, homepage.class);
+                                    // intent.putExtra("user",(Serializable) user);
+                                    startActivity(intent);
                                 }
-                                // 先执行内部类，后执行外部类
-                                // setAdapter需要放在数据刷新成功之后。
-                                list.setAdapter(mAdapter);//为ListView绑定Adapter
+                            }else{
+                                // 操作失败
+                                Toast.makeText(getApplicationContext(), message.getExtend().get("va_msg").toString() , Toast.LENGTH_SHORT).show();
                             }
 
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError volleyError) {
-
+                            Toast.makeText(getApplicationContext(), "服务器返回异常，请联系管理员" , Toast.LENGTH_SHORT).show();
                         }
                     });
-                    mQueue.add(jsonObjectRequest);*/
-        return true;
+                    mQueue.add(jsonObjectRequest);
+        // return true;
     }
 }
