@@ -13,15 +13,12 @@ import com.example.myapplication.R;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
-import com.example.myapplication.search;
+import com.example.myapplication.SearchActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -134,7 +131,7 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
         search_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mcontext, search.class);
+                Intent intent = new Intent(mcontext, SearchActivity.class);
                 //intent.putExtra("user",(Serializable) user);
                 startActivity(intent);
             }
@@ -142,7 +139,7 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
         search_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mcontext, search.class);
+                Intent intent = new Intent(mcontext, SearchActivity.class);
                 //intent.putExtra("user",(Serializable) user);
                 startActivity(intent);
             }

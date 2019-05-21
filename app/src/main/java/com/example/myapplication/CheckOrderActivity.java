@@ -1,29 +1,23 @@
 package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.myapplication.OrderAdapter;
-import com.example.myapplication.StatusBarUtil;
+import com.example.myapplication.Adapter.OrderAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import android.os.Parcelable;
-import android.os.Parcel;
-public class check_order extends AppCompatActivity  {
+
+public class CheckOrderActivity extends AppCompatActivity  {
     @BindView(R.id.title)
     TextView mTvTitle;
     @BindView(R.id.listView_order)
@@ -41,7 +35,7 @@ public class check_order extends AppCompatActivity  {
     private double totalPrice = 0.00;
     private int totalCount = 0;
     public List<HashMap<String, String>> goodsList_order;
-    private com.example.myapplication.OrderAdapter adapter;
+    private OrderAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +78,7 @@ public class check_order extends AppCompatActivity  {
                 break;
             case R.id.tv_back:
                 Intent intent = new Intent();
-                intent.setClass(this, shopping_cart.class);
+                intent.setClass(this, ShoppingCartActivity.class);
                 startActivity(intent);
                 break;
         }

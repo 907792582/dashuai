@@ -62,7 +62,6 @@
 
                     android:textSize="12sp" />
 
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -115,14 +114,12 @@
                     android:padding="10dp"
                     android:layout_weight="1"
                     android:background="#E24146"
-                    android:clickable="true"
+                    android:clickable="false"
                     android:gravity="center"
                     android:text="添加至购物车"
                     android:textSize="16dp"
                     android:textColor="#FAFAFA" />
             </LinearLayout>
         </RelativeLayout>
-
     </LinearLayout>
-
 </LinearLayout>

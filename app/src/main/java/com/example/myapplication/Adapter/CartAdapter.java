@@ -1,8 +1,9 @@
-package com.example.myapplication;
+package com.example.myapplication.Adapter;
 
 import android.content.Context;
 import android.view.View;
 
+import com.example.myapplication.R;
 import com.example.myapplication.viewholder.CommonAdapter;
 import com.example.myapplication.viewholder.ViewHolder;
 import com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout;
@@ -33,8 +34,8 @@ public class CartAdapter extends CommonAdapter<HashMap<String, String>> {
         }
         holder.setText(R.id.book_name, map.get("name"));
         holder.setText(R.id.tv_num, map.get("count"));
-        holder.setText(R.id.book_number, map.get("number"));
-        holder.setText(R.id.book_inventory, map.get("inventory"));
+        holder.setText(R.id.book_number,"编号："+map.get("number"));
+        holder.setText(R.id.book_inventory,"库存："+map.get("inventory"));
         holder.setText(R.id.book_price, "￥ " + (Double.valueOf(map.get("price")) * Integer.valueOf(map.get("count"))));
 
         final EasySwipeMenuLayout easySwipeMenuLayout = holder.getView(R.id.action_bar);

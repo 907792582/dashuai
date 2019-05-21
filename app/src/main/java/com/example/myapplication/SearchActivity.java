@@ -1,13 +1,15 @@
 package com.example.myapplication;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
 
-public class search extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
 
     private String[] mStrs = {"kk", "kk", "wskx", "wksx"};
     private SearchView mSearchView;
@@ -17,6 +19,8 @@ public class search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
+        View underline =mSearchView.findViewById(R.id.search_plate);
+        underline.setBackgroundColor(ContextCompat.getColor(this,R.color.white));
         mSearchView = (SearchView) findViewById(R.id.searchView);
         lListView = (ListView) findViewById(R.id.listView);
         lListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mStrs));

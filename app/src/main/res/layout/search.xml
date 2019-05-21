@@ -5,13 +5,14 @@
     android:layout_height="match_parent"
     android:layout_margin="15dp"
     android:orientation="vertical"
-    tools:context="com.example.myapplication.search">
+    tools:context="com.example.myapplication.SearchActivity">
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:iconifiedByDefault="false"
-        android:background="@drawable/shape"
+        android:background="@drawable/shape_search"
         android:queryHint="搜索书名、编号、作者或出版社"
         android:imeOptions="actionSearch"
         />
@@ -19,5 +20,7 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        />
 </LinearLayout>

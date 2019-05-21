@@ -1,40 +1,41 @@
 package com.example.myapplication.Fragment;
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.myapplication.CheckOrderActivity;
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.myapplication.CartAdapter;
+import com.example.myapplication.Adapter.CartAdapter;
 import com.example.myapplication.StatusBarUtil;
-import com.example.myapplication.check_order;
-import com.example.myapplication.search;
+import com.example.myapplication.SearchActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.io.Serializable;
-import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ShoppingCart_Fragment extends Fragment implements com.example.myapplication.CartAdapter.ItemClickListener{
+public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemClickListener{
 
     @BindView(R.id.titleView)
     TextView mTvTitle;
@@ -50,7 +51,7 @@ public class ShoppingCart_Fragment extends Fragment implements com.example.myapp
     private int totalCount = 0;
     private List<HashMap<String, String>> goodsList;
     private List<HashMap<String, String>> goodsList_order;
-    private com.example.myapplication.CartAdapter adapter;
+    private CartAdapter adapter;
     private Context mcontext;
     public ShoppingCart_Fragment() {
         // Required empty public constructor
@@ -67,15 +68,26 @@ public class ShoppingCart_Fragment extends Fragment implements com.example.myapp
     public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view,savedInstanceState);
         mcontext=getActivity();
+        goodsList=new ArrayList<>();
+
         ButterKnife.bind(this,view);
         StatusBarUtil.setTranslucentForImageViewInFragment(getActivity(), 0, null);
         mTvTitle.setText("购物车");
+        onAttach(mcontext);
         //模拟一些数据
-        initDate();
         initView();
     }
-
-    private void initDate() {
+@Override
+public void onAttach(Activity activity)
+{
+    super.onAttach(activity);
+    goodsList=((MainActivity)activity).getGoodsList_order();
+    for(int i=0;i<goodsList.size();i++)
+    {
+        goodsList.get(i).put("id","0");
+    }
+}
+    /*private void initDate() {
         goodsList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             HashMap<String, String> map = new HashMap<>();
@@ -87,7 +99,7 @@ public class ShoppingCart_Fragment extends Fragment implements com.example.myapp
             map.put("count", (new Random().nextInt(10) % (10 - 1 + 1) + 1) + "");
             goodsList.add(map);
         }
-    }
+    }*/
 
     private void initView() {
         adapter = new CartAdapter(mcontext, goodsList, R.layout.item_cehua);
@@ -101,13 +113,14 @@ public class ShoppingCart_Fragment extends Fragment implements com.example.myapp
     @OnClick({R.id.all_chekbox, R.id.tv_go_to_pay,R.id.search_image})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.all_chekbox:
-                AllTheSelected(true);
-                break;
             case R.id.search_image:
-                Intent intent_s=new Intent();
-                intent_s.setClass(mcontext, search.class);
-                startActivity(intent_s);
+                Intent intent_search_image=new Intent();
+                intent_search_image.setClass(mcontext, SearchActivity.class);
+                startActivity(intent_search_image);
+            case R.id.search_text:
+                Intent intent_search_text=new Intent();
+                intent_search_text.setClass(mcontext, SearchActivity.class);
+                startActivity(intent_search_text);
             case R.id.tv_go_to_pay:
                 if (totalCount <= 0) {
                     Toast.makeText(mcontext, "请选择要付款的商品~", Toast.LENGTH_SHORT).show();
@@ -115,7 +128,7 @@ public class ShoppingCart_Fragment extends Fragment implements com.example.myapp
                 }
                 else {
                     Bundle bundle=new Bundle();
-                    Intent intent=new Intent(mcontext,check_order.class);
+                    Intent intent=new Intent(mcontext, CheckOrderActivity.class);
                     String name="name";
                    goodsList_order=new ArrayList<>();
                     for (int i = 0; i < goodsList.size(); i++)
@@ -125,7 +138,7 @@ public class ShoppingCart_Fragment extends Fragment implements com.example.myapp
                             goodsList_order.add(goodsList.get(i));
                         }
                     }
-                    intent.setClass(mcontext,check_order.class);
+                    intent.setClass(mcontext, CheckOrderActivity.class);
                     bundle.putSerializable("goodsList_order",(Serializable)goodsList_order);
                     intent.putExtras(bundle);
                     startActivity(intent);
