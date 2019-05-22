@@ -7,18 +7,18 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.myapplication.CartAdapter;
-import com.example.myapplication.StatusBarUtil;
+import com.example.myapplication.Adapter.CartAdapter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.io.Serializable;
-import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-public class shopping_cart extends AppCompatActivity implements com.example.myapplication.CartAdapter.ItemClickListener {
+public class ShoppingCartActivity extends AppCompatActivity implements CartAdapter.ItemClickListener {
     @BindView(R.id.titleView)
     TextView mTvTitle;
     @BindView(R.id.listView)
@@ -33,7 +33,7 @@ public class shopping_cart extends AppCompatActivity implements com.example.myap
     private int totalCount = 0;
     private List<HashMap<String, String>> goodsList;
     public List<HashMap<String, String>> goodsList_order;
-    private com.example.myapplication.CartAdapter adapter;
+    private CartAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +77,7 @@ public class shopping_cart extends AppCompatActivity implements com.example.myap
                 break;
             case R.id.search_image:
                 Intent intent_s=new Intent();
-                intent_s.setClass(this,search.class);
+                intent_s.setClass(this, SearchActivity.class);
                 startActivity(intent_s);
             case R.id.tv_go_to_pay:
                 if (totalCount <= 0) {
@@ -97,7 +97,7 @@ public class shopping_cart extends AppCompatActivity implements com.example.myap
                             }
                         }
 
-                  intent.setClass(this,check_order.class);
+                  intent.setClass(this, CheckOrderActivity.class);
                     bundle.putSerializable("goodsList_order",(Serializable)goodsList_order);
                     System.out.println(goodsList_order.get(1).get("name"));
                   intent.putExtras(bundle);

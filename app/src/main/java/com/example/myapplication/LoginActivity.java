@@ -17,7 +17,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.model.Msg;
 import com.example.myapplication.model.User;
-import com.example.myapplication.tool.TokenHelper;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -152,13 +151,15 @@ public class LoginActivity extends AppCompatActivity {
                                 // 跳转
                                 if(message.getExtend().get("va_msg").toString().compareTo("此时登录成功为用户") == 0){
                                     // 用户登陆成功跳转
+                                    Toast.makeText(getApplicationContext(), message.getExtend().get("欢迎登陆"+studentID).toString() , Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                                     Toast.makeText(getApplicationContext(), "欢迎登陆"+studentID , Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginActivity.this, homepage.class);
                                     // intent.putExtra("user",(Serializable) user);
                                     startActivity(intent);
                                 }else{
                                     // 管理员登陆成功跳转
-                                    Intent intent = new Intent(LoginActivity.this, homepage.class);
+                                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                                     // intent.putExtra("user",(Serializable) user);
                                     startActivity(intent);
                                 }

@@ -18,5 +18,5 @@
     <dimen name="head_image_size">50dp</dimen>
     <dimen name="tag_height">23dp</dimen>
     <dimen name="nav_height">60dp</dimen>
-
+    <dimen name="add_to_cart">40dp</dimen>
 </resources>

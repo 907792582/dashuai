@@ -18,7 +18,7 @@ import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 
-public class homepage extends AppCompatActivity implements OnBannerListener {
+public class HomePageActivity extends AppCompatActivity implements OnBannerListener {
     private Banner mBanner;
     private MyImageLoader mMyImageLoader;
     private ArrayList<Integer> imagePath;
@@ -132,7 +132,7 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
         search_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(homepage.this, search.class);
+                Intent intent = new Intent(HomePageActivity.this, SearchActivity.class);
                 //intent.putExtra("user",(Serializable) user);
                 startActivity(intent);
             }
@@ -140,7 +140,7 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
         search_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(homepage.this, search.class);
+                Intent intent = new Intent(HomePageActivity.this, SearchActivity.class);
                 //intent.putExtra("user",(Serializable) user);
                 startActivity(intent);
             }

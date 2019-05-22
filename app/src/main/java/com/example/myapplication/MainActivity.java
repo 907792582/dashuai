@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +14,11 @@ import com.example.myapplication.Fragment.ShoppingCart_Fragment;
 import com.example.myapplication.Fragment.UserInfo_Fragment;
 import com.example.myapplication.Fragment.HomePage_Fragment;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     //底部菜单栏3个TextView
@@ -24,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Fragment mHomePage_Fragment;
     private Fragment mShopping_Fragment;
     private Fragment mUserInfo_Fragment;
-
+ private List<HashMap<String, String>> goodsList_order;
     //标记当前显示的Fragment
     private int fragmentId = 0;
 
@@ -32,15 +38,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        goodsList_order=new ArrayList<>();
+        Intent intent=getIntent();
+        Bundle bundle=intent.getExtras();
+        goodsList_order=(List<HashMap<String, String>>) bundle.getSerializable("goodsList_order");
         //初始化
         init();
         //根据传入的Bundle对象判断Activity是正常启动还是销毁重建
         if(savedInstanceState == null){
             //设置第一个Fragment默认选中
+            if(goodsList_order.isEmpty())
             setFragment(0);
+            else
+                {
+                setFragment(1);
+            }
         }
     }
-
+public List<HashMap<String, String>> getGoodsList_order()
+{
+    return goodsList_order;
+}
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         //通过onSaveInstanceState方法保存当前显示的fragment
