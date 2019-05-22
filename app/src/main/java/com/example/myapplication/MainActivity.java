@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        goodsList_order=new ArrayList<>();
+
+        goodsList_order = new ArrayList<>();
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
         goodsList_order=(List<HashMap<String, String>>) bundle.getSerializable("goodsList_order");

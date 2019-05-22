@@ -3,18 +3,33 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.example.myapplication.model.Book;
+import com.example.myapplication.model.Msg;
+import com.example.myapplication.model.User;
+import com.example.myapplication.tool.TokenHelper;
+import com.google.gson.Gson;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 
@@ -36,6 +51,12 @@ public class HomePageActivity extends AppCompatActivity implements OnBannerListe
     private TextView professional_book_top1_inventory_text;
     private TextView professional_book_top1_price_text;
 
+    // 登陆用户相关信息
+    private User user;
+
+    RequestQueue mQueue;
+    TokenHelper tokenHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +68,9 @@ public class HomePageActivity extends AppCompatActivity implements OnBannerListe
         // 设置搜索跳转
         setSearchJump();
 
+        // 向服务器请求用户信息
+        getUser();
+
         // 专业书籍显示
         showProfessionalBooks();
 
@@ -55,9 +79,13 @@ public class HomePageActivity extends AppCompatActivity implements OnBannerListe
     }
 
 
+
     private void init() {
         initData();
         initBanner();
+        user = new User();
+        tokenHelper = new TokenHelper();
+        mQueue = Volley.newRequestQueue(HomePageActivity.this);
         search_image = findViewById(R.id.search_image);
         search_text = findViewById(R.id.search_text);
         professional_book_top1_cover_image = findViewById(R.id.professional_book_top1_cover_image);
@@ -147,17 +175,74 @@ public class HomePageActivity extends AppCompatActivity implements OnBannerListe
         });
     }
 
+    private void getUser() {
+        user.setUsername("蓝菇");
+        user.setUsermajor("public");
+    }
+
     private void showProfessionalBooks() {
         // 服务器请求专业书籍
+        org.json.JSONObject jsonObject = new org.json.JSONObject();
+        try {
+            jsonObject.put("major", user.getUsermajor());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //String url = "http://193.112.98.224:8080/shopapp/book/getAllByMajor/"+user.getUsermajor();
+        String url = "http://193.112.98.224:8080/shopapp/book/getAll";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, jsonObject, new Response.Listener<org.json.JSONObject>() {
+
+            public void onResponse(org.json.JSONObject jsonObject) {
+                Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
+                Log.e("##", jsonObject.toString());
+                Log.e("##", message.getExtend().get("booklist").toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("##", "HomePage获取专业书籍出错");
+            }
+        });
+        mQueue.add(jsonObjectRequest);
     }
 
     private void setProfessionalBooksBlockJump() {
         professional_book_top1_linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 将书籍加入购物车
+                // 判断概述及是否在购物车中
+                // 如果购物车中已存在，报错
+                // 如果购物车中没有该书，加入购物车
+                Book book = new Book();
+                addBookToCart(book);
             }
         });
+    }
+
+    private void addBookToCart(Book book){
+        org.json.JSONObject jsonObject = new org.json.JSONObject();
+        try {
+            jsonObject.put("bookid", book.getBookid());
+            jsonObject.put("token", tokenHelper.getToken());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //String url = "http://193.112.98.224:8080/shopapp/book/getAllByMajor/"+user.getUsermajor();
+        String url = "http://193.112.98.224:8080/shopapp/book/getAll";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, jsonObject, new Response.Listener<org.json.JSONObject>() {
+
+            public void onResponse(org.json.JSONObject jsonObject) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+            }
+        });
+        mQueue.add(jsonObjectRequest);
     }
 
 }

@@ -47,4 +47,10 @@ dependencies {
     implementation files('libs/gson-2.8.2.jar')
     implementation files('libs/Okhttp3Helper.jar')
     implementation files('libs/volley.jar')
+
+    // okhttp3
+    implementation 'com.squareup.okhttp3:okhttp:3.12.1'
+    implementation 'com.squareup.okio:okio:1.15.0'
+    implementation files('libs/Okhttp3Helper.jar')
+
 }

@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:iconifiedByDefault="false"
-        android:background="@drawable/shape_search"
         android:queryHint="搜索书名、编号、作者或出版社"
         android:imeOptions="actionSearch"
         />
