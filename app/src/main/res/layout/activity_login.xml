@@ -201,7 +201,7 @@
             android:background="@drawable/bg_fillet_blue_border"
             android:textColor="@color/sky_blue"
             android:text="登   录"
-            style="?android:attr/borderlessButtonStyle"/>
+                style="?android:attr/borderlessButtonStyle"/>
 
         </LinearLayout>
 

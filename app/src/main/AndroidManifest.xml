@@ -23,11 +23,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".check_order" />
-        <activity android:name=".search"/>
-        <activity android:name=".shopping_cart"/>
+        <activity android:name=".search" />
+        <activity android:name=".shopping_cart" />
         <activity android:name=".homepage" />
         <activity android:name=".MainActivity" />
         <activity android:name=".UserInfoActivity">
+        </activity>
+        <activity android:name=".LoginWithTokenActivity">
         </activity>
     </application>
 

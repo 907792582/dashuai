@@ -38,6 +38,7 @@
 
                     />
                 <LinearLayout
+                    android:id="@+id/professional_book_top1_linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"

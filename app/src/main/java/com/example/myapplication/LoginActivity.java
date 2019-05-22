@@ -17,6 +17,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.model.Msg;
 import com.example.myapplication.model.User;
+import com.example.myapplication.tool.TokenHelper;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText student_ID_edit,student_pwd_edit;
     Button forget_pwd_button,register_button,login_button;
     RequestQueue mQueue;
+    TokenHelper tokenHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +38,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         init();
+        checkLoginHistory();
         setButtonOnClickFun();
     }
+
 
     private void init() {
         student_ID_edit = findViewById(R.id.student_ID_edit);
@@ -45,7 +49,16 @@ public class LoginActivity extends AppCompatActivity {
         forget_pwd_button = findViewById(R.id.forget_pwd_button);
         register_button = findViewById(R.id.register_button);
         login_button = findViewById(R.id.login_button);
-        mQueue  = Volley.newRequestQueue(LoginActivity.this);
+        mQueue = Volley.newRequestQueue(LoginActivity.this);
+        tokenHelper = new TokenHelper();
+    }
+
+    // 查看用户之前有没有token，有则二次登陆
+    private void checkLoginHistory() {
+        if(tokenHelper.getToken()!=null){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void setButtonOnClickFun() {
@@ -123,11 +136,23 @@ public class LoginActivity extends AppCompatActivity {
                             Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
                             Log.e("##", jsonObject.toString());
 
+                            // 操作成功
                             if(message.getCode() == 100){
-                                // 操作成功
+
+                                // 获取token，保存token到本地
+                                String token = tokenHelper.fetchToken(studentID,mQueue);
+                                if(token != null){
+                                    tokenHelper.deleteToken();
+                                    tokenHelper.saveToken(token);
+                                }else{
+                                    Toast.makeText(getApplicationContext(), "token获取失败，请联系管理员" , Toast.LENGTH_SHORT).show();
+                                }
+
+
+                                // 跳转
                                 if(message.getExtend().get("va_msg").toString().compareTo("此时登录成功为用户") == 0){
                                     // 用户登陆成功跳转
-                                    Toast.makeText(getApplicationContext(), message.getExtend().get("欢迎登陆"+studentID).toString() , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "欢迎登陆"+studentID , Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginActivity.this, homepage.class);
                                     // intent.putExtra("user",(Serializable) user);
                                     startActivity(intent);

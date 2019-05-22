@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
@@ -22,11 +23,19 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
     private MyImageLoader mMyImageLoader;
     private ArrayList<Integer> imagePath;
     private ArrayList<String> imageTitle;
-    // 下方导航栏控件
 
     // 上方搜索控件
     private ImageButton search_image;
     private TextView search_text;
+
+    // 专业类书籍
+    private LinearLayout professional_book_top1_linearLayout;
+    private ImageView professional_book_top1_cover_image;
+    private TextView professional_book_top1_name_text;
+    private TextView professional_book_top1_num_text;
+    private TextView professional_book_top1_inventory_text;
+    private TextView professional_book_top1_price_text;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +46,12 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
         init();
         // 设置搜索跳转
         setSearchJump();
+
+        // 专业书籍显示
+        showProfessionalBooks();
+
+        // 设置专业书籍跳转
+        setProfessionalBooksBlockJump();
     }
 
 
@@ -45,6 +60,12 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
         initBanner();
         search_image = findViewById(R.id.search_image);
         search_text = findViewById(R.id.search_text);
+        professional_book_top1_cover_image = findViewById(R.id.professional_book_top1_cover_image);
+        professional_book_top1_inventory_text = findViewById(R.id.professional_book_top1_inventory_text);
+        professional_book_top1_linearLayout = findViewById(R.id.professional_book_top1_linearLayout);
+        professional_book_top1_name_text = findViewById(R.id.professional_book_top1_name_text);
+        professional_book_top1_num_text = findViewById(R.id.professional_book_top1_num_text);
+        professional_book_top1_price_text = findViewById(R.id.professional_book_top1_price_text);
     }
 
     private void initData() {
@@ -122,6 +143,19 @@ public class homepage extends AppCompatActivity implements OnBannerListener {
                 Intent intent = new Intent(homepage.this, search.class);
                 //intent.putExtra("user",(Serializable) user);
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void showProfessionalBooks() {
+        // 服务器请求专业书籍
+    }
+
+    private void setProfessionalBooksBlockJump() {
+        professional_book_top1_linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 将书籍加入购物车
             }
         });
     }
