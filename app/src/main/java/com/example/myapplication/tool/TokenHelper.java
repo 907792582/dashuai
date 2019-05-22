@@ -1,17 +1,13 @@
 package com.example.myapplication.tool;
 
-import android.content.Intent;
 import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.myapplication.LoginActivity;
-import com.example.myapplication.homepage;
 import com.example.myapplication.model.Msg;
 import com.google.gson.Gson;
 
@@ -102,7 +98,6 @@ public class TokenHelper {
     // 从服务器取得token
     public String fetchToken(String username,RequestQueue mQueue){
 
-        final int returnFlag = 0;
 
         org.json.JSONObject jsonObject = new org.json.JSONObject();
         try {
