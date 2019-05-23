@@ -38,11 +38,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         goodsList_order = new ArrayList<>();
         Intent intent=getIntent();
-        Bundle bundle=intent.getExtras();
-        goodsList_order=(List<HashMap<String, String>>) bundle.getSerializable("goodsList_order");
+        if(intent!=null) {
+            Bundle bundle = intent.getExtras();
+            if (bundle!=null)
+                goodsList_order = (List<HashMap<String, String>>) bundle.getSerializable("goodsList_order");
+        }
         //初始化
         init();
         //根据传入的Bundle对象判断Activity是正常启动还是销毁重建
