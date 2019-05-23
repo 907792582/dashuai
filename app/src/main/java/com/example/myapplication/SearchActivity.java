@@ -19,8 +19,8 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
-        View underline =mSearchView.findViewById(R.id.search_plate);
-        underline.setBackgroundColor(ContextCompat.getColor(this,R.color.white));
+        //View underline =mSearchView.findViewById(R.id.search_plate);
+        //underline.setBackgroundColor(ContextCompat.getColor(this,R.color.white));
         mSearchView = (SearchView) findViewById(R.id.searchView);
         lListView = (ListView) findViewById(R.id.listView);
         lListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mStrs));

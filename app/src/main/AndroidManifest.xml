@@ -35,6 +35,9 @@
         </activity>
         <activity android:name=".BottomBar">
         </activity>
+        <activity android:name=".SearchResultActivity">
+        </activity>
+        <activity android:name=".LoginActivity"/>
     </application>
 
 </manifest>

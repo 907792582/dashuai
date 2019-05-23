@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="#fd383838"
+        android:background="@color/light_blue"
         android:orientation="horizontal">
 
     </LinearLayout>
@@ -66,7 +66,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="35dp"
-        android:background="#43b568"
+        android:background="@color/sky_blue"
         android:clickable="true">
 
         <TextView
@@ -78,7 +78,7 @@
             android:padding="11dp"
             android:text="去购物车结算"
             android:textSize="17dp"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             />
 
     </FrameLayout>

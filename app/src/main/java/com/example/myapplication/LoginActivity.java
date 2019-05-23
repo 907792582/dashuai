@@ -38,8 +38,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         init();
-        checkLoginHistory();
-        setButtonOnClickFun();
+        test();
+        //checkLoginHistory();
+        //setButtonOnClickFun();
     }
 
 
@@ -176,5 +177,9 @@ public class LoginActivity extends AppCompatActivity {
                     });
                     mQueue.add(jsonObjectRequest);
         // return true;
+    }
+
+    private void test(){
+        Log.e("##","test返回："+tokenHelper.fetchToken("wsc",mQueue));
     }
 }

@@ -39,7 +39,7 @@ public class TokenHelper {
     public String getToken(){
         FileReader fReader = null;
         try {
-            fReader = new FileReader("Demo.txt");
+            fReader = new FileReader( basePath + File.separator + "BookShop" + File.separator + "token.txt");
 
             char arr [] = new char[1024];
             int num = 0;
@@ -108,11 +108,11 @@ public class TokenHelper {
 
         String url = "http://193.112.98.224:8080/shopapp/user/returntoken";
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<org.json.JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, jsonObject, new Response.Listener<org.json.JSONObject>() {
 
             public void onResponse(org.json.JSONObject jsonObject) {
                 Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
-                Log.e("##", jsonObject.toString());
+                Log.e("##token返回：", jsonObject.toString());
                 if(message.getCode() == 100){
                     token =  message.getExtend().get("token").toString();
                 }else{
