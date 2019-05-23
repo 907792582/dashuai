@@ -38,7 +38,6 @@
                 android:layout_height="@dimen/head_image_size"
                 android:layout_marginLeft="@dimen/large_margin"
                 android:background="@drawable/bg_circle_blue"
-                android:src="@drawable/alipay"
                 android:scaleType="fitXY"
                 android:layout_gravity="center_vertical"/>
 

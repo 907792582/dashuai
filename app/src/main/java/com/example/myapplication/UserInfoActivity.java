@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.myapplication.model.User;
 import com.example.myapplication.tool.NetImage;
 
@@ -25,6 +26,7 @@ public class UserInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_info);
 
         head_image_button = findViewById(R.id.head_image_button);
+        mQueue = Volley.newRequestQueue(UserInfoActivity.this);
         user = new User();
         user.setUsername("wsc");
         setClickFunction();

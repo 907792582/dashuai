@@ -127,7 +127,7 @@ public class NetImage {
 
         // 将图片上传到服务器
         File file = new File(basePath+"/BookShop/"+phone+".jpg");
-        String postUrl = "http://193.112.98.224:8080/shopapp/ImageServlet";
+        String postUrl = "http://47.100.226.176:8080/XueBaJun/ImageServlet";
 
         postFile(postUrl, new Callback() {
             @Override
@@ -143,7 +143,7 @@ public class NetImage {
                 }
 
                 // 返回后设置UI显示
-                setHeadImage(mQueue,imageButton,"http://193.112.98.224:8080/shopapp/Image/"+phone+".jpg");
+                setHeadImage(mQueue,imageButton,"http://47.100.226.176:8080/XueBaJun/head_image/"+phone+".jpg");
             }
         }, file);
     }
