@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.myapplication.Fragment.ShoppingCart_Fragment;
 import com.example.myapplication.Fragment.UserInfo_Fragment;
 import com.example.myapplication.Fragment.HomePage_Fragment;
+import com.example.myapplication.model.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,6 +39,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
  private List<HashMap<String, String>> goodsList_order;
     //标记当前显示的Fragment
     private int fragmentId = 0;
+
+    // 当前登陆用户
+    User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //根据传入的Bundle对象判断Activity是正常启动还是销毁重建
         if(savedInstanceState == null){
             //设置第一个Fragment默认选中
-            if(goodsList_order.isEmpty())
+            if(goodsList_order!=null&&goodsList_order.isEmpty())
             setFragment(0);
             else
                 {

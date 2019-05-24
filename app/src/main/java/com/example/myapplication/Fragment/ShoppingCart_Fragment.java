@@ -94,10 +94,13 @@ public void onAttach(Activity activity)
 {
     super.onAttach(activity);
     goodsList=((MainActivity)activity).getGoodsList_order();
-    for(int i=0;i<goodsList.size();i++)
-    {
-        goodsList.get(i).put("id","0");
+    if(goodsList!=null){
+        for(int i=0;i<goodsList.size();i++)
+        {
+            goodsList.get(i).put("id","0");
+        }
     }
+
 }
     /*private void initDate() {
         goodsList = new ArrayList<>();
