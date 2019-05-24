@@ -85,7 +85,7 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
     }
 
     private void initDate() {
-        for (int i = 0; i < 10; i++) {
+        /*for (int i = 0; i < 10; i++) {
             HashMap<String, String> map = new HashMap<>();
             map.put("id", "0");
             map.put("name", "购物车里的第" + (i + 1) + "件商品");
@@ -94,7 +94,7 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
             map.put("price", (new Random().nextInt(100) % (100 - 29 + 29) + 29) + "");
             map.put("count","1");
             goodsList.add(map);
-        }
+        }*/
 
         for(Book book:bookList){
             HashMap<String, String> map = new HashMap<>();
