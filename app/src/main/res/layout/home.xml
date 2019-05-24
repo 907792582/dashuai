@@ -179,6 +179,7 @@
 
                     />
                 <LinearLayout
+                    android:id="@+id/public_book_top1_linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -286,7 +287,7 @@
                     <Button
                         android:id="@+id/more_pub_button"
                         android:layout_width="wrap_content"
-                        android:layout_height="18dp"
+                        android:layout_height="15dp"
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="@dimen/small_margin"

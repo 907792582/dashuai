@@ -152,12 +152,12 @@ public class LoginActivity extends AppCompatActivity {
                                     // 用户登陆成功跳转
                                     Toast.makeText(getApplicationContext(), "欢迎登陆"+studentID , Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("user",(Serializable) user);
+                                    //intent.putExtra("user",(Serializable) user);
                                     startActivity(intent);
                                 }else{
                                     // 管理员登陆成功跳转
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("user",(Serializable) user);
+                                    //intent.putExtra("user",(Serializable) user);
                                     startActivity(intent);
                                 }
                             }else{

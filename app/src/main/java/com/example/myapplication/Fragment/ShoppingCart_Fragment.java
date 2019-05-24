@@ -78,6 +78,7 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
             LinearLayout cartbottomBar=view.findViewById(R.id.cartbottomBar);
             cartbottomBar.setVisibility(View.GONE);
             mListView.setVisibility(View.GONE);
+            //TextView cartEmpty=view.findViewById(R.id.tv_cart_empty);
             TextView cartEmpty=view.findViewById(R.id.tv_cart_empty);
             cartEmpty.setText("购物车是空的诶~");
         }

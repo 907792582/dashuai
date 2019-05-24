@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //根据传入的Bundle对象判断Activity是正常启动还是销毁重建
         if(savedInstanceState == null){
             //设置第一个Fragment默认选中
-            if(goodsList_order!=null&&goodsList_order.isEmpty())
+            if(goodsList_order.isEmpty())
             setFragment(0);
             else
                 {

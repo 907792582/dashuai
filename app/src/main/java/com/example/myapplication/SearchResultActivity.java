@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.myapplication.Adapter.CartAdapter;
 import com.example.myapplication.Adapter.SearchResultAdapter;
+import com.example.myapplication.model.Book;
+import com.example.myapplication.model.Msg;
 import com.example.myapplication.viewholder.ViewHolder;
 
 import java.util.ArrayList;
@@ -55,6 +57,9 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
     private TextView mSearch;
     private ListView mList;
 
+    // 主页查看更多跳转携带书籍列表数据
+    List<Book> bookList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,13 +67,24 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
         ButterKnife.bind(this);
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
         mTvTitle.setText("搜索结果");
+
+        goodsList = new ArrayList<>();
+
+        // 接收传递信息
+        getBookListData();
+
         //模拟一些数据
         initDate();
         initView();
     }
 
+    private void getBookListData() {
+        Msg message = (Msg) getIntent().getSerializableExtra("bookList");
+
+        bookList = (List<Book>) message.getExtend().get("bookList");
+    }
+
     private void initDate() {
-        goodsList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             HashMap<String, String> map = new HashMap<>();
             map.put("id", "0");
@@ -76,6 +92,17 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
             map.put("number", "666-"+i%3+i%4+i%5);
             map.put("inventory", (new Random().nextInt(10))+"");
             map.put("price", (new Random().nextInt(100) % (100 - 29 + 29) + 29) + "");
+            map.put("count","1");
+            goodsList.add(map);
+        }
+
+        for(Book book:bookList){
+            HashMap<String, String> map = new HashMap<>();
+            map.put("id", book.getBookid());
+            map.put("name", book.getBookname());
+            map.put("number", book.getBookid());
+            map.put("inventory", book.getBookstock());
+            map.put("price", book.getBookprice().toString());
             map.put("count","1");
             goodsList.add(map);
         }
