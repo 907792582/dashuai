@@ -2,7 +2,9 @@ package com.example.myapplication.tool;
 
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -18,11 +20,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TokenHelper {
 
     private String basePath;
-    private String token;
 
     public TokenHelper() {
         boolean hasSDCard = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
@@ -96,27 +99,25 @@ public class TokenHelper {
     }
 
     // 从服务器取得token
-    public String fetchToken(String username,RequestQueue mQueue){
+    /*public String fetchToken(final String username, RequestQueue mQueue){
 
 
-        org.json.JSONObject jsonObject = new org.json.JSONObject();
-        try {
-            jsonObject.put("username", username);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        String url = "http://193.112.98.224:8080/shopapp/user/returntoken/"+username;
 
-        String url = "http://193.112.98.224:8080/shopapp/user/returntoken";
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, jsonObject, new Response.Listener<org.json.JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 
             public void onResponse(org.json.JSONObject jsonObject) {
                 Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
-                Log.e("##token返回：", jsonObject.toString());
+                Log.e("##", jsonObject.toString());
+
+                // 操作成功
                 if(message.getCode() == 100){
-                    token =  message.getExtend().get("token").toString();
+                    token = message.getExtend().get("token").toString();
+                    //Toast.makeText(getApplicationContext(), message.getExtend().get("token").toString() , Toast.LENGTH_SHORT).show();
                 }else{
+                    // 操作失败
                     token = "fail";
+                    //Toast.makeText(getApplicationContext(), message.getExtend().get("va_msg").toString() , Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -129,7 +130,9 @@ public class TokenHelper {
         mQueue.add(jsonObjectRequest);
 
         // 服务器没有返回，等待
-        while (token == null){}
+        while (token == null){
+            Log.e("##开始http通信：", "等待返回token");
+        }
 
         if(token.compareTo("fail") ==0){
             return null;
@@ -137,6 +140,6 @@ public class TokenHelper {
             return token;
         }
 
-    }
+    }*/
 
 }

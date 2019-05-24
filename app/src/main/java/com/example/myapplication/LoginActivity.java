@@ -31,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     Button forget_pwd_button,register_button,login_button;
     RequestQueue mQueue;
     TokenHelper tokenHelper;
+    String token;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         init();
-        test();
-        //checkLoginHistory();
-        //setButtonOnClickFun();
+        //test();
+        checkLoginHistory();
+        setButtonOnClickFun();
     }
 
 
@@ -52,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         login_button = findViewById(R.id.login_button);
         mQueue = Volley.newRequestQueue(LoginActivity.this);
         tokenHelper = new TokenHelper();
+        user = new User();
     }
 
     // 查看用户之前有没有token，有则二次登陆
@@ -131,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     String url = "http://193.112.98.224:8080/shopapp/user/login/"+studentID+"/"+pwd;
 
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<org.json.JSONObject>() {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 
                         public void onResponse(org.json.JSONObject jsonObject) {
                             Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
@@ -141,26 +144,20 @@ public class LoginActivity extends AppCompatActivity {
                             if(message.getCode() == 100){
 
                                 // 获取token，保存token到本地
-                                String token = tokenHelper.fetchToken(studentID,mQueue);
-                                if(token != null){
-                                    tokenHelper.deleteToken();
-                                    tokenHelper.saveToken(token);
-                                }else{
-                                    Toast.makeText(getApplicationContext(), "token获取失败，请联系管理员" , Toast.LENGTH_SHORT).show();
-                                }
+                                fetchToken(studentID);
 
 
                                 // 跳转
                                 if(message.getExtend().get("va_msg").toString().compareTo("此时登录成功为用户") == 0){
                                     // 用户登陆成功跳转
                                     Toast.makeText(getApplicationContext(), "欢迎登陆"+studentID , Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
-                                    // intent.putExtra("user",(Serializable) user);
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    intent.putExtra("user",(Serializable) user);
                                     startActivity(intent);
                                 }else{
                                     // 管理员登陆成功跳转
-                                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
-                                    // intent.putExtra("user",(Serializable) user);
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    intent.putExtra("user",(Serializable) user);
                                     startActivity(intent);
                                 }
                             }else{
@@ -180,6 +177,44 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void test(){
-        Log.e("##","test返回："+tokenHelper.fetchToken("wsc",mQueue));
+        Log.e("##","test返回：");
+    }
+
+    public void fetchToken(final String username){
+
+
+        String url = "http://193.112.98.224:8080/shopapp/user/returntoken/"+username;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
+
+            public void onResponse(org.json.JSONObject jsonObject) {
+                Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
+                Log.e("##", jsonObject.toString());
+                Log.e("##", String.valueOf(message.getCode()));
+                Log.e("##", message.getExtend().get("token").toString());
+                // 操作成功
+                if(message.getCode() == 100){
+
+                    // user.setUserid(message.getExtend().get("userId").toString());
+
+                    token = message.getExtend().get("userId").toString();
+                    //Toast.makeText(getApplicationContext(), message.getExtend().get("token").toString() , Toast.LENGTH_SHORT).show();
+                    tokenHelper.deleteToken();
+                    tokenHelper.saveToken(token);
+                }else{
+                    // 操作失败
+                    token = "fail";
+                    Toast.makeText(getApplicationContext(), message.getExtend().get("token").toString()+"请联系管理员" , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(getApplicationContext(), "服务器返回异常，请联系管理员" , Toast.LENGTH_SHORT).show();
+            }
+        });
+        mQueue.add(jsonObjectRequest);
+
     }
 }

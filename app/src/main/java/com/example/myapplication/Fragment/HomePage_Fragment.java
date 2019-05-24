@@ -2,9 +2,17 @@ package com.example.myapplication.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
 
 /**
@@ -15,15 +23,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.SearchActivity;
+import com.example.myapplication.model.Book;
+import com.example.myapplication.model.Msg;
+import com.example.myapplication.model.User;
+import com.example.myapplication.tool.TokenHelper;
+import com.google.gson.Gson;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 
@@ -36,12 +52,27 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
     private MyImageLoader mMyImageLoader;
     private ArrayList<Integer> imagePath;
     private ArrayList<String> imageTitle;
-    // 下方导航栏控件
 
     // 上方搜索控件
     private ImageButton search_image;
     private TextView search_text;
     private Context mcontext;
+
+    // 专业类书籍
+    private LinearLayout professional_book_top1_linearLayout;
+    private ImageView professional_book_top1_cover_image;
+    private TextView professional_book_top1_name_text;
+    private TextView professional_book_top1_num_text;
+    private TextView professional_book_top1_inventory_text;
+    private TextView professional_book_top1_price_text;
+
+    // 当前登陆用户
+    User user;
+    // volley
+    RequestQueue mQueue;
+    // token
+    TokenHelper tokenHelper;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,18 +85,37 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
         TextView title=(TextView)view.findViewById(R.id.titleView);
         title.setText("书城");
         mcontext=getActivity();
-        init();
+
+
+        init(view);
+
         // 设置搜索跳转
         setSearchJump();
+
+        // 向服务器请求用户信息
+        getUser();
+
     }
 
 
-    private void init() {
+
+    private void init(View view) {
         initData();
         initBanner();
-        search_image = getView().findViewById(R.id.search_image);
-        search_text = getView().findViewById(R.id.search_text);
+        search_image = view.findViewById(R.id.search_image);
+        search_text = view.findViewById(R.id.search_text);
+        professional_book_top1_cover_image = view.findViewById(R.id.professional_book_top1_cover_image);
+        professional_book_top1_inventory_text = view.findViewById(R.id.professional_book_top1_inventory_text);
+        professional_book_top1_linearLayout = view.findViewById(R.id.professional_book_top1_linearLayout);
+        professional_book_top1_name_text = view.findViewById(R.id.professional_book_top1_name_text);
+        professional_book_top1_num_text = view.findViewById(R.id.professional_book_top1_num_text);
+        professional_book_top1_price_text = view.findViewById(R.id.professional_book_top1_price_text);
+
+        mQueue = Volley.newRequestQueue(mcontext);
+        tokenHelper = new TokenHelper();
+        user = new User();
     }
+
 
     private void initData() {
         imagePath = new ArrayList<>();
@@ -144,6 +194,109 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
                 startActivity(intent);
             }
         });
+    }
+
+    private void getUser() {
+
+        String url = "http://193.112.98.224:8080/shopapp/User/finduser/"+tokenHelper.getToken();
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
+
+            public void onResponse(org.json.JSONObject jsonObject) {
+                Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
+                Log.e("##", "User信息返回"+jsonObject.toString());
+                // 操作成功
+                if(message.getCode() == 100){
+
+                    user = (User) message.getExtend().get("user");
+
+                    // 专业书籍显示
+                    showProfessionalBooks();
+
+                    // 设置专业书籍跳转
+                    setProfessionalBooksBlockJump();
+
+
+                }else{
+                    // 操作失败
+                    Toast.makeText(mcontext, "用户信息获取失败，请联系管理员" , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(mcontext, "服务器返回异常，请联系管理员" , Toast.LENGTH_SHORT).show();
+            }
+        });
+        mQueue.add(jsonObjectRequest);
+
+    }
+
+    private void showProfessionalBooks() {
+        // 服务器请求专业书籍
+        org.json.JSONObject jsonObject = new org.json.JSONObject();
+        try {
+            jsonObject.put("major", user.getUsermajor());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        String url = "http://193.112.98.224:8080/shopapp/book/getAllByMajor/"+user.getUsermajor();
+        //String url = "http://193.112.98.224:8080/shopapp/book/getAll";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, jsonObject, new Response.Listener<org.json.JSONObject>() {
+
+            public void onResponse(org.json.JSONObject jsonObject) {
+                Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
+                Log.e("##", jsonObject.toString());
+                Log.e("##", message.getExtend().get("booklist").toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("##", "HomePage获取专业书籍出错");
+                Toast.makeText(mcontext, "专业书籍信息获取失败，请联系管理员" , Toast.LENGTH_SHORT).show();
+            }
+        });
+        mQueue.add(jsonObjectRequest);
+    }
+
+    private void setProfessionalBooksBlockJump() {
+        professional_book_top1_linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 判断概述及是否在购物车中
+                // 如果购物车中已存在，报错
+                // 如果购物车中没有该书，加入购物车
+                //Book book = new Book();
+                //addBookToCart(book);
+            }
+        });
+    }
+
+    private void addBookToCart(Book book){
+        org.json.JSONObject jsonObject = new org.json.JSONObject();
+        try {
+            jsonObject.put("bookid", book.getBookid());
+            jsonObject.put("token", tokenHelper.getToken());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //String url = "http://193.112.98.224:8080/shopapp/book/getAllByMajor/"+user.getUsermajor();
+        String url = "http://193.112.98.224:8080/shopapp/book/getAll";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, jsonObject, new Response.Listener<org.json.JSONObject>() {
+
+            public void onResponse(org.json.JSONObject jsonObject) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+            }
+        });
+        mQueue.add(jsonObjectRequest);
     }
 
 
