@@ -18,12 +18,15 @@ import com.example.myapplication.R;
  */
 import android.content.Intent;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.myapplication.Adapter.CartAdapter;
 import com.example.myapplication.StatusBarUtil;
 import com.example.myapplication.SearchActivity;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,10 +56,6 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
     private List<HashMap<String, String>> goodsList_order;
     private CartAdapter adapter;
     private Context mcontext;
-    public ShoppingCart_Fragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,12 +68,25 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
         super.onViewCreated(view,savedInstanceState);
         mcontext=getActivity();
         goodsList=new ArrayList<>();
-
+        onAttach(mcontext);
         ButterKnife.bind(this,view);
         StatusBarUtil.setTranslucentForImageViewInFragment(getActivity(), 0, null);
         mTvTitle.setText("购物车");
-        onAttach(mcontext);
-        //模拟一些数据
+        if(goodsList.isEmpty())
+        {
+            LinearLayout cartLayout=view.findViewById(R.id.cart_layout);
+            LinearLayout cartbottomBar=view.findViewById(R.id.cartbottomBar);
+            cartbottomBar.setVisibility(View.GONE);
+            mListView.setVisibility(View.GONE);
+            TextView cartEmpty=view.findViewById(R.id.tv_cart_empty);
+            cartEmpty.setText("购物车是空的诶~");
+        }
+        else
+        {
+            TextView cartEmpty=view.findViewById(R.id.tv_cart_empty);
+            cartEmpty.setVisibility(View.GONE);
+        }
+
         initView();
     }
 @Override
@@ -110,17 +122,18 @@ public void onAttach(Activity activity)
 
 
 
-    @OnClick({R.id.all_chekbox, R.id.tv_go_to_pay,R.id.search_image})
+    @OnClick({R.id.all_chekbox,R.id.search_text,R.id.tv_go_to_pay})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.search_image:
-                Intent intent_search_image=new Intent();
-                intent_search_image.setClass(mcontext, SearchActivity.class);
-                startActivity(intent_search_image);
+            case R.id.all_chekbox:
+                AllTheSelected(true);
+                break;
+
             case R.id.search_text:
                 Intent intent_search_text=new Intent();
                 intent_search_text.setClass(mcontext, SearchActivity.class);
                 startActivity(intent_search_text);
+                break;
             case R.id.tv_go_to_pay:
                 if (totalCount <= 0) {
                     Toast.makeText(mcontext, "请选择要付款的商品~", Toast.LENGTH_SHORT).show();

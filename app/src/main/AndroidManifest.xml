@@ -38,6 +38,9 @@
         <activity android:name=".SearchResultActivity">
         </activity>
         <activity android:name=".LoginActivity"/>
+        <activity android:name=".UserUnpickedOrderActivity"/>
+        <activity android:name=".UserUnconfiguredOrderActivity"/>
+        <activity android:name=".UserPickedOrderActivity"/>
     </application>
 
 </manifest>

@@ -69,13 +69,13 @@ public class ShoppingCartActivity extends AppCompatActivity implements CartAdapt
 
 
 
-    @OnClick({R.id.all_chekbox, R.id.tv_go_to_pay,R.id.search_image})
+    @OnClick({R.id.all_chekbox, R.id.tv_go_to_pay,R.id.search_text})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.all_chekbox:
                 AllTheSelected(true);
                 break;
-            case R.id.search_image:
+            case R.id.search_text:
                 Intent intent_s=new Intent();
                 intent_s.setClass(this, SearchActivity.class);
                 startActivity(intent_s);

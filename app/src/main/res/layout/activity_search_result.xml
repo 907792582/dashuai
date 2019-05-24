@@ -10,14 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 <include layout="@layout/title_back"/>
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/shape_search"
-        android:queryHint="搜索书名、编号、作者或出版社"
-        >
-    </SearchView>
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"

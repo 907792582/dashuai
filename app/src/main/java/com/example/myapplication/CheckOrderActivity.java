@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CheckOrderActivity extends AppCompatActivity  {
-    @BindView(R.id.title)
+    @BindView(R.id.titile)
     TextView mTvTitle;
     @BindView(R.id.listView_order)
     ListView mListView;

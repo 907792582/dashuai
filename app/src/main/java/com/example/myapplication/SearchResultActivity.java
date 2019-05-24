@@ -11,10 +11,12 @@ import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -31,8 +33,13 @@ import java.io.Serializable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.widget.TextView;
 public class SearchResultActivity extends AppCompatActivity implements SearchResultAdapter.ItemClickListener {
-    @BindView(R.id.title)
+    @BindView(R.id.titile)
     TextView mTvTitle;
     @BindView(R.id.listView)
     ListView mListView;
@@ -40,13 +47,14 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
     RelativeLayout searchLayout;
     @BindView(R.id.shopping_cart)
     ImageView cartImage;
-
     private double totalPrice = 0.00;
     private int totalCount = 0;
     private List<HashMap<String, String>> goodsList;
     public List<HashMap<String, String>> goodsList_order;
     private SearchResultAdapter adapter;
-    private TextView textView;
+    private TextView mSearch;
+    private ListView mList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,10 +83,22 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
 
     private void initView() {
         adapter = new SearchResultAdapter(this, goodsList, R.layout.item_search_result);
+        View view = LayoutInflater.from(SearchResultActivity.this).inflate(R.layout.searchbar, null);
+        mSearch=view.findViewById(R.id.tv_search);
+        mSearch.setOnClickListener(new View.OnClickListener() {
+                                       public void onClick(View view) {
+                                           Intent intent = new Intent(SearchResultActivity.this, SearchActivity.class);
+                                           //intent.putExtra("user",(Serializable) user);
+                                           startActivity(intent);
+                                       }
+                                   });
+        mList=findViewById(R.id.listView);
+        mList.addHeaderView(view);
         mListView.setAdapter(adapter);
         adapter.setOnItemClickListener(this);
         adapter.notifyDataSetChanged();
     }
+
 
 
 
@@ -97,11 +117,16 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
                             goodsList_order.add(goodsList.get(i));
                         }
                     }
-                    intent.setClass(this, MainActivity.class);
-                    bundle.putSerializable("goodsList_order",(Serializable)goodsList_order);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                    if(goodsList_order.isEmpty())
+                        Toast.makeText(this, "还没有选择书籍哦~~", Toast.LENGTH_SHORT).show();
+                    else {
+                        intent.setClass(this, MainActivity.class);
+                        bundle.putSerializable("goodsList_order", (Serializable) goodsList_order);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
                 break;
+
         }
     }
     @Override

@@ -67,13 +67,10 @@ public class HomePageActivity extends AppCompatActivity implements OnBannerListe
         init();
         // 设置搜索跳转
         setSearchJump();
-
         // 向服务器请求用户信息
         getUser();
-
         // 专业书籍显示
         showProfessionalBooks();
-
         // 设置专业书籍跳转
         setProfessionalBooksBlockJump();
     }
@@ -86,7 +83,6 @@ public class HomePageActivity extends AppCompatActivity implements OnBannerListe
         user = new User();
         tokenHelper = new TokenHelper();
         mQueue = Volley.newRequestQueue(HomePageActivity.this);
-        search_image = findViewById(R.id.search_image);
         search_text = findViewById(R.id.search_text);
         professional_book_top1_cover_image = findViewById(R.id.professional_book_top1_cover_image);
         professional_book_top1_inventory_text = findViewById(R.id.professional_book_top1_inventory_text);

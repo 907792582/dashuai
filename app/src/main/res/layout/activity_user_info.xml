@@ -12,19 +12,7 @@
         android:orientation="vertical"
         android:background="@drawable/background">
 
-        <!-- nav -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/nav_color"
-            android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="用户中心"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-        </LinearLayout>
+       <include layout="@layout/title"></include>
 
         <!-- user info -->
         <LinearLayout
@@ -150,7 +138,7 @@
                             android:background="@drawable/bob" />
 
                         <Button
-                            android:id="@+id/more_pub_button"
+                            android:id="@+id/more_unconfigured_button"
                             android:layout_width="wrap_content"
                             android:layout_height="18dp"
                             android:layout_gravity="bottom"
@@ -213,6 +201,7 @@
                             android:background="@drawable/bob" />
 
                         <Button
+                            android:id="@+id/more_unpicked_button"
                             android:layout_width="wrap_content"
                             android:layout_height="18dp"
                             android:layout_gravity="bottom"
@@ -275,6 +264,7 @@
                             android:background="@drawable/bob" />
 
                         <Button
+                            android:id="@+id/more_picked_button"
                             android:layout_width="wrap_content"
                             android:layout_height="18dp"
                             android:layout_gravity="bottom"

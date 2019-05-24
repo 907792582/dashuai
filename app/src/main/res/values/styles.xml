@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/light_gray</item>
         <item name="colorPrimaryDark">@color/light_gray</item>
         <item name="colorAccent">@color/light_gray</item>
+        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -33,5 +34,15 @@
         <item name="android:windowContentOverlay">@null</item>
         <!--背景变暗-->
         <item name="android:backgroundDimEnabled">true</item> </style>
+
+    <style name="activityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_from_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_to_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_from_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_to_right</item>
+    </style>
+    
+
+
 
 </resources>

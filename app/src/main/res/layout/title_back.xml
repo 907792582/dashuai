@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@mipmap/fanhui"
             android:layout_alignBottom="@id/titleView"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:ellipsize="end"
             android:gravity="center"
             android:lines="1"
@@ -24,11 +24,11 @@
             android:textColor="#ffffff"
             android:textSize="16dp" />
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/titile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="5dp"
             android:ellipsize="end"
             android:gravity="center"

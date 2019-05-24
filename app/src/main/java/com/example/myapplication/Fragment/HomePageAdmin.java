@@ -28,9 +28,9 @@ import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 
-public class HomePage_Fragment extends Fragment implements OnBannerListener{
+public class HomePageAdmin extends Fragment implements OnBannerListener{
 
-    public HomePage_Fragment() {
+    public HomePageAdmin() {
         // Required empty public constructor
     }
     private Banner mBanner;
@@ -47,7 +47,7 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.home, container, false);
+        return inflater.inflate(R.layout.activity_home_admin, container, false);
     }
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState) {

@@ -10,16 +10,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.myapplication.CheckOrderActivity;
 import com.example.myapplication.LoginActivity;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.SearchActivity;
+import com.example.myapplication.UserUnconfiguredOrderActivity;
 import com.example.myapplication.model.User;
 import com.example.myapplication.tool.NetImage;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -51,14 +61,38 @@ public class UserInfo_Fragment extends Fragment {
         //页面初始化
         super.onViewCreated(view,savedInstanceState);
         mcontext=getActivity();
-
+        ButterKnife.bind(this,view);
+        TextView tvsearch=view.findViewById(R.id.search_text);
+        tvsearch.setVisibility(View.GONE);
+        TextView title=view.findViewById(R.id.titleView);
+        title.setText("用户中心");
         init(view);
         getUser();
         setPage();
         setClickFunction();
     }
 
+    @OnClick({R.id.more_unconfigured_button,R.id.more_picked_button,R.id.more_unpicked_button})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.more_unconfigured_button:
+                Intent intent_unconfigured=new Intent();
+                intent_unconfigured.setClass(mcontext, UserUnconfiguredOrderActivity.class);
+                startActivity(intent_unconfigured);
+                break;
 
+            case R.id.more_picked_button:
+                Intent intent_picked=new Intent();
+                intent_picked.setClass(mcontext, SearchActivity.class);
+                startActivity(intent_picked);
+                break;
+            case R.id.more_unpicked_button:
+                Intent intent_unpicked=new Intent();
+                intent_unpicked.setClass(mcontext, SearchActivity.class);
+                startActivity(intent_unpicked);
+                break;
+        }
+    }
 
     private void init(View view) {
         user = new User();
@@ -130,4 +164,5 @@ public class UserInfo_Fragment extends Fragment {
                 break;
         }
     }
+
 }
