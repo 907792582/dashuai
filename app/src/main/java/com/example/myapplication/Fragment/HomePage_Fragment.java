@@ -179,9 +179,9 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
         imagePath.add(R.drawable.patrik);
         imagePath.add(R.drawable.patrik);
         imagePath.add(R.drawable.patrik);
-        imageTitle.add("我是海鸟一号");
-        imageTitle.add("我是海鸟二号");
-        imageTitle.add("我是海鸟3号");
+        imageTitle.add("   ");
+        imageTitle.add("   ");
+        imageTitle.add("   ");
     }
 
     private void initBanner() {
@@ -506,7 +506,6 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
         });
         mQueue.add(jsonObjectRequest);
     }
-
 
 
 }

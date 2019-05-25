@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -12,8 +14,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.Fragment.ShoppingCart_Fragment;
 import com.example.myapplication.Fragment.UserInfo_Fragment;
@@ -31,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mTextBook;
     private TextView mTextCart;
     private TextView mTextUser;
-
+    private boolean isExit;
     //3个Fragment
     private Fragment mHomePage_Fragment;
     private Fragment mShopping_Fragment;
@@ -240,12 +244,35 @@ public List<HashMap<String, String>> getGoodsList_order()
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case PERMISSION_REQUEST:
-
                 break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                 break;
         }
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (isExit) {
+               LoginActivity.instance.finish();
+                this.finish();
+
+            } else {
+                Toast.makeText(this, "再次点击返回键退出应用", Toast.LENGTH_SHORT).show();
+                isExit = true;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        isExit= false;
+                    }
+                }, 2000);
+            }
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
 
 }
+

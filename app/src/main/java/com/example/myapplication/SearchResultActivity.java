@@ -159,7 +159,7 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
     }
     @Override
     public void AddToCart(final View view, int position) {
-        if (goodsList.get(position).get("id").equals("0")) {
+        if (goodsList.get(position).get("select").equals("0")) {
             //贝塞尔起始数据点
             int[] startPosition = new int[2];
             //贝塞尔结束数据点
@@ -236,4 +236,5 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
 
         }
     }
+
 }
