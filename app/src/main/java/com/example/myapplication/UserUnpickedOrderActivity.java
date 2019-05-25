@@ -8,6 +8,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.myapplication.Adapter.OrderAdapter;
+import com.example.myapplication.model.Msg;
+import com.example.myapplication.model.Shop;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +27,7 @@ public class UserUnpickedOrderActivity extends AppCompatActivity  {
     ListView mListView;
     public List<HashMap<String, String>> goodsList_order;
     private OrderAdapter adapter;
+    private List<Shop> untookList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,15 +41,19 @@ public class UserUnpickedOrderActivity extends AppCompatActivity  {
 
     }
     private void initDate() {
+        Msg message = (Msg) getIntent().getSerializableExtra("untookList");
+
+        untookList = (List<Shop>) message.getExtend().get("untookList");
+
         goodsList_order = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (Shop shop:untookList) {
             HashMap<String, String> map = new HashMap<>();
-            map.put("id", "0");
-            map.put("name", "购物车里的第" + (i + 1) + "件商品");
-            map.put("number", "666-"+i%3+i%4+i%5);
-            map.put("inventory", (new Random().nextInt(10))+"");
-            map.put("price", (new Random().nextInt(100) % (100 - 29 + 29) + 29) + "");
-            map.put("count","1");
+            map.put("id", shop.getShopid());
+            map.put("name", shop.getBookname());
+            map.put("number",shop.getBookid());
+            map.put("inventory", "50");
+            map.put("price", String.valueOf(shop.getBookprice()));
+            map.put("count",shop.getBookintroduction());
             goodsList_order.add(map);
         }
     }

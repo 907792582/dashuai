@@ -171,6 +171,13 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
     }
 
     private void setPage(){
+
+        mListView = mView.findViewById(R.id.listView);
+        mTvTitle = mView.findViewById(R.id.titleView);
+        mAllChekbox = mView.findViewById(R.id.all_chekbox);
+        mTvTotalPrice = mView.findViewById(R.id.tv_total_price);
+        mTvGoToPay = mView.findViewById(R.id.tv_go_to_pay);
+
         if(goodsList.isEmpty())
         {
             LinearLayout cartLayout=mView.findViewById(R.id.cart_layout);
@@ -228,14 +235,8 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
     private void initView() {
         adapter = new CartAdapter(mcontext, goodsList, R.layout.item_cehua);
         adapter.setOnItemClickListener(this);
-        mListView = mView.findViewById(R.id.listView);
         mListView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
-        mTvTitle = mView.findViewById(R.id.titleView);
-        mAllChekbox = mView.findViewById(R.id.all_chekbox);
-        mTvTotalPrice = mView.findViewById(R.id.tv_total_price);
-        mTvGoToPay = mView.findViewById(R.id.tv_go_to_pay);
     }
 
 

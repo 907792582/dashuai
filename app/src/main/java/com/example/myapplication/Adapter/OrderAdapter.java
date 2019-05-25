@@ -30,7 +30,7 @@ public class OrderAdapter extends CommonAdapter<HashMap<String, String>> {
         holder.setText(R.id.book_name,map.get("name"));
         holder.setText(R.id.tv_num,"x"+map.get("count"));
         holder.setText(R.id.book_number, "编号："+map.get("number"));
-        holder.setText(R.id.book_inventory,"库存："+map.get("inventory"));
+        holder.setText(R.id.book_inventory,"单号："+map.get("id"));
         holder.setText(R.id.book_price, "￥ " + (Double.valueOf(map.get("price")) * Integer.valueOf(map.get("count"))));
     }
 

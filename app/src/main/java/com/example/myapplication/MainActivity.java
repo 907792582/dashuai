@@ -158,25 +158,25 @@ public List<HashMap<String, String>> getGoodsList_order()
                 fragmentId = 1;
                 mTextCart.setCompoundDrawablesWithIntrinsicBounds(0,
                         R.drawable.ic_cart_pressed,0,0);
-                if(mShopping_Fragment == null){
+                //if(mShopping_Fragment == null){
                     mShopping_Fragment = new ShoppingCart_Fragment();
                     mTransaction.add(R.id.container, mShopping_Fragment,
                             "cart_fragment");
-                }else {
-                    mTransaction.show(mShopping_Fragment);
-                }
+                //}else {
+                //    mTransaction.show(mShopping_Fragment);
+                //}
                 break;
             case 2:
                 fragmentId = 2;
                 mTextUser.setCompoundDrawablesWithIntrinsicBounds(0,
                         R.drawable.ic_user_pressed,0,0);
-                if(mUserInfo_Fragment == null){
+                //if(mUserInfo_Fragment == null){
                     mUserInfo_Fragment = new UserInfo_Fragment();
                     mTransaction.add(R.id.container, mUserInfo_Fragment,
                             "user_fragment");
-                }else {
-                    mTransaction.show(mUserInfo_Fragment);
-                }
+                //}else {
+                //    mTransaction.show(mUserInfo_Fragment);
+                //}
                 break;
         }
         //提交事务
