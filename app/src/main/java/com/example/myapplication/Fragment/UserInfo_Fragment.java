@@ -296,6 +296,7 @@ public class UserInfo_Fragment extends Fragment {
     private void setUserInfoBlock() {
         NetImage image = new NetImage();
         String url = "http://47.100.226.176:8080/XueBaJun/head_image/"+user.getUsername()+".jpg";
+        System.out.println(user.getUsername());
         image.setHeadImage(mQueue,head_image_button,url);
         user_name_text.setText(user.getUsername());
 

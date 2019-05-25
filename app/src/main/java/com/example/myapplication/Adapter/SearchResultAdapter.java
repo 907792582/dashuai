@@ -29,7 +29,7 @@ private ItemClickListener listener;
 
     @Override
     public void convert(final ViewHolder holder, HashMap<String, String> map) {
-        if(map.get("id").equals("1"))
+        if(map.get("select").equals("1"))
             holder.setBackgroundColor(R.id.tv_add_to_cart, Color.parseColor("#b5b5b5"));
         else
             holder.setBackgroundColor(R.id.tv_add_to_cart, Color.parseColor("#E24146"));

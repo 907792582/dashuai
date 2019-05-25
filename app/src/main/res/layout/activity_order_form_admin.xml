@@ -7,12 +7,95 @@
     tools:context="com.example.myapplication.MainActivity"
     android:background="@drawable/background">
     <include layout="@layout/title"/>
-    <ListView
-        android:id="@+id/listView_stuinfo_admin"
+    <LinearLayout
+        android:id="@+id/orderAdminLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tv_number_unconfigured"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="当前还有100份订单未配置"
+            android:padding="20dp"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_fillet_white"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/tv_stu_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tag"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:text="学号："
+                android:padding="4dp"
+                />
+            <ListView
+                android:id="@+id/listView_order_admin"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="#ffffff"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="合计:"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tv_total_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="￥0.00"
+                        android:textSize="18dp"
+                        android:textColor="#E24146"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_check_configure"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:background="#E24146"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="点击配置成功"
+                    android:textSize="16dp"
+                    android:textColor="#FAFAFA" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_cart_empty"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="20dp"
+        android:gravity="center"
+        android:textSize="18dp"
         />
 </LinearLayout>

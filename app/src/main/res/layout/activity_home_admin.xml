@@ -7,20 +7,19 @@
     tools:context="com.example.myapplication.MainActivity"
     android:background="@drawable/background">
     <include layout="@layout/title"/>
-    <include layout="@layout/show_homepage_picture_admin"></include>
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1.8"
         >
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+            <include layout="@layout/show_homepage_picture_admin"></include>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -169,6 +168,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="vertical"
                 >
                 <ImageView

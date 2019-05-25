@@ -4,49 +4,66 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
+    android:layout_marginTop="5dp"
     >
 <TextView
+    android:id="@+id/tv_stu_info_admin"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="学号：1608xxxxx 姓名：XXX"
+    android:textStyle="bold"
     />
 
     <LinearLayout
         android:id="@+id/li"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal"
         >
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:id="@+id/order_image_admin1"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:src="@drawable/bob"
         />
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/order_image_admin2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:src="@drawable/bob"
             />
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/order_image_admin3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:src="@drawable/bob"
             />
 
         <ImageView
-            android:id="@+id/order_status_book_cover_image"
-            android:layout_width="wrap_content"
+            android:id="@+id/order_image_admin4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:src="@drawable/bob"
             />
-
+     <TextView
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_weight="0.2"
+         />
         <TextView
             android:id="@+id/tv_order_status"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:gravity="center_horizontal"
             android:layout_marginLeft="10dp"
             android:background="#ffe4e4"
             android:text="已提取"

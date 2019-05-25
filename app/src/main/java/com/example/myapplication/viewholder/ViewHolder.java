@@ -19,6 +19,10 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.example.myapplication.tool.NetImage;
+
 /**
  * 以前的做法是这样子的
  * viewHolder = new ViewHolder();
@@ -110,7 +114,14 @@ public class ViewHolder {
         view.setImageResource(resId);
         return this;
     }
-
+ public ViewHolder setImageUrl(int viewId,String url)
+ {
+     RequestQueue mQueue= Volley.newRequestQueue(mContext);
+     NetImage image=new NetImage();
+     ImageView view=getView(viewId);
+     image.setHeadImage(mQueue,view,url);
+     return this;
+ }
     public ViewHolder setImageBitmap(int viewId, Bitmap bitmap) {
         ImageView view = getView(viewId);
         view.setImageBitmap(bitmap);

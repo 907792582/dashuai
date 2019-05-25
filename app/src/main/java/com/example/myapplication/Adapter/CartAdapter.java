@@ -20,7 +20,6 @@ import java.util.List;
 
 public class CartAdapter extends CommonAdapter<HashMap<String, String>> {
     private ItemClickListener listener;
-
     public CartAdapter(Context context, List<HashMap<String, String>> datas, int layoutId) {
         super(context, datas, layoutId);
     }
@@ -32,6 +31,7 @@ public class CartAdapter extends CommonAdapter<HashMap<String, String>> {
         } else {
             holder.setChecked(R.id.check_box, true);
         }
+        holder.setImageUrl(R.id.iv_adapter_list_pic,map.get("url"));
         holder.setText(R.id.book_name, map.get("name"));
         holder.setText(R.id.tv_num, map.get("count"));
         holder.setText(R.id.book_number,"编号："+map.get("number"));

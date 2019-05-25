@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.myapplication.Fragment.ConfigureOrderAdmin;
+import com.example.myapplication.Fragment.HomePageAdmin;
+import com.example.myapplication.Fragment.InfoAdmin;
 import com.example.myapplication.Fragment.ShoppingCart_Fragment;
 import com.example.myapplication.Fragment.UserInfo_Fragment;
 import com.example.myapplication.Fragment.HomePage_Fragment;
@@ -25,12 +28,11 @@ public class Admin_MainActivity extends AppCompatActivity implements View.OnClic
     private TextView mTextBook;
     private TextView mTextCart;
     private TextView mTextUser;
-
+   private List<HashMap<String,String>> goodsList_order;
     //3个Fragment
-    private Fragment mHomePage_Fragment;
-    private Fragment mShopping_Fragment;
-    private Fragment mUserInfo_Fragment;
-    private List<HashMap<String, String>> goodsList_order;
+    private Fragment mHomePage_Fragment_Admin;
+    private Fragment mShopping_Fragment_Admin;
+    private Fragment mUserInfo_Fragment_Admin;
     //标记当前显示的Fragment
     private int fragmentId = 0;
 
@@ -38,29 +40,15 @@ public class Admin_MainActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        goodsList_order = new ArrayList<>();
-        Intent intent=getIntent();
-        if(intent!=null) {
-            Bundle bundle = intent.getExtras();
-            if (bundle!=null)
-                goodsList_order = (List<HashMap<String, String>>) bundle.getSerializable("goodsList_order");
-        }
+        goodsList_order=new ArrayList<>();
         //初始化
         init();
         //根据传入的Bundle对象判断Activity是正常启动还是销毁重建
         if(savedInstanceState == null){
             //设置第一个Fragment默认选中
-            if(goodsList_order.isEmpty())
                 setFragment(0);
-            else
-            {
-                setFragment(1);
-            }
+
         }
-    }
-    public List<HashMap<String, String>> getGoodsList_order()
-    {
-        return goodsList_order;
     }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -74,11 +62,11 @@ public class Admin_MainActivity extends AppCompatActivity implements View.OnClic
         super.onRestoreInstanceState(savedInstanceState);
         FragmentManager mFragmentManager = getSupportFragmentManager();
         //通过FragmentManager获取保存在FragmentTransaction中的Fragment实例
-        mHomePage_Fragment = (HomePage_Fragment)mFragmentManager
+        mHomePage_Fragment_Admin = (HomePageAdmin)mFragmentManager
                 .findFragmentByTag("homepage_fragment");
-        mShopping_Fragment = (ShoppingCart_Fragment)mFragmentManager
+        mShopping_Fragment_Admin = (ConfigureOrderAdmin)mFragmentManager
                 .findFragmentByTag("cart_fragment");
-        mUserInfo_Fragment = (UserInfo_Fragment)mFragmentManager
+        mUserInfo_Fragment_Admin = (InfoAdmin)mFragmentManager
                 .findFragmentByTag("user_fragment");
         //恢复销毁前显示的Fragment
         setFragment(savedInstanceState.getInt("fragment_id"));
@@ -112,7 +100,10 @@ public class Admin_MainActivity extends AppCompatActivity implements View.OnClic
         mTextCart.setOnClickListener(this);
         mTextUser.setOnClickListener(this);
     }
-
+    public List<HashMap<String, String>> getGoodsList_order()
+    {
+        return goodsList_order;
+    }
     private void setFragment(int index){
         //获取Fragment管理器
         FragmentManager mFragmentManager = getSupportFragmentManager();
@@ -130,37 +121,29 @@ public class Admin_MainActivity extends AppCompatActivity implements View.OnClic
                 mTextBook.setCompoundDrawablesWithIntrinsicBounds(0,
                         R.drawable.ic_book_pressed,0,0);
                 //显示对应Fragment
-                if(mHomePage_Fragment == null){
-                    mHomePage_Fragment = new HomePage_Fragment();
-                    mTransaction.add(R.id.container,mHomePage_Fragment,
+                if(mHomePage_Fragment_Admin == null){
+                    mHomePage_Fragment_Admin = new HomePageAdmin();
+                    mTransaction.add(R.id.container,mHomePage_Fragment_Admin,
                             "homepage_fragment");
                 }else {
-                    mTransaction.show(mHomePage_Fragment);
+                    mTransaction.show(mHomePage_Fragment_Admin);
                 }
                 break;
             case 1:
                 fragmentId = 1;
                 mTextCart.setCompoundDrawablesWithIntrinsicBounds(0,
                         R.drawable.ic_cart_pressed,0,0);
-                if(mShopping_Fragment == null){
-                    mShopping_Fragment = new ShoppingCart_Fragment();
-                    mTransaction.add(R.id.container, mShopping_Fragment,
+                    mShopping_Fragment_Admin = new ConfigureOrderAdmin();
+                    mTransaction.add(R.id.container, mShopping_Fragment_Admin,
                             "cart_fragment");
-                }else {
-                    mTransaction.show(mShopping_Fragment);
-                }
                 break;
             case 2:
                 fragmentId = 2;
                 mTextUser.setCompoundDrawablesWithIntrinsicBounds(0,
                         R.drawable.ic_user_pressed,0,0);
-                if(mUserInfo_Fragment == null){
-                    mUserInfo_Fragment = new UserInfo_Fragment();
-                    mTransaction.add(R.id.container, mUserInfo_Fragment,
+                    mUserInfo_Fragment_Admin = new InfoAdmin();
+                    mTransaction.add(R.id.container, mUserInfo_Fragment_Admin,
                             "user_fragment");
-                }else {
-                    mTransaction.show(mUserInfo_Fragment);
-                }
                 break;
         }
         //提交事务
@@ -168,20 +151,20 @@ public class Admin_MainActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void hideFragments(FragmentTransaction transaction){
-        if(mHomePage_Fragment != null){
+        if(mHomePage_Fragment_Admin != null){
             //隐藏Fragment
-            transaction.hide(mHomePage_Fragment);
+            transaction.hide(mHomePage_Fragment_Admin);
             //将对应菜单栏设置为默认状态
             mTextBook.setCompoundDrawablesWithIntrinsicBounds(0,
                     R.drawable.ic_book,0,0);
         }
-        if(mShopping_Fragment != null){
-            transaction.hide(mShopping_Fragment);
+        if(mShopping_Fragment_Admin != null){
+            transaction.hide(mShopping_Fragment_Admin);
             mTextCart.setCompoundDrawablesWithIntrinsicBounds(0,
                     R.drawable.ic_cart,0,0);
         }
-        if(mUserInfo_Fragment != null){
-            transaction.hide(mUserInfo_Fragment);
+        if(mUserInfo_Fragment_Admin != null){
+            transaction.hide(mUserInfo_Fragment_Admin);
             mTextUser.setCompoundDrawablesWithIntrinsicBounds(0,
                     R.drawable.ic_user,0,0);
         }

@@ -98,6 +98,7 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
 
         for(Book book:bookList){
             HashMap<String, String> map = new HashMap<>();
+            map.put("select","0");
             map.put("id", book.getBookid());
             map.put("name", book.getBookname());
             map.put("number", book.getBookid());
@@ -165,7 +166,7 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
             int[] endPosition = new int[2];
             //控制点
             int[] recyclerPosition = new int[2];
-            goodsList.get(position).put("id", "1");
+            goodsList.get(position).put("select", "1");
             view.setBackgroundColor(Color.parseColor("#b5b5b5"));
             view.getLocationInWindow(startPosition);
             cartImage.getLocationInWindow(endPosition);
