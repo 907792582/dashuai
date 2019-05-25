@@ -39,9 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
  private List<HashMap<String, String>> goodsList_order;
     //标记当前显示的Fragment
     private int fragmentId = 0;
-
-    // 当前登陆用户
-    User user;
+    
 
 
     @Override

@@ -27,7 +27,7 @@ public class CartAdapter extends CommonAdapter<HashMap<String, String>> {
 
     @Override
     public void convert(final ViewHolder holder, HashMap<String, String> map) {
-        if (map.get("id").equals("0")) {
+        if (map.get("selected").equals("0")) {
             holder.setChecked(R.id.check_box, false);
         } else {
             holder.setChecked(R.id.check_box, true);
@@ -35,7 +35,7 @@ public class CartAdapter extends CommonAdapter<HashMap<String, String>> {
         holder.setText(R.id.book_name, map.get("name"));
         holder.setText(R.id.tv_num, map.get("count"));
         holder.setText(R.id.book_number,"编号："+map.get("number"));
-        holder.setText(R.id.book_inventory,"库存："+map.get("inventory"));
+        // holder.setText(R.id.book_inventory,"库存："+map.get("inventory"));
         holder.setText(R.id.book_price, "￥ " + (Double.valueOf(map.get("price")) * Integer.valueOf(map.get("count"))));
 
         final EasySwipeMenuLayout easySwipeMenuLayout = holder.getView(R.id.action_bar);

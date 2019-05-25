@@ -5,11 +5,19 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.myapplication.CheckOrderActivity;
+import com.example.myapplication.LoginActivity;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
@@ -25,9 +33,17 @@ import android.widget.Toast;
 import com.example.myapplication.Adapter.CartAdapter;
 import com.example.myapplication.StatusBarUtil;
 import com.example.myapplication.SearchActivity;
+import com.example.myapplication.model.Book;
+import com.example.myapplication.model.Msg;
+import com.example.myapplication.model.Shop;
+import com.example.myapplication.tool.TokenHelper;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +72,14 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
     private List<HashMap<String, String>> goodsList_order;
     private CartAdapter adapter;
     private Context mcontext;
+
+    // fragment的view,为了数据返回后设置UI方便
+    View mView;
+    // volley
+    RequestQueue mQueue;
+    // token
+    TokenHelper tokenHelper;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,43 +90,127 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view,savedInstanceState);
+
         mcontext=getActivity();
+
         goodsList=new ArrayList<>();
-        onAttach(mcontext);
-        ButterKnife.bind(this,view);
-        StatusBarUtil.setTranslucentForImageViewInFragment(getActivity(), 0, null);
-        mTvTitle.setText("购物车");
+
+
+        mQueue = Volley.newRequestQueue(mcontext);
+        tokenHelper = new TokenHelper();
+        mView = view;
+
+        // 得到购物车内容后设置UI
+        getCartContent();
+
+
+
+
+        //mQueue = Volley.newRequestQueue(mcontext);
+        //tokenHelper = new TokenHelper();
+
+        // 得到购物车内容后设置UI
+        //getCartContent();
+
+
+    }
+
+    private void getCartContent() {
+        String url = "http://193.112.98.224:8080/shopapp/bookbuy/getinform/"+tokenHelper.getToken();
+        Log.e("##购物车信息获取url:",url);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
+
+            public void onResponse(org.json.JSONObject jsonObject) {
+                Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
+                Log.e("##", jsonObject.toString());
+
+                // 操作成功
+                if(message.getCode() == 100){
+                    try {
+                        JSONArray shops = jsonObject.getJSONObject("extend").getJSONArray("购物车列表");
+
+                        for(int i = 0;i<shops.length();i++){
+                            Shop item = new Gson().fromJson(shops.get(i).toString(), Shop.class);
+
+                            Log.e("##购物车条目：", shops.get(i).toString());
+                            HashMap<String, String> map = new HashMap<>();
+                            map.put("selected","0");
+                            map.put("name", item.getBookname());
+                            map.put("number", item.getBookid());
+                            map.put("inventory", "50");
+                            map.put("price", String.valueOf(item.getBookprice()));
+                            // map.put("count",item.getBookintroduction());// 书籍简介中存放数量
+                            map.put("count","1");
+                            map.put("shopid",item.getShopid());
+                            goodsList.add(map);
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    // 显示界面
+                    setPage();
+
+
+                }else{
+                    // 操作失败
+                    Toast.makeText(mcontext,"购物车列表获取失败，请联系管理员" , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(mcontext, "服务器返回异常，请联系管理员" , Toast.LENGTH_SHORT).show();
+            }
+        });
+        mQueue.add(jsonObjectRequest);
+    }
+
+    private void setPage(){
         if(goodsList.isEmpty())
         {
-            LinearLayout cartLayout=view.findViewById(R.id.cart_layout);
-            LinearLayout cartbottomBar=view.findViewById(R.id.cartbottomBar);
+            LinearLayout cartLayout=mView.findViewById(R.id.cart_layout);
+            LinearLayout cartbottomBar=mView.findViewById(R.id.cartbottomBar);
             cartbottomBar.setVisibility(View.GONE);
             mListView.setVisibility(View.GONE);
-            //TextView cartEmpty=view.findViewById(R.id.tv_cart_empty);
-            TextView cartEmpty=view.findViewById(R.id.tv_cart_empty);
+            TextView cartEmpty=mView.findViewById(R.id.tv_cart_empty);
             cartEmpty.setText("购物车是空的诶~");
         }
         else
         {
-            TextView cartEmpty=view.findViewById(R.id.tv_cart_empty);
-            cartEmpty.setVisibility(View.GONE);
+            TextView cartEmpty=mView.findViewById(R.id.tv_cart_empty);
+            cartEmpty.setVisibility(mView.GONE);
         }
 
         initView();
-    }
-@Override
-public void onAttach(Activity activity)
-{
-    super.onAttach(activity);
-    goodsList=((MainActivity)activity).getGoodsList_order();
-    if(goodsList!=null){
-        for(int i=0;i<goodsList.size();i++)
-        {
-            goodsList.get(i).put("id","0");
-        }
+
+        // onAttach(mcontext);
+
+        mTvTitle.setText("购物车");
+
+        ButterKnife.bind(this,mView);
+        StatusBarUtil.setTranslucentForImageViewInFragment(getActivity(), 0, null);
     }
 
-}
+    @Override
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+        //goodsList=((MainActivity)activity).getGoodsList_order();
+
+        /*if(goodsList!=null){
+            for(int i=0;i<goodsList.size();i++)
+            {
+                goodsList.get(i).put("selected","0");
+            }
+        }*/
+
+    }
+
     /*private void initDate() {
         goodsList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -120,8 +228,14 @@ public void onAttach(Activity activity)
     private void initView() {
         adapter = new CartAdapter(mcontext, goodsList, R.layout.item_cehua);
         adapter.setOnItemClickListener(this);
+        mListView = mView.findViewById(R.id.listView);
         mListView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+        mTvTitle = mView.findViewById(R.id.titleView);
+        mAllChekbox = mView.findViewById(R.id.all_chekbox);
+        mTvTotalPrice = mView.findViewById(R.id.tv_total_price);
+        mTvGoToPay = mView.findViewById(R.id.tv_go_to_pay);
     }
 
 
@@ -150,7 +264,7 @@ public void onAttach(Activity activity)
                    goodsList_order=new ArrayList<>();
                     for (int i = 0; i < goodsList.size(); i++)
                     {
-                        if (goodsList.get(i).get("id").equals("1"))
+                        if (goodsList.get(i).get("selected").equals("1"))
                         {
                             goodsList_order.add(goodsList.get(i));
                         }
@@ -168,9 +282,9 @@ public void onAttach(Activity activity)
     public void ItemClickListener(View view, int position) {
         HashMap<String, String> hashMap = goodsList.get(position);
         if (((CheckBox) view).isChecked()) {
-            hashMap.put("id", "1");
+            hashMap.put("selected", "1");
         } else {
-            hashMap.put("id", "0");
+            hashMap.put("selected", "0");
         }
         goodsList.set(position, hashMap);
         AllTheSelected(false);
@@ -178,9 +292,32 @@ public void onAttach(Activity activity)
 
     //删除
     @Override
-    public void ItemDeleteClickListener(View view, int position) {
-        goodsList.remove(position);
-        AllTheSelected(false);
+    public void ItemDeleteClickListener(View view, final int position) {
+
+        // 向服务器发送删除指令
+
+        Log.e("##购物车信息删除:","position:"+position);
+        String url = "http://193.112.98.224:8080/shopapp/shop/delete/"+goodsList.get(position).get("shopid");
+        Log.e("##购物车信息删除url:",url);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE,url, null, new Response.Listener<org.json.JSONObject>() {
+
+            public void onResponse(org.json.JSONObject jsonObject) {
+                Toast.makeText(mcontext, "删除成功" , Toast.LENGTH_SHORT).show();
+
+                goodsList.remove(position);
+                AllTheSelected(false);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(mcontext, "服务器返回异常，请联系管理员" , Toast.LENGTH_SHORT).show();
+            }
+        });
+        mQueue.add(jsonObjectRequest);
+
+
     }
 
     //增加
@@ -218,7 +355,7 @@ public void onAttach(Activity activity)
         totalCount = 0;
         totalPrice = 0.00;
         for (int i = 0; i < goodsList.size(); i++) {
-            if (goodsList.get(i).get("id").equals("1")) {
+            if (goodsList.get(i).get("selected").equals("1")) {
                 totalCount = totalCount + Integer.valueOf(goodsList.get(i).get("count"));
                 double goodsPrice = Integer.valueOf(goodsList.get(i).get("count")) * Double.valueOf(goodsList.get(i).get("price"));
                 totalPrice = totalPrice + goodsPrice;
@@ -234,7 +371,7 @@ public void onAttach(Activity activity)
     private void AllTheSelected(Boolean aBoolean) {
         int number = 0;
         for (int j = 0; j < goodsList.size(); j++) {
-            if (goodsList.get(j).get("id").equals("1")) {
+            if (goodsList.get(j).get("selected").equals("1")) {
                 number++;
             }
         }
@@ -242,19 +379,19 @@ public void onAttach(Activity activity)
             //全部选择  反选
             if (number == goodsList.size()) {
                 for (int i = 0; i < goodsList.size(); i++) {
-                    goodsList.get(i).put("id", "0");
+                    goodsList.get(i).put("selected", "0");
                 }
                 mAllChekbox.setChecked(false);
                 //全部未选
             } else if (number == 0) {
                 for (int i = 0; i < goodsList.size(); i++) {
-                    goodsList.get(i).put("id", "1");
+                    goodsList.get(i).put("selected", "1");
                 }
                 mAllChekbox.setChecked(true);
                 //部分选择
             } else {
                 for (int i = 0; i < goodsList.size(); i++) {
-                    goodsList.get(i).put("id", "1");
+                    goodsList.get(i).put("selected", "1");
                 }
                 mAllChekbox.setChecked(true);
             }
