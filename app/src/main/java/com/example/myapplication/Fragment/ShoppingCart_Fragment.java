@@ -142,7 +142,7 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
                             map.put("price", String.valueOf(item.getBookprice()));
                             // map.put("count",item.getBookintroduction());// 书籍简介中存放数量
                             map.put("count","1");
-                            map.put("shopid",item.getShopid());
+                            map.put("id",item.getShopid());
                             goodsList.add(map);
 
                         }
@@ -298,7 +298,7 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
         // 向服务器发送删除指令
 
         Log.e("##购物车信息删除:","position:"+position);
-        String url = "http://193.112.98.224:8080/shopapp/shop/delete/"+goodsList.get(position).get("shopid");
+        String url = "http://193.112.98.224:8080/shopapp/shop/delete/"+goodsList.get(position).get("id");
         Log.e("##购物车信息删除url:",url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE,url, null, new Response.Listener<org.json.JSONObject>() {

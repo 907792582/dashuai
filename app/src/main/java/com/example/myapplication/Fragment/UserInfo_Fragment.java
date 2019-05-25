@@ -111,6 +111,9 @@ public class UserInfo_Fragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.more_unconfigured_button:
+
+                Log.e("##更多已支付列表：", paidList.toString());
+
                 Intent intent_unconfigured=new Intent();
                 Msg message_1 = new Msg();
                 message_1.getExtend().put("paidList",paidList);
@@ -205,6 +208,7 @@ public class UserInfo_Fragment extends Fragment {
 
     private void getOrder() {
         String url = "http://193.112.98.224:8080/shopapp/bookbuy/getinform/"+tokenHelper.getToken();
+        Log.e("##订单url:",url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 
@@ -215,7 +219,7 @@ public class UserInfo_Fragment extends Fragment {
                 // 操作成功
                 if(message.getCode() == 100){
                     try {
-                        JSONArray tokenShop = jsonObject.getJSONObject("extend").getJSONArray("已提取列表");
+                        JSONArray tokenShop = jsonObject.getJSONObject("extend").getJSONArray("已支付列表");
 
                         for(int i = 0;i<tokenShop.length();i++){
                             Shop item = new Gson().fromJson(tokenShop.get(i).toString(), Shop.class);
@@ -223,15 +227,16 @@ public class UserInfo_Fragment extends Fragment {
 
                         }
 
-                        JSONArray paidShop = jsonObject.getJSONObject("extend").getJSONArray("未配置列表");
+                        JSONArray paidShop = jsonObject.getJSONObject("extend").getJSONArray("已支付列表");
 
                         for(int i = 0;i<paidShop.length();i++){
                             Shop item = new Gson().fromJson(paidShop.get(i).toString(), Shop.class);
                             paidList.add(item);
 
                         }
+                        Log.e("##更多已支付列表：", paidList.toString());
 
-                        JSONArray untookShop = jsonObject.getJSONObject("extend").getJSONArray("待提取列表");
+                        JSONArray untookShop = jsonObject.getJSONObject("extend").getJSONArray("已支付列表");
 
                         for(int i = 0;i<untookShop.length();i++){
                             Shop item = new Gson().fromJson(untookShop.get(i).toString(), Shop.class);
@@ -248,7 +253,7 @@ public class UserInfo_Fragment extends Fragment {
 
                 }else{
                     // 操作失败
-                    Toast.makeText(mcontext,"购物车列表获取失败，请联系管理员" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mcontext,"订单获取失败，请联系管理员" , Toast.LENGTH_SHORT).show();
                 }
 
             }
