@@ -56,15 +56,15 @@ import butterknife.OnClick;
 
 public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemClickListener{
 
-    @BindView(R.id.titleView)
+    // @BindView(R.id.titleView)
     TextView mTvTitle;
-    @BindView(R.id.listView)
+    // @BindView(R.id.listView)
     ListView mListView;
-    @BindView(R.id.all_chekbox)
+    // @BindView(R.id.all_chekbox)
     CheckBox mAllChekbox;
-    @BindView(R.id.tv_total_price)
+    // @BindView(R.id.tv_total_price)
     TextView mTvTotalPrice;
-    @BindView(R.id.tv_go_to_pay)
+    // @BindView(R.id.tv_go_to_pay)
     TextView mTvGoToPay;
     private double totalPrice = 0.00;
     private int totalCount = 0;

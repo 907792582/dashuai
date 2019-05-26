@@ -49,6 +49,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -246,7 +247,7 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mcontext, SearchActivity.class);
-                //intent.putExtra("user",(Serializable) user);
+                intent.putExtra("user", user);
                 startActivity(intent);
             }
         });
@@ -474,6 +475,7 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
                 Msg message = new Msg();
                 message.getExtend().put("bookList",bookList);
                 intent.putExtra("bookList", message);
+                intent.putExtra("user",user);
                 startActivity(intent);
             }
         });

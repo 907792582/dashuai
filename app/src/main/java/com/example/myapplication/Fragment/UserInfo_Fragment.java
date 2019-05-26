@@ -219,7 +219,7 @@ public class UserInfo_Fragment extends Fragment {
                 // 操作成功
                 if(message.getCode() == 100){
                     try {
-                        JSONArray tokenShop = jsonObject.getJSONObject("extend").getJSONArray("已支付列表");
+                        JSONArray tokenShop = jsonObject.getJSONObject("extend").getJSONArray("已提取列表");
 
                         for(int i = 0;i<tokenShop.length();i++){
                             Shop item = new Gson().fromJson(tokenShop.get(i).toString(), Shop.class);
@@ -227,7 +227,7 @@ public class UserInfo_Fragment extends Fragment {
 
                         }
 
-                        JSONArray paidShop = jsonObject.getJSONObject("extend").getJSONArray("已支付列表");
+                        JSONArray paidShop = jsonObject.getJSONObject("extend").getJSONArray("未配置列表");
 
                         for(int i = 0;i<paidShop.length();i++){
                             Shop item = new Gson().fromJson(paidShop.get(i).toString(), Shop.class);
@@ -236,7 +236,7 @@ public class UserInfo_Fragment extends Fragment {
                         }
                         Log.e("##更多已支付列表：", paidList.toString());
 
-                        JSONArray untookShop = jsonObject.getJSONObject("extend").getJSONArray("已支付列表");
+                        JSONArray untookShop = jsonObject.getJSONObject("extend").getJSONArray("待提取列表");
 
                         for(int i = 0;i<untookShop.length();i++){
                             Shop item = new Gson().fromJson(untookShop.get(i).toString(), Shop.class);

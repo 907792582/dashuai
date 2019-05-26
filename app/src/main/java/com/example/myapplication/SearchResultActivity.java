@@ -21,11 +21,19 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Adapter.CartAdapter;
 import com.example.myapplication.Adapter.SearchResultAdapter;
 import com.example.myapplication.model.Book;
 import com.example.myapplication.model.Msg;
+import com.example.myapplication.model.User;
 import com.example.myapplication.viewholder.ViewHolder;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,6 +67,8 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
 
     // 主页查看更多跳转携带书籍列表数据
     List<Book> bookList;
+    User user;
+    RequestQueue mQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +135,9 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
         mListView.setAdapter(adapter);
         adapter.setOnItemClickListener(this);
         adapter.notifyDataSetChanged();
+
+        user = (User) getIntent().getSerializableExtra("user");
+        mQueue =  Volley.newRequestQueue(SearchResultActivity.this);
     }
 
 
@@ -158,7 +171,7 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
         }
     }
     @Override
-    public void AddToCart(final View view, int position) {
+    public void AddToCart(final View view, final int position) {
         if (goodsList.get(position).get("select").equals("0")) {
             //贝塞尔起始数据点
             int[] startPosition = new int[2];
@@ -205,7 +218,8 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
             valueAnimator.addListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) {
-
+                    // 存入购物车
+                    addBookToCart(bookList.get(position));
                 }
 
                 @Override
@@ -235,6 +249,33 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
             set.start();
 
         }
+    }
+
+    private void addBookToCart(final Book book){
+
+        String url = "http://193.112.98.224:8080/shopapp/bookbuy/addtobuy/"+String.valueOf(user.getUserid())+"/"+book.getBookid()+"/1";
+        Log.e("##", "加入购物车url:"+url);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
+
+            public void onResponse(org.json.JSONObject jsonObject) {
+                Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
+                if(message.getCode() == 100){
+
+                    Toast.makeText(getApplicationContext(), book.getBookname()+"已加入购物车" , Toast.LENGTH_SHORT).show();
+
+                }else{
+                    // 操作失败
+                    Toast.makeText(getApplicationContext(), "加入购物车失败，请联系管理员" , Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(getApplicationContext(), "服务器返回出错，请联系管理员" , Toast.LENGTH_SHORT).show();
+            }
+        });
+        mQueue.add(jsonObjectRequest);
     }
 
 }
