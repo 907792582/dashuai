@@ -34,6 +34,9 @@ public class LoginActivity extends AppCompatActivity {
     TokenHelper tokenHelper;
     String token;
     User user;
+
+    boolean userIsAdmin = false;
+
     public static LoginActivity instance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
     // 查看用户之前有没有token，有则二次登陆
     private void checkLoginHistory() {
         if(tokenHelper.getToken()!=null){
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, LoginWithTokenActivity.class);
             startActivity(intent);
         }
     }
@@ -144,23 +147,17 @@ public class LoginActivity extends AppCompatActivity {
                             // 操作成功
                             if(message.getCode() == 100){
 
-                                // 获取token，保存token到本地
+                                if(message.getExtend().get("va_msg").toString().compareTo("此时登录成功为用户") == 0){
+                                    userIsAdmin = false;
+
+                                }else{
+                                    userIsAdmin = true;
+                                }
+
+                                // 获取token，保存token到本地并进行跳转
                                 fetchToken(studentID);
 
 
-                                // 跳转
-                                if(message.getExtend().get("va_msg").toString().compareTo("此时登录成功为用户") == 0){
-                                    // 用户登陆成功跳转
-                                    Toast.makeText(getApplicationContext(), "欢迎登陆"+studentID , Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    //intent.putExtra("user",(Serializable) user);
-                                    startActivity(intent);
-                                }else{
-                                    // 管理员登陆成功跳转
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    //intent.putExtra("user",(Serializable) user);
-                                    startActivity(intent);
-                                }
                             }else{
                                 // 操作失败
                                 Toast.makeText(getApplicationContext(), message.getExtend().get("va_msg").toString() , Toast.LENGTH_SHORT).show();
@@ -202,6 +199,22 @@ public class LoginActivity extends AppCompatActivity {
                     //Toast.makeText(getApplicationContext(), message.getExtend().get("token").toString() , Toast.LENGTH_SHORT).show();
                     tokenHelper.deleteToken();
                     tokenHelper.saveToken(token);
+
+                    // 跳转
+                    if(!userIsAdmin){
+                        // 用户登陆成功跳转
+                        Toast.makeText(getApplicationContext(), "欢迎登陆"+username , Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        //intent.putExtra("user",(Serializable) user);
+                        startActivity(intent);
+
+                    }else{
+                        // 管理员登陆成功跳转
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        //intent.putExtra("user",(Serializable) user);
+                        startActivity(intent);
+                    }
+
                 }else{
                     // 操作失败
                     token = "fail";
@@ -216,6 +229,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         mQueue.add(jsonObjectRequest);
+
 
     }
 }

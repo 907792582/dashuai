@@ -32,7 +32,31 @@ public class LoginWithTokenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_with_token);
 
         init();
-        setOnClickFun();
+
+        // 防止用户应用直接退出而账号没有下线的情况
+        logoff();
+
+        // setOnClickFun();
+    }
+
+    private void logoff() {
+        String url = "http://193.112.98.224:8080/shopapp/user/logoff/"+tokenHelper.getToken();
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
+
+            public void onResponse(org.json.JSONObject jsonObject) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                // Toast.makeText(mcontext, "服务器返回异常，请联系管理员" , Toast.LENGTH_SHORT).show();
+                // 他后台没有返回信息，但是method是get所以从error出来了
+                // 跳转登陆页面
+                setOnClickFun();
+            }
+        });
+        mQueue.add(jsonObjectRequest);
     }
 
     private void setOnClickFun() {
@@ -47,7 +71,7 @@ public class LoginWithTokenActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                String url = "http://193.112.98.224:8080/shopapp/user/loginagain";
+                String url = "http://193.112.98.224:8080/shopapp/user/loginagain/"+tokenHelper.getToken();
 
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<org.json.JSONObject>() {
 
@@ -60,12 +84,12 @@ public class LoginWithTokenActivity extends AppCompatActivity {
                             if(message.getExtend().get("va_msg").toString().compareTo("此时登录成功为用户") == 0){
                                 // 用户登陆成功跳转
                                 Toast.makeText(getApplicationContext(), "欢迎登陆" , Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginWithTokenActivity.this, HomePageActivity.class);
+                                Intent intent = new Intent(LoginWithTokenActivity.this, MainActivity.class);
                                 // intent.putExtra("user",(Serializable) user);
                                 startActivity(intent);
                             }else{
                                 // 管理员登陆成功跳转
-                                Intent intent = new Intent(LoginWithTokenActivity.this, HomePageActivity.class);
+                                Intent intent = new Intent(LoginWithTokenActivity.this, MainActivity.class);
                                 // intent.putExtra("user",(Serializable) user);
                                 startActivity(intent);
                             }
@@ -90,6 +114,7 @@ public class LoginWithTokenActivity extends AppCompatActivity {
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                tokenHelper.deleteToken();
                 Intent intent = new Intent(LoginWithTokenActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
