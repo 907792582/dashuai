@@ -247,7 +247,6 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
             set.play(objectAnimatorX).with(objectAnimatorY).after(valueAnimator);
             set.setDuration(800);
             set.start();
-
         }
     }
 

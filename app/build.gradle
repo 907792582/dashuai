@@ -47,6 +47,7 @@ dependencies {
     implementation files('libs/gson-2.8.2.jar')
     implementation files('libs/Okhttp3Helper.jar')
     implementation files('libs/volley.jar')
+    implementation 'com.necer.ndialog2:ndialog:1.0.2'
 
     // okhttp3
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'

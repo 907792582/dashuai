@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -59,8 +60,16 @@ public class UserPickedOrderActivity extends AppCompatActivity  {
     }
 
     private void initView() {
+        ImageView ivnoOrder=findViewById(R.id.iv_no_order);
+        TextView tvnoOrder=findViewById(R.id.tv_no_order);
         adapter = new OrderAdapter(this, goodsList_order, R.layout.item_order);
         mListView.setAdapter(adapter);
+        if(goodsList_order.isEmpty())
+            mListView.setVisibility(View.GONE);
+        else {
+            ivnoOrder.setVisibility(View.GONE);
+            tvnoOrder.setVisibility(View.GONE);
+        }
         adapter.notifyDataSetChanged();
     }
 

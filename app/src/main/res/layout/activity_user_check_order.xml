@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context="com.example.myapplication.ShoppingCartActivity">
     <include layout="@layout/title_back" />
     <ListView
@@ -16,5 +17,24 @@
         android:layout_marginTop="10dp"
         android:dividerHeight="10dp"
         android:divider="#00000000"
+        />
+    <ImageView
+        android:id="@+id/iv_no_order"
+        android:layout_width="40dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:foregroundGravity="bottom"
+        android:foreground="@drawable/ic_no_order"
+        />
+    <TextView
+        android:id="@+id/tv_no_order"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="您还没有相关订单哦~"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
         />
 </LinearLayout>

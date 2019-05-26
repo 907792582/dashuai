@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.example.myapplication.Adapter.OrderAdapter;
 import com.example.myapplication.StatusBarUtil;
 import com.example.myapplication.SearchActivity;
+import com.necer.ndialog.NDialog;
 
 import org.w3c.dom.Text;
 
@@ -128,12 +129,26 @@ public class ConfigureOrderAdmin extends Fragment{
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_check_configure:
-                AlertDialog.Builder builder  = new AlertDialog.Builder(mcontext);
+                NDialog builder  = new NDialog(mcontext);
                 builder.setTitle("确认配置" ) ;
+                builder.setTitleColor(Color.parseColor("#c1272d"));
                 builder.setMessage("是否确认订单已配置？" ) ;
-                builder.setPositiveButton("是",null );
-                builder.setNegativeButton("否", null);
-                builder.show();
+                builder.setPositiveTextColor(Color.parseColor("#c1272d"));
+                builder.setNegativeTextColor(Color.parseColor("#999999"));
+                builder.setCancleable(true);
+                builder.setOnConfirmListener(new NDialog.OnConfirmListener() {
+                    @Override
+                    public void onClick(int which) {
+                        //0代表否，1代表是
+                        switch (which){
+                            case 0:
+                                break;
+                            case 1:
+                                break;
+                        }
+                    }
+                }).create(NDialog.CONFIRM).show();
+
                 break;
         }
     }

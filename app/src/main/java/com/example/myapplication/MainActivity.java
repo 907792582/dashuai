@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Fragment mHomePage_Fragment;
     private Fragment mShopping_Fragment;
     private Fragment mUserInfo_Fragment;
- private List<HashMap<String, String>> goodsList_order;
+    private List<HashMap<String, String>> goodsList_order;
     //标记当前显示的Fragment
     private int fragmentId = 0;
-    
+
 
 
     @Override
@@ -71,17 +71,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(savedInstanceState == null){
             //设置第一个Fragment默认选中
             if(goodsList_order.isEmpty())
-            setFragment(0);
+                setFragment(0);
             else
-                {
+            {
                 setFragment(1);
             }
         }
     }
-public List<HashMap<String, String>> getGoodsList_order()
-{
-    return goodsList_order;
-}
+    public List<HashMap<String, String>> getGoodsList_order()
+    {
+        return goodsList_order;
+    }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         //通过onSaveInstanceState方法保存当前显示的fragment
@@ -94,7 +94,7 @@ public List<HashMap<String, String>> getGoodsList_order()
         super.onRestoreInstanceState(savedInstanceState);
         FragmentManager mFragmentManager = getSupportFragmentManager();
         //通过FragmentManager获取保存在FragmentTransaction中的Fragment实例
-       mHomePage_Fragment = (HomePage_Fragment)mFragmentManager
+        mHomePage_Fragment = (HomePage_Fragment)mFragmentManager
                 .findFragmentByTag("homepage_fragment");
         mShopping_Fragment = (ShoppingCart_Fragment)mFragmentManager
                 .findFragmentByTag("cart_fragment");
@@ -163,9 +163,9 @@ public List<HashMap<String, String>> getGoodsList_order()
                 mTextCart.setCompoundDrawablesWithIntrinsicBounds(0,
                         R.drawable.ic_cart_pressed,0,0);
                 //if(mShopping_Fragment == null){
-                    mShopping_Fragment = new ShoppingCart_Fragment();
-                    mTransaction.add(R.id.container, mShopping_Fragment,
-                            "cart_fragment");
+                mShopping_Fragment = new ShoppingCart_Fragment();
+                mTransaction.add(R.id.container, mShopping_Fragment,
+                        "cart_fragment");
                 //}else {
                 //    mTransaction.show(mShopping_Fragment);
                 //}
@@ -175,9 +175,9 @@ public List<HashMap<String, String>> getGoodsList_order()
                 mTextUser.setCompoundDrawablesWithIntrinsicBounds(0,
                         R.drawable.ic_user_pressed,0,0);
                 //if(mUserInfo_Fragment == null){
-                    mUserInfo_Fragment = new UserInfo_Fragment();
-                    mTransaction.add(R.id.container, mUserInfo_Fragment,
-                            "user_fragment");
+                mUserInfo_Fragment = new UserInfo_Fragment();
+                mTransaction.add(R.id.container, mUserInfo_Fragment,
+                        "user_fragment");
                 //}else {
                 //    mTransaction.show(mUserInfo_Fragment);
                 //}
@@ -254,7 +254,7 @@ public List<HashMap<String, String>> getGoodsList_order()
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (isExit) {
-               LoginActivity.instance.finish();
+                LoginActivity.instance.finish();
                 this.finish();
 
             } else {
@@ -275,4 +275,3 @@ public List<HashMap<String, String>> getGoodsList_order()
 
 
 }
-
