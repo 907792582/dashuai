@@ -1,10 +1,14 @@
 package com.example.myapplication.Fragment;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.volley.RequestQueue;
 import com.example.myapplication.R;
 
 /**
@@ -20,6 +24,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.SearchActivity;
 import com.example.myapplication.StatusBarUtil;
+import com.example.myapplication.tool.NetImage;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -28,6 +33,8 @@ import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 
+import static android.app.Activity.RESULT_OK;
+
 public class HomePageAdmin extends Fragment implements OnBannerListener{
 
     public HomePageAdmin() {
@@ -35,7 +42,7 @@ public class HomePageAdmin extends Fragment implements OnBannerListener{
     }
     private Banner mBanner;
     private MyImageLoader mMyImageLoader;
-    private ArrayList<Integer> imagePath;
+    private ArrayList<String> imagePath;
     private ArrayList<String> imageTitle;
     // 下方导航栏控件
 
@@ -43,6 +50,12 @@ public class HomePageAdmin extends Fragment implements OnBannerListener{
     private ImageButton search_image;
     private TextView search_text;
     private Context mcontext;
+
+    RequestQueue mQueue;
+    int ALBUM_REQUEST_CODE = 1;
+    int CROP_REQUEST_CODE = 3;
+    int position = 0;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,9 +84,11 @@ public class HomePageAdmin extends Fragment implements OnBannerListener{
     private void initData() {
         imagePath = new ArrayList<>();
         imageTitle = new ArrayList<>();
-        imagePath.add(R.drawable.patrik);
-        imagePath.add(R.drawable.patrik);
-        imagePath.add(R.drawable.patrik);
+
+        imagePath.add("http://47.100.226.176:8080/XueBaJun/head_image/cover_for_book_0.jpg");
+        imagePath.add("http://47.100.226.176:8080/XueBaJun/head_image/cover_for_book_1.jpg");
+        imagePath.add("http://47.100.226.176:8080/XueBaJun/head_image/cover_for_book_2.jpg");
+
         imageTitle.add("我是海鸟一号");
         imageTitle.add("我是海鸟二号");
         imageTitle.add("我是海鸟3号");
@@ -83,7 +98,7 @@ public class HomePageAdmin extends Fragment implements OnBannerListener{
         mMyImageLoader = new MyImageLoader();
         mBanner = getView().findViewById(R.id.banner);
         //设置样式，里面有很多种样式可以自己都看看效果
-        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
+        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         //设置图片加载器
         mBanner.setImageLoader(mMyImageLoader);
         //设置轮播的动画效果,里面有很多种特效,可以都看看效果。
@@ -113,6 +128,12 @@ public class HomePageAdmin extends Fragment implements OnBannerListener{
     @Override
     public void OnBannerClick(int position) {
         Toast.makeText(mcontext, "你点了第" + (position + 1) + "张轮播图", Toast.LENGTH_SHORT).show();
+        this.position = position;
+
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, ALBUM_REQUEST_CODE);
+
     }
 
 
@@ -140,6 +161,42 @@ public class HomePageAdmin extends Fragment implements OnBannerListener{
         });
     }
 
+
+    // 裁剪图片
+    public void cropPhoto(Uri uri) {
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        intent.setDataAndType(uri, "image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("aspectX", 128);
+        intent.putExtra("aspectY", 60);
+        intent.putExtra("outputX", 1280);
+        intent.putExtra("outputY", 600);
+        intent.putExtra("return-data", true);
+        startActivityForResult(intent, CROP_REQUEST_CODE);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent){
+        switch (requestCode){
+            case 1:    //调用相册后返回
+                if (resultCode == RESULT_OK) {
+                    Uri uri = intent.getData();
+                    cropPhoto(uri);
+                }
+                break;
+            case 3:     //调用剪裁后返回
+                Bundle bundle = intent.getExtras();
+                if (bundle != null) {
+                    //在这里获得了剪裁后的Bitmap对象，可以用于上传
+                    Bitmap image = bundle.getParcelable("data");
+                    // 将image上传到服务器中，并变更UI
+                    NetImage head = new NetImage();
+                    head.upImage(image,"cover_for_book_"+position,mQueue);
+                }
+                break;
+        }
+    }
 
 
 }

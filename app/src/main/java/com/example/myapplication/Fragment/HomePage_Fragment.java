@@ -60,7 +60,7 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
     }
     private Banner mBanner;
     private MyImageLoader mMyImageLoader;
-    private ArrayList<Integer> imagePath;
+    private ArrayList<String> imagePath;
     private ArrayList<String> imageTitle;
 
     // 上方搜索控件
@@ -177,9 +177,9 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
     private void initData() {
         imagePath = new ArrayList<>();
         imageTitle = new ArrayList<>();
-        imagePath.add(R.drawable.hhh);
-        imagePath.add(R.drawable.patrik);
-        imagePath.add(R.drawable.patrik);
+        imagePath.add("http://47.100.226.176:8080/XueBaJun/head_image/cover_for_book_0.jpg");
+        imagePath.add("http://47.100.226.176:8080/XueBaJun/head_image/cover_for_book_1.jpg");
+        imagePath.add("http://47.100.226.176:8080/XueBaJun/head_image/cover_for_book_2.jpg");
         imageTitle.add("东华八角亭线上购书系统上线了！");
         imageTitle.add("hhhh我是小傻子");
         imageTitle.add("你也是~");

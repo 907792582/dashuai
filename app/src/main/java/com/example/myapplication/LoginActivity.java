@@ -204,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(!userIsAdmin){
                         // 用户登陆成功跳转
                         Toast.makeText(getApplicationContext(), "欢迎登陆"+username , Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, Admin_MainActivity.class);
                         //intent.putExtra("user",(Serializable) user);
                         startActivity(intent);
 
