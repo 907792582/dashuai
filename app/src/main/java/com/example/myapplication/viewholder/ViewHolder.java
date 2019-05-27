@@ -119,7 +119,7 @@ public class ViewHolder {
      RequestQueue mQueue= Volley.newRequestQueue(mContext);
      NetImage image=new NetImage();
      ImageView view=getView(viewId);
-     image.setHeadImage(mQueue,view,url);
+     image.setCoverImage(mQueue,view,url);
      return this;
  }
     public ViewHolder setImageBitmap(int viewId, Bitmap bitmap) {

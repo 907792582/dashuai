@@ -177,19 +177,19 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
     private void initData() {
         imagePath = new ArrayList<>();
         imageTitle = new ArrayList<>();
+        imagePath.add(R.drawable.hhh);
         imagePath.add(R.drawable.patrik);
         imagePath.add(R.drawable.patrik);
-        imagePath.add(R.drawable.patrik);
-        imageTitle.add("   ");
-        imageTitle.add("   ");
-        imageTitle.add("   ");
+        imageTitle.add("东华八角亭线上购书系统上线了！");
+        imageTitle.add("hhhh我是小傻子");
+        imageTitle.add("你也是~");
     }
 
     private void initBanner() {
         mMyImageLoader = new MyImageLoader();
         mBanner = getView().findViewById(R.id.banner);
         //设置样式，里面有很多种样式可以自己都看看效果
-        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
+        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         //设置图片加载器
         mBanner.setImageLoader(mMyImageLoader);
         //设置轮播的动画效果,里面有很多种特效,可以都看看效果。
@@ -218,7 +218,7 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
      */
     @Override
     public void OnBannerClick(int position) {
-        Toast.makeText(mcontext, "你点了第" + (position + 1) + "张轮播图", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(mcontext, "你点了第" + (position + 1) + "张轮播图", Toast.LENGTH_SHORT).show();
     }
 
 

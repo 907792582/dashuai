@@ -41,6 +41,7 @@
         <activity android:name=".UserUnpickedOrderActivity"/>
         <activity android:name=".UserUnconfiguredOrderActivity"/>
         <activity android:name=".UserPickedOrderActivity"/>
+        <activity android:name=".Admin_MainActivity"/>
     </application>
 
 </manifest>

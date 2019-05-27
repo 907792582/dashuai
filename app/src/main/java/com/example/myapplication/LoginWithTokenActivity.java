@@ -86,12 +86,12 @@ public class LoginWithTokenActivity extends AppCompatActivity {
                             if(message.getExtend().get("va_msg").toString().compareTo("此时登录成功为用户") == 0){
                                 // 用户登陆成功跳转
                                 Toast.makeText(getApplicationContext(), "欢迎登陆" , Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginWithTokenActivity.this, MainActivity.class);
+                                Intent intent = new Intent(LoginWithTokenActivity.this, Admin_MainActivity.class);
                                 // intent.putExtra("user",(Serializable) user);
                                 startActivity(intent);
                             }else{
                                 // 管理员登陆成功跳转
-                                Intent intent = new Intent(LoginWithTokenActivity.this, MainActivity.class);
+                                Intent intent = new Intent(LoginWithTokenActivity.this, Admin_MainActivity.class);
                                 // intent.putExtra("user",(Serializable) user);
                                 startActivity(intent);
                             }

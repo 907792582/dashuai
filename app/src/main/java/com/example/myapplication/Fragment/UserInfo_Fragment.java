@@ -277,19 +277,21 @@ public class UserInfo_Fragment extends Fragment {
         if(paidList.size()>2)
             netImage.setCoverImage(mQueue,paid_shop_3_image,baseUrl+paidList.get(2).getShopimage());
 
-        if(untookList.size()>0)
-            netImage.setCoverImage(mQueue,untook_shop_1_image,baseUrl+paidList.get(0).getShopimage());
-        if(paidList.size()>1)
-            netImage.setCoverImage(mQueue,untook_shop_2_image,baseUrl+paidList.get(1).getShopimage());
-        if(paidList.size()>2)
-            netImage.setCoverImage(mQueue,untook_shop_3_image,baseUrl+paidList.get(2).getShopimage());
+        if(untookList.size()>0){
+            netImage.setCoverImage(mQueue,untook_shop_1_image,baseUrl+untookList.get(0).getShopimage());
+        }
+
+        if(untookList.size()>1)
+            netImage.setCoverImage(mQueue,untook_shop_2_image,baseUrl+untookList.get(1).getShopimage());
+        if(untookList.size()>2)
+            netImage.setCoverImage(mQueue,untook_shop_3_image,baseUrl+untookList.get(2).getShopimage());
 
         if(tokenList.size()>0)
-            netImage.setCoverImage(mQueue,token_shop_1_image,baseUrl+paidList.get(0).getShopimage());
-        if(paidList.size()>1)
-            netImage.setCoverImage(mQueue,token_shop_2_image,baseUrl+paidList.get(1).getShopimage());
-        if(paidList.size()>2)
-            netImage.setCoverImage(mQueue,token_shop_3_image,baseUrl+paidList.get(2).getShopimage());
+            netImage.setCoverImage(mQueue,token_shop_1_image,baseUrl+tokenList.get(0).getShopimage());
+        if(tokenList.size()>1)
+            netImage.setCoverImage(mQueue,token_shop_2_image,baseUrl+tokenList.get(1).getShopimage());
+        if(tokenList.size()>2)
+            netImage.setCoverImage(mQueue,token_shop_3_image,baseUrl+tokenList.get(2).getShopimage());
 }
 
 

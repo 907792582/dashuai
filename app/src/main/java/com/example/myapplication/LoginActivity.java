@@ -210,7 +210,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     }else{
                         // 管理员登陆成功跳转
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, Admin_MainActivity.class);
                         //intent.putExtra("user",(Serializable) user);
                         startActivity(intent);
                     }
