@@ -3,17 +3,25 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Adapter.AdminInfoAdapter;
 import com.example.myapplication.Adapter.OrderAdapter;
 import com.example.myapplication.Adapter.UnpickedOrderAdapter;
 import com.example.myapplication.model.Msg;
 import com.example.myapplication.model.Shop;
+import com.google.gson.Gson;
 import com.necer.ndialog.NDialog;
 
 import java.util.ArrayList;
@@ -33,12 +41,16 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
     public List<HashMap<String, String>> goodsList_order;
     private UnpickedOrderAdapter adapter;
     private List<Shop> untookList;
+
+    RequestQueue mQueue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_check_order);
         ButterKnife.bind(this);
         mTvTitle.setText("待提取订单");
+        mQueue = Volley.newRequestQueue(UserUnpickedOrderActivity.this);
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
         goodsList_order=new ArrayList<>();
         initDate();
@@ -64,7 +76,7 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
     }
 
     private void initView() {
-            adapter = new UnpickedOrderAdapter(this, goodsList_order, R.layout.item_unpicked_order_user);
+        adapter = new UnpickedOrderAdapter(this, goodsList_order, R.layout.item_unpicked_order_user);
         mListView.setAdapter(adapter);
         ImageView ivnoOrder=findViewById(R.id.iv_no_order);
         TextView tvnoOrder=findViewById(R.id.tv_no_order);
@@ -80,7 +92,7 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
 
 
     @Override
-    public void ConfirmPicked(View view, int position) {
+    public void ConfirmPicked(View view, final int position) {
         NDialog builder  = new NDialog(this);
         builder.setTitle("确认提取" ) ;
         builder.setTitleColor(Color.parseColor("#c1272d"));
@@ -96,11 +108,47 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
                     case 0:
                         break;
                     case 1:
+                        setOrderToToken(untookList.get(position));
                         break;
                 }
             }
         }).create(NDialog.CONFIRM).show();
     }
+
+    private void setOrderToToken(Shop shop) {
+
+
+            String url = "http://193.112.98.224:8080/shopapp/bookbuy/changestatus2/"+shop.getShopid();
+            Log.e("##配置成功url:",url);
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
+
+                public void onResponse(org.json.JSONObject jsonObject) {
+                    Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
+                    Log.e("##", jsonObject.toString());
+
+                    // 操作成功
+                    if(message.getCode() == 100){
+
+                        Toast.makeText(getApplicationContext(),"领取成功" , Toast.LENGTH_SHORT).show();
+
+                    }else{
+                        // 操作失败
+                        Toast.makeText(getApplicationContext(),"配置操作失败，请联系管理员" , Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+                    Toast.makeText(getApplicationContext(), "服务器返回异常，请联系管理员" , Toast.LENGTH_SHORT).show();
+                }
+            });
+            mQueue.add(jsonObjectRequest);
+
+
+    }
+
 }
 
 
