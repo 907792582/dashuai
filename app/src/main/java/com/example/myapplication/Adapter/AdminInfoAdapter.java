@@ -38,7 +38,7 @@ public class AdminInfoAdapter extends CommonAdapter<HashMap<String, String>> {
             holder.setText(R.id.tv_order_status, "未提取");
             holder.setBackgroundColor(R.id.tv_order_status, Color.parseColor("#c6c6c6"));
         }
-
+        holder.setImageUrl(R.id.order_image_admin1,map.get("url"));
 
     }
 

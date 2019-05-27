@@ -1,14 +1,17 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.Fragment.ConfigureOrderAdmin;
 import com.example.myapplication.Fragment.HomePageAdmin;
@@ -23,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Admin_MainActivity extends AppCompatActivity implements View.OnClickListener{
-
+    private boolean isExit;
     //底部菜单栏3个TextView
     private TextView mTextBook;
     private TextView mTextCart;
@@ -168,5 +171,28 @@ public class Admin_MainActivity extends AppCompatActivity implements View.OnClic
             mTextUser.setCompoundDrawablesWithIntrinsicBounds(0,
                     R.drawable.ic_user,0,0);
         }
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (isExit) {
+                LoginActivity.instance.finish();
+                LoginWithTokenActivity.instance.finish();
+                this.finish();
+
+            } else {
+                Toast.makeText(this, "再次点击返回键退出应用", Toast.LENGTH_SHORT).show();
+                isExit = true;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        isExit= false;
+                    }
+                }, 2000);
+            }
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 }

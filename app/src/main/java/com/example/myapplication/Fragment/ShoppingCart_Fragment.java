@@ -143,6 +143,7 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
                             // map.put("count",item.getBookintroduction());// 书籍简介中存放数量
                             map.put("count","1");
                             map.put("id",item.getShopid());
+                            map.put("url",item.getShopimage());
                             goodsList.add(map);
 
                         }

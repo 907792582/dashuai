@@ -255,6 +255,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (isExit) {
                 LoginActivity.instance.finish();
+                LoginWithTokenActivity.instance.finish();
                 this.finish();
 
             } else {

@@ -37,6 +37,7 @@ private ItemClickListener listener;
         holder.setText(R.id.book_number, "编号："+map.get("number"));
         holder.setText(R.id.book_inventory,"库存："+map.get("inventory"));
         holder.setText(R.id.book_price, "￥ " + (Double.valueOf(map.get("price")) * Integer.valueOf(map.get("count"))));
+        holder.setImageUrl(R.id.iv_adapter_list_pic,map.get("url"));
         holder.setOnClickListener(R.id.tv_add_to_cart, new View.OnClickListener() {
             @Override
             public void onClick(View view) {

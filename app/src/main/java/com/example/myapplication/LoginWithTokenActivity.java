@@ -25,10 +25,12 @@ public class LoginWithTokenActivity extends AppCompatActivity {
     private Button login_again_button,login_button;
     TokenHelper tokenHelper;
     RequestQueue mQueue;
+    public static LoginWithTokenActivity instance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instance=this;
         setContentView(R.layout.activity_login_with_token);
 
         init();

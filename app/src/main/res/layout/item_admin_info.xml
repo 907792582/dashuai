@@ -26,14 +26,14 @@
         android:id="@+id/order_image_admin1"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:src="@drawable/bob"
+        android:layout_height="100dp"
+
         />
         <ImageView
             android:id="@+id/order_image_admin2"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:src="@drawable/bob"
             />
 
@@ -41,7 +41,7 @@
             android:id="@+id/order_image_admin3"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:src="@drawable/bob"
             />
 
@@ -49,7 +49,7 @@
             android:id="@+id/order_image_admin4"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:src="@drawable/bob"
             />
      <TextView
