@@ -111,7 +111,7 @@ public class InfoAdmin extends Fragment {
 
     private void getUser() {
 
-        String url = "http://193.112.98.224:8080/shopapp/User/finduser/"+tokenHelper.getToken();
+        String url = "http://47.100.226.176:8080/shopapp/User/finduser/"+tokenHelper.getToken();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 
@@ -150,7 +150,7 @@ public class InfoAdmin extends Fragment {
     }
 
     private void getTokenOrder() {
-        String url = "http://193.112.98.224:8080/shopapp/shop/findshopyes";
+        String url = "http://47.100.226.176:8080/shopapp/shop/findshopyes";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 
@@ -218,11 +218,10 @@ public class InfoAdmin extends Fragment {
         NetImage image = new NetImage();
         String url = "http://47.100.226.176:8080/XueBaJun/head_image/"+user.getUsername()+".jpg";
         image.setHeadImage(mQueue,head_image_button,url);
-
         logoff_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "http://193.112.98.224:8080/shopapp/user/logoff/"+tokenHelper.getToken();
+                String url = "http://47.100.226.176:8080/shopapp/user/logoff/"+tokenHelper.getToken();
 
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 

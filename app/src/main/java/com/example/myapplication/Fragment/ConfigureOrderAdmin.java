@@ -113,7 +113,7 @@ public class ConfigureOrderAdmin extends Fragment{
 
         userList.clear();
 
-        String url = "http://193.112.98.224:8080/shopapp/shop/findusernot";
+        String url = "http://47.100.226.176:8080/shopapp/shop/findusernot";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 
@@ -177,7 +177,7 @@ public class ConfigureOrderAdmin extends Fragment{
 
         User user = userList.get(CURRENTUSER);
 
-        String url = "http://193.112.98.224:8080/shopapp/bookbuy/getinform/"+user.getUserid();
+        String url = "http://47.100.226.176:8080/shopapp/bookbuy/getinform/"+user.getUserid();
         Log.e("##订单url:",url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
@@ -318,7 +318,7 @@ public class ConfigureOrderAdmin extends Fragment{
     private void setOrderToUntook(List<Shop> shops) {
 
         for(Shop shop:shops){
-            String url = "http://193.112.98.224:8080/shopapp/bookbuy/changestatus1/"+shop.getShopid();
+            String url = "http://47.100.226.176:8080/shopapp/bookbuy/changestatus1/"+shop.getShopid();
             Log.e("##配置成功url:",url);
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {

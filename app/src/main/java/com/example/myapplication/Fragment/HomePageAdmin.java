@@ -89,16 +89,13 @@ public class HomePageAdmin extends Fragment implements OnBannerListener{
         imagePath.add("http://47.100.226.176:8080/XueBaJun/head_image/cover_for_book_1.jpg");
         imagePath.add("http://47.100.226.176:8080/XueBaJun/head_image/cover_for_book_2.jpg");
 
-        imageTitle.add("我是海鸟一号");
-        imageTitle.add("我是海鸟二号");
-        imageTitle.add("我是海鸟3号");
     }
 
     private void initBanner() {
         mMyImageLoader = new MyImageLoader();
         mBanner = getView().findViewById(R.id.banner);
         //设置样式，里面有很多种样式可以自己都看看效果
-        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
+        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         //设置图片加载器
         mBanner.setImageLoader(mMyImageLoader);
         //设置轮播的动画效果,里面有很多种特效,可以都看看效果。
@@ -127,9 +124,7 @@ public class HomePageAdmin extends Fragment implements OnBannerListener{
      */
     @Override
     public void OnBannerClick(int position) {
-        Toast.makeText(mcontext, "你点了第" + (position + 1) + "张轮播图", Toast.LENGTH_SHORT).show();
         this.position = position;
-
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, ALBUM_REQUEST_CODE);

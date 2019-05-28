@@ -168,7 +168,7 @@ public class UserInfo_Fragment extends Fragment {
 
     private void getUser() {
 
-        String url = "http://193.112.98.224:8080/shopapp/User/finduser/"+tokenHelper.getToken();
+        String url = "http://47.100.226.176:8080/shopapp/User/finduser/"+tokenHelper.getToken();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 
@@ -207,7 +207,7 @@ public class UserInfo_Fragment extends Fragment {
     }
 
     private void getOrder() {
-        String url = "http://193.112.98.224:8080/shopapp/bookbuy/getinform/"+tokenHelper.getToken();
+        String url = "http://47.100.226.176:8080/shopapp/bookbuy/getinform/"+tokenHelper.getToken();
         Log.e("##订单url:",url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
@@ -268,7 +268,7 @@ public class UserInfo_Fragment extends Fragment {
 
     private void setOrderBlock() {
         NetImage netImage = new NetImage();
-        String baseUrl = "http://193.112.98.224:8080/shopapp/BookImage/";
+        String baseUrl = "http://47.100.226.176:8080/shopapp/BookImage/";
 
         if(paidList.size()>0)
             netImage.setCoverImage(mQueue,paid_shop_1_image,baseUrl+paidList.get(0).getShopimage());
@@ -333,7 +333,7 @@ public class UserInfo_Fragment extends Fragment {
         log_off_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "http://193.112.98.224:8080/shopapp/user/logoff/"+tokenHelper.getToken();
+                String url = "http://47.100.226.176:8080/shopapp/user/logoff/"+tokenHelper.getToken();
 
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 

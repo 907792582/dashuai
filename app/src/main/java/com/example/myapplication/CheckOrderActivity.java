@@ -117,7 +117,7 @@ public class CheckOrderActivity extends AppCompatActivity  {
     }
 
     private void sendToServer(final Shop shop){
-        String url = "http://193.112.98.224:8080/shopapp/bookbuy/buybook/"+shop.getShopid();
+        String url = "http://47.100.226.176:8080/shopapp/bookbuy/buybook/"+shop.getShopid();
         Log.e("##买书url:",url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {

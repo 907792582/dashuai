@@ -255,7 +255,7 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
 
     private void getUser() {
 
-        String url = "http://193.112.98.224:8080/shopapp/User/finduser/"+tokenHelper.getToken();
+        String url = "http://47.100.226.176:8080/shopapp/User/finduser/"+tokenHelper.getToken();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 
@@ -304,8 +304,8 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
             e.printStackTrace();
         }
 
-        String url = "http://193.112.98.224:8080/shopapp/book/getAllByMajor/"+user.getUsermajor();
-        // String url = "http://193.112.98.224:8080/shopapp/book/getAll";
+        String url = "http://47.100.226.176:8080/shopapp/book/getAllByMajor/"+user.getUsermajor();
+        // String url = "http://47.100.226.176:8080/shopapp/book/getAll";
         Log.e("##HomePage获取专业书籍url", url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<org.json.JSONObject>() {
@@ -347,8 +347,8 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
     private void getPublicBooks() {
         // 服务器请求公共书籍
 
-        String url = "http://193.112.98.224:8080/shopapp/book/getAllByMajor/public";
-        // String url = "http://193.112.98.224:8080/shopapp/book/getAll";
+        String url = "http://47.100.226.176:8080/shopapp/book/getAllByMajor/public";
+        // String url = "http://47.100.226.176:8080/shopapp/book/getAll";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<org.json.JSONObject>() {
 
@@ -391,15 +391,15 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
 
         NetImage netImage = new NetImage();
         Book topBook = professional_book_list.get(0);
-        netImage.setCoverImage(mQueue,professional_book_top1_cover_image,"http://193.112.98.224:8080/shopapp/BookImage/"+topBook.getBookimage());
+        netImage.setCoverImage(mQueue,professional_book_top1_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+topBook.getBookimage());
         professional_book_top1_name_text.setText(topBook.getBookname());
         professional_book_top1_num_text.setText("编号："+String.valueOf(topBook.getBookid()));
         professional_book_top1_inventory_text.setText("库存： "+topBook.getBookstock());
         professional_book_top1_price_text.setText("￥ "+String.valueOf(topBook.getBookprice()));
 
-        //netImage.setCoverImage(mQueue,professional_book_top1_cover_image,"http://193.112.98.224:8080/shopapp/BookImage/"+professional_book_list.get(1).getBookimage());
-        //netImage.setCoverImage(mQueue,professional_book_top1_cover_image,"http://193.112.98.224:8080/shopapp/BookImage/"+professional_book_list.get(2).getBookimage());
-        //netImage.setCoverImage(mQueue,professional_book_top1_cover_image,"http://193.112.98.224:8080/shopapp/BookImage/"+professional_book_list.get(3).getBookimage());
+        //netImage.setCoverImage(mQueue,professional_book_top1_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(1).getBookimage());
+        //netImage.setCoverImage(mQueue,professional_book_top1_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(2).getBookimage());
+        //netImage.setCoverImage(mQueue,professional_book_top1_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(3).getBookimage());
 
     }
 
@@ -407,15 +407,15 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
 
         NetImage netImage = new NetImage();
         Book topBook = public_book_list.get(0);
-        netImage.setCoverImage(mQueue,public_book_top1_cover_image,"http://193.112.98.224:8080/shopapp/BookImage/"+topBook.getBookimage());
+        netImage.setCoverImage(mQueue,public_book_top1_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+topBook.getBookimage());
         public_book_top1_name_text.setText(topBook.getBookname());
         public_book_top1_num_text.setText("编号："+String.valueOf(topBook.getBookid()));
         public_book_top1_inventory_text.setText("库存： "+topBook.getBookstock());
         public_book_top1_price_text.setText("￥ "+String.valueOf(topBook.getBookprice()));
 
-        //netImage.setCoverImage(mQueue, public_book_top2_cover_image,"http://193.112.98.224:8080/shopapp/BookImage/"+professional_book_list.get(1).getBookimage());
-        //netImage.setCoverImage(mQueue, public_book_top3_cover_image,"http://193.112.98.224:8080/shopapp/BookImage/"+professional_book_list.get(2).getBookimage());
-        //netImage.setCoverImage(mQueue, public_book_top4_cover_image,"http://193.112.98.224:8080/shopapp/BookImage/"+professional_book_list.get(3).getBookimage());
+        //netImage.setCoverImage(mQueue, public_book_top2_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(1).getBookimage());
+        //netImage.setCoverImage(mQueue, public_book_top3_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(2).getBookimage());
+        //netImage.setCoverImage(mQueue, public_book_top4_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(3).getBookimage());
 
     }
 
@@ -483,8 +483,8 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
 
     private void addBookToCart(final Book book){
 
-        //String url = "http://193.112.98.224:8080/shopapp/book/getAllByMajor/"+user.getUsermajor();
-        String url = "http://193.112.98.224:8080/shopapp/bookbuy/addtobuy/"+String.valueOf(user.getUserid())+"/"+book.getBookid()+"/1";
+        //String url = "http://47.100.226.176:8080/shopapp/book/getAllByMajor/"+user.getUsermajor();
+        String url = "http://47.100.226.176:8080/shopapp/bookbuy/addtobuy/"+String.valueOf(user.getUserid())+"/"+book.getBookid()+"/1";
         Log.e("##", "加入购物车url:"+url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {

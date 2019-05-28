@@ -71,6 +71,7 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
             map.put("inventory", "50");
             map.put("price", String.valueOf(shop.getBookprice()));
             map.put("count",shop.getBookintroduction());
+            map.put("url",shop.getShopimage());
             goodsList_order.add(map);
         }
     }
@@ -92,7 +93,7 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
 
 
     @Override
-    public void ConfirmPicked(View view, final int position) {
+    public void ConfirmPicked(final View view, final int position) {
         NDialog builder  = new NDialog(this);
         builder.setTitle("确认提取" ) ;
         builder.setTitleColor(Color.parseColor("#c1272d"));
@@ -109,6 +110,7 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
                         break;
                     case 1:
                         setOrderToToken(untookList.get(position));
+                        view.setBackgroundColor(Color.parseColor("#999999"));
                         break;
                 }
             }
@@ -118,7 +120,7 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
     private void setOrderToToken(Shop shop) {
 
 
-            String url = "http://193.112.98.224:8080/shopapp/bookbuy/changestatus2/"+shop.getShopid();
+            String url = "http://47.100.226.176:8080/shopapp/bookbuy/changestatus2/"+shop.getShopid();
             Log.e("##配置成功url:",url);
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {

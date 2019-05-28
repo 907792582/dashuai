@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    String url = "http://193.112.98.224:8080/shopapp/user/login/"+studentID+"/"+pwd;
+                    String url = "http://47.100.226.176:8080/shopapp/user/login/"+studentID+"/"+pwd;
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 
@@ -181,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
     public void fetchToken(final String username){
 
 
-        String url = "http://193.112.98.224:8080/shopapp/user/returntoken/"+username;
+        String url = "http://47.100.226.176:8080/shopapp/user/returntoken/"+username;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 
@@ -204,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(!userIsAdmin){
                         // 用户登陆成功跳转
                         Toast.makeText(getApplicationContext(), "欢迎登陆"+username , Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, Admin_MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         //intent.putExtra("user",(Serializable) user);
                         startActivity(intent);
 

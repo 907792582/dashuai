@@ -92,7 +92,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void search(String searchContent){
 
-        String url = "http://193.112.98.224:8080/shopapp/book/findbook/"+searchContent;
+        String url = "http://47.100.226.176:8080/shopapp/book/findbook/"+searchContent;
         Log.e("##", "搜索书籍url:"+url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
@@ -129,7 +129,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void searchAll(){
-        String url = "http://193.112.98.224:8080/shopapp/book/getAll";
+        String url = "http://47.100.226.176:8080/shopapp/book/getAll";
         Log.e("##", "搜索书籍url:"+url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<org.json.JSONObject>() {

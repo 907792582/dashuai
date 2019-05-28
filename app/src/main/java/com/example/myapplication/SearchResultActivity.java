@@ -252,7 +252,7 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
 
     private void addBookToCart(final Book book){
 
-        String url = "http://193.112.98.224:8080/shopapp/bookbuy/addtobuy/"+String.valueOf(user.getUserid())+"/"+book.getBookid()+"/1";
+        String url = "http://47.100.226.176:8080/shopapp/bookbuy/addtobuy/"+String.valueOf(user.getUserid())+"/"+book.getBookid()+"/1";
         Log.e("##", "加入购物车url:"+url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {

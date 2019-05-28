@@ -42,7 +42,7 @@ public class LoginWithTokenActivity extends AppCompatActivity {
     }
 
     private void logoff() {
-        String url = "http://193.112.98.224:8080/shopapp/user/logoff/"+tokenHelper.getToken();
+        String url = "http://47.100.226.176:8080/shopapp/user/logoff/"+tokenHelper.getToken();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 
@@ -73,7 +73,7 @@ public class LoginWithTokenActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                String url = "http://193.112.98.224:8080/shopapp/user/loginagain/"+tokenHelper.getToken();
+                String url = "http://47.100.226.176:8080/shopapp/user/loginagain/"+tokenHelper.getToken();
 
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<org.json.JSONObject>() {
 
@@ -86,7 +86,7 @@ public class LoginWithTokenActivity extends AppCompatActivity {
                             if(message.getExtend().get("va_msg").toString().compareTo("此时登录成功为用户") == 0){
                                 // 用户登陆成功跳转
                                 Toast.makeText(getApplicationContext(), "欢迎登陆" , Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginWithTokenActivity.this, Admin_MainActivity.class);
+                                Intent intent = new Intent(LoginWithTokenActivity.this, MainActivity.class);
                                 // intent.putExtra("user",(Serializable) user);
                                 startActivity(intent);
                             }else{
