@@ -13,7 +13,7 @@
             android:background="@drawable/shape_search"
             android:text="搜索更多"
             android:padding="5dp"
-            android:textSize="19dp"
+            android:textSize="13dp"
             android:textColor="#8A8A8A"
             android:clickable="true"
             />

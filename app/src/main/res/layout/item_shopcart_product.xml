@@ -38,7 +38,8 @@
             android:layout_marginBottom="15dp"
             android:layout_marginTop="13dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/patrik" />
+            android:background="@drawable/image_loading"
+            />
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

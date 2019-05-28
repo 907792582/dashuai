@@ -7,6 +7,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -32,7 +35,6 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private String[] mStrs = {"kk", "kk", "wskx", "wksx"};
     private SearchView mSearchView;
     private ListView lListView;
 
@@ -49,11 +51,9 @@ public class SearchActivity extends AppCompatActivity {
         //underline.setBackgroundColor(ContextCompat.getColor(this,R.color.white));
         mSearchView = (SearchView) findViewById(R.id.searchView);
         lListView = (ListView) findViewById(R.id.listView);
-        lListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mStrs));
+        lListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1));
         lListView.setTextFilterEnabled(true);
-
         mQueue = Volley.newRequestQueue(SearchActivity.this);
-
         user = (User) getIntent().getSerializableExtra("user");
 
         bookList = new ArrayList<>();
@@ -79,12 +79,18 @@ public class SearchActivity extends AppCompatActivity {
             // 当搜索内容改变时触发该方法
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (!TextUtils.isEmpty(newText)){
-                    lListView.setFilterText(newText);
-                }else{
-                    lListView.clearTextFilter();
+                ListAdapter adapter = lListView.getAdapter();
+                if (adapter instanceof Filterable) {
+                    Filter filter = ((Filterable) adapter).getFilter();
+                    if (newText == null || newText.length() == 0) {
+                        filter.filter(null);
+                    } else {
+                        filter.filter(newText);
+                    }
                 }
-                return false;
+                return true;
+
+
             }
         });
 

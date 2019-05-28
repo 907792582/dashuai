@@ -22,7 +22,7 @@
             android:layout_marginTop="13dp"
             android:layout_marginLeft="10dp"
             android:scaleType="centerCrop"
-            android:background="@drawable/patrik" />
+            android:background="@drawable/image_loading" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

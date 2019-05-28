@@ -109,9 +109,7 @@ public class CheckOrderActivity extends AppCompatActivity  {
                 }
                 break;
             case R.id.tv_back:
-                Intent intent = new Intent();
-                intent.setClass(this, ShoppingCartActivity.class);
-                startActivity(intent);
+               finish();
                 break;
         }
     }

@@ -31,11 +31,11 @@ public class CartAdapter extends CommonAdapter<HashMap<String, String>> {
         } else {
             holder.setChecked(R.id.check_box, true);
         }
-        holder.setImageUrl(R.id.iv_adapter_list_pic,map.get("url"));
         holder.setText(R.id.book_name, map.get("name"));
         holder.setText(R.id.tv_num, map.get("count"));
         holder.setText(R.id.book_number,"编号："+map.get("number"));
         // holder.setText(R.id.book_inventory,"库存："+map.get("inventory"));
+        holder.setImageUrl(R.id.iv_adapter_list_pic,map.get("url"));
         holder.setText(R.id.book_price, "￥ " + (Double.valueOf(map.get("price")) * Integer.valueOf(map.get("count"))));
 
         final EasySwipeMenuLayout easySwipeMenuLayout = holder.getView(R.id.action_bar);

@@ -34,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="100dp"
-            android:src="@drawable/bob"
+
             />
 
         <ImageView
@@ -42,7 +42,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="100dp"
-            android:src="@drawable/bob"
+
             />
 
         <ImageView
@@ -50,7 +50,6 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="100dp"
-            android:src="@drawable/bob"
             />
      <TextView
          android:layout_width="0dp"

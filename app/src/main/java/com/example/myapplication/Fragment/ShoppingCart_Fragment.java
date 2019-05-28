@@ -60,11 +60,11 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
     TextView mTvTitle;
     // @BindView(R.id.listView)
     ListView mListView;
-    // @BindView(R.id.all_chekbox)
+   // @BindView(R.id.all_chekbox)
     CheckBox mAllChekbox;
-    // @BindView(R.id.tv_total_price)
+   //  @BindView(R.id.tv_total_price)
     TextView mTvTotalPrice;
-    // @BindView(R.id.tv_go_to_pay)
+   //  @BindView(R.id.tv_go_to_pay)
     TextView mTvGoToPay;
     private double totalPrice = 0.00;
     private int totalCount = 0;
@@ -95,15 +95,12 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
 
         goodsList=new ArrayList<>();
 
-
         mQueue = Volley.newRequestQueue(mcontext);
         tokenHelper = new TokenHelper();
         mView = view;
-
+        ButterKnife.bind(this,mView);
         // 得到购物车内容后设置UI
         getCartContent();
-
-
 
 
         //mQueue = Volley.newRequestQueue(mcontext);
@@ -116,7 +113,7 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
     }
 
     private void getCartContent() {
-        String url = "http://193.112.98.224:8080/shopapp/bookbuy/getinform/"+tokenHelper.getToken();
+        String url = "http://47.100.226.176:8080/shopapp/bookbuy/getinform/"+tokenHelper.getToken();
         Log.e("##购物车信息获取url:",url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
@@ -143,7 +140,7 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
                             // map.put("count",item.getBookintroduction());// 书籍简介中存放数量
                             map.put("count","1");
                             map.put("id",item.getShopid());
-                            map.put("url",null);
+                            map.put("url","http://47.100.226.176:8080/shopapp/BookImage/"+item.getShopimage());
                             goodsList.add(map);
 
                         }
@@ -153,7 +150,7 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
                     }
 
                     // 显示界面
-                    setPage();
+                   setPage();
 
 
                 }else{
@@ -193,14 +190,12 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
             TextView cartEmpty=mView.findViewById(R.id.tv_cart_empty);
             cartEmpty.setVisibility(mView.GONE);
         }
-
+        mTvTitle.setText("购物车");
         initView();
 
         // onAttach(mcontext);
 
-        mTvTitle.setText("购物车");
 
-        ButterKnife.bind(this,mView);
         StatusBarUtil.setTranslucentForImageViewInFragment(getActivity(), 0, null);
     }
 

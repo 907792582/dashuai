@@ -31,14 +31,14 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/bob"
+
             />
         <ImageView
             android:id="@+id/order_image_user2"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/bob"
+
             />
 
         <ImageView
@@ -46,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/bob"
+
             />
 
         <ImageView
@@ -54,7 +54,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/bob"
+
             />
         <TextView
             android:id="@+id/tv_order_detail"
@@ -65,7 +65,7 @@
             android:gravity="center_horizontal"
             android:layout_marginLeft="10dp"
             android:textColor="#999999"
-            android:text=">查看详情"
+
             android:padding="7dp"
             />
     </LinearLayout>

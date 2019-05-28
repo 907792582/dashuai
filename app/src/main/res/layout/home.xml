@@ -47,7 +47,7 @@
                         android:id="@+id/professional_book_top1_cover_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bob"
+                        android:background="@drawable/image_loading"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
                         android:padding="50dp"
@@ -116,37 +116,37 @@
 
                     <ImageView
                         android:id="@+id/professional_book_top2_cover_image"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_weight="2"
-                        android:background="@drawable/bob" />
+                        android:background="@drawable/image_loading" />
 
                     <ImageView
                         android:id="@+id/professional_book_top3_cover_image"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_weight="2"
-                        android:background="@drawable/bob" />
+                        android:background="@drawable/image_loading" />
 
                     <ImageView
                         android:id="@+id/professional_book_top4_cover_image"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_weight="2"
-                        android:background="@drawable/bob" />
+                        android:background="@drawable/image_loading" />
 
                     <Button
                         android:id="@+id/more_pro_button"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="18dp"
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"
@@ -189,7 +189,7 @@
                         android:id="@+id/public_book_top1_cover_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bob"
+                        android:background="@drawable/image_loading"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
                         android:padding="50dp"
@@ -256,37 +256,37 @@
 
                     <ImageView
                         android:id="@+id/public_book_top2_cover_image"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_weight="2"
-                        android:background="@drawable/bob" />
+                        android:background="@drawable/image_loading" />
 
                     <ImageView
                         android:id="@+id/public_book_top3_cover_image"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_weight="2"
-                        android:background="@drawable/bob" />
+                        android:background="@drawable/image_loading" />
 
                     <ImageView
                         android:id="@+id/public_book_top4_cover_image"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_weight="2"
-                        android:background="@drawable/bob" />
+                        android:background="@drawable/image_loading" />
 
                     <Button
                         android:id="@+id/more_pub_button"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="15dp"
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"

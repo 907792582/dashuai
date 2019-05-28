@@ -115,6 +115,7 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
             map.put("inventory", book.getBookstock());
             map.put("price", book.getBookprice().toString());
             map.put("count","1");
+            map.put("url","http://47.100.226.176:8080/shopapp/BookImage/"+book.getBookimage());
             goodsList.add(map);
         }
     }
@@ -147,25 +148,12 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_go_to_cart:
-                    Bundle bundle=new Bundle();
                     Intent intent=new Intent();
-                    goodsList_order=new ArrayList<>();
-
-                    for (int i = 0; i < goodsList.size(); i++)
-                    {
-                        if (goodsList.get(i).get("id").equals("1"))
-                        {
-                            goodsList_order.add(goodsList.get(i));
-                        }
-                    }
-                    if(goodsList_order.isEmpty())
-                        Toast.makeText(this, "还没有选择书籍哦~~", Toast.LENGTH_SHORT).show();
-                    else {
+                        MainActivity.instance.finish();
                         intent.setClass(this, MainActivity.class);
-                        bundle.putSerializable("goodsList_order", (Serializable) goodsList_order);
-                        intent.putExtras(bundle);
+                        intent.putExtra("toCart","toCart");
                         startActivity(intent);
-                    }
+                        finish();
                 break;
 
         }

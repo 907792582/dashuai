@@ -110,7 +110,7 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
                         break;
                     case 1:
                         setOrderToToken(untookList.get(position));
-                        view.setBackgroundColor(Color.parseColor("#999999"));
+                        //view.setBackgroundColor(Color.parseColor("#999999"));
                         break;
                 }
             }

@@ -35,12 +35,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mTextBook;
     private TextView mTextCart;
     private TextView mTextUser;
+    private String toCart;
     private boolean isExit;
     //3个Fragment
     private Fragment mHomePage_Fragment;
     private Fragment mShopping_Fragment;
     private Fragment mUserInfo_Fragment;
-    private List<HashMap<String, String>> goodsList_order;
+    public static MainActivity instance;
     //标记当前显示的Fragment
     private int fragmentId = 0;
 
@@ -50,27 +51,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        instance=this;
+        toCart=new String();
         // 动态获取权限
         checkPermission();
 
-        goodsList_order = new ArrayList<>();
         //Intent intent=getIntent();
         //Bundle bundle=intent.getExtras();
         //goodsList_order=(List<HashMap<String, String>>) bundle.getSerializable("goodsList_order");
         Intent intent=getIntent();
         if(intent!=null) {
-            Bundle bundle = intent.getExtras();
-            if (bundle!=null)
-                goodsList_order = (List<HashMap<String, String>>) bundle.getSerializable("goodsList_order");
+                toCart =  intent.getStringExtra("toCart");
         }
-
+         System.out.println(toCart);
         //初始化
         init();
         //根据传入的Bundle对象判断Activity是正常启动还是销毁重建
         if(savedInstanceState == null){
             //设置第一个Fragment默认选中
-            if(goodsList_order.isEmpty())
+            if(toCart==null)
                 setFragment(0);
             else
             {
@@ -78,10 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-    public List<HashMap<String, String>> getGoodsList_order()
-    {
-        return goodsList_order;
-    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         //通过onSaveInstanceState方法保存当前显示的fragment
