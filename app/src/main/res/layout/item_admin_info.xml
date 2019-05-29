@@ -51,21 +51,18 @@
             android:layout_weight="1"
             android:layout_height="100dp"
             />
-     <TextView
-         android:layout_width="0dp"
-         android:layout_height="wrap_content"
-         android:layout_weight="0.2"
-         />
+
         <TextView
             android:id="@+id/tv_order_status"
             android:layout_width="0dp"
-            android:layout_weight="0.8"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:gravity="center_horizontal"
             android:layout_marginLeft="10dp"
-            android:background="#ffe4e4"
-            android:text="已提取"
+
+            android:singleLine="true"
+
             android:padding="7dp"
             />
 

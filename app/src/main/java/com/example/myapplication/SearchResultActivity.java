@@ -144,7 +144,7 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
 
 
 
-    @OnClick({R.id.tv_go_to_cart})
+    @OnClick({R.id.tv_go_to_cart,R.id.tv_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_go_to_cart:
@@ -154,6 +154,9 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
                         intent.putExtra("toCart","toCart");
                         startActivity(intent);
                         finish();
+                break;
+            case R.id.tv_back:
+                finish();
                 break;
 
         }
@@ -239,7 +242,6 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
     }
 
     private void addBookToCart(final Book book){
-
         String url = "http://47.100.226.176:8080/shopapp/bookbuy/addtobuy/"+String.valueOf(user.getUserid())+"/"+book.getBookid()+"/1";
         Log.e("##", "加入购物车url:"+url);
 

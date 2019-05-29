@@ -294,7 +294,7 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
         // 向服务器发送删除指令
 
         Log.e("##购物车信息删除:","position:"+position);
-        String url = "http://193.112.98.224:8080/shopapp/shop/delete/"+goodsList.get(position).get("id");
+        String url = "http://47.100.226.176:8080/shopapp/shop/delete/"+goodsList.get(position).get("id");
         Log.e("##购物车信息删除url:",url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE,url, null, new Response.Listener<org.json.JSONObject>() {
@@ -313,7 +313,6 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
             }
         });
         mQueue.add(jsonObjectRequest);
-
 
     }
 

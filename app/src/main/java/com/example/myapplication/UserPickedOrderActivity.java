@@ -55,6 +55,7 @@ public class UserPickedOrderActivity extends AppCompatActivity  {
             map.put("inventory", "50");
             map.put("price", String.valueOf(shop.getBookprice()));
             map.put("count",shop.getBookintroduction());
+            map.put("url","http://47.100.226.176:8080/shopapp/BookImage/"+shop.getShopimage());
             goodsList_order.add(map);
         }
     }
@@ -71,6 +72,15 @@ public class UserPickedOrderActivity extends AppCompatActivity  {
             tvnoOrder.setVisibility(View.GONE);
         }
         adapter.notifyDataSetChanged();
+    }
+    @OnClick({R.id.tv_back})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_back:
+                this.finish();
+                break;
+
+        }
     }
 
 

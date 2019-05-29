@@ -71,7 +71,7 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
             map.put("inventory", "50");
             map.put("price", String.valueOf(shop.getBookprice()));
             map.put("count",shop.getBookintroduction());
-            map.put("url",shop.getShopimage());
+            map.put("url","http://47.100.226.176:8080/shopapp/BookImage/"+shop.getShopimage());
             goodsList_order.add(map);
         }
     }
@@ -90,7 +90,15 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
         adapter.setOnItemClickListener(this);
         adapter.notifyDataSetChanged();
     }
+    @OnClick({R.id.tv_back})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_back:
+               finish();
+                break;
 
+        }
+    }
 
     @Override
     public void ConfirmPicked(final View view, final int position) {
@@ -110,6 +118,8 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
                         break;
                     case 1:
                         setOrderToToken(untookList.get(position));
+                        goodsList_order.remove(position);
+                        adapter.notifyDataSetChanged();
                         //view.setBackgroundColor(Color.parseColor("#999999"));
                         break;
                 }
@@ -117,8 +127,7 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
         }).create(NDialog.CONFIRM).show();
     }
 
-    private void setOrderToToken(Shop shop) {
-
+    private void setOrderToToken(final Shop shop) {
 
             String url = "http://47.100.226.176:8080/shopapp/bookbuy/changestatus2/"+shop.getShopid();
             Log.e("##配置成功url:",url);
@@ -131,7 +140,6 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
 
                     // 操作成功
                     if(message.getCode() == 100){
-
                         Toast.makeText(getApplicationContext(),"领取成功" , Toast.LENGTH_SHORT).show();
 
                     }else{

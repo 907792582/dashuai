@@ -182,5 +182,6 @@ public class SearchActivity extends AppCompatActivity {
         intent.putExtra("bookList", message);
         intent.putExtra("user",user);
         startActivity(intent);
+        finish();
     }
 }

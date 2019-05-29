@@ -79,7 +79,7 @@ public class NetImage {
                 }, 300, 400, Bitmap.Config.RGB_565, new com.android.volley.Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                imageView.setBackgroundResource(R.drawable.bob);
+                imageView.setBackgroundResource(R.drawable.image_loading);
             }
         });
         mQueue.add(imageRequest);

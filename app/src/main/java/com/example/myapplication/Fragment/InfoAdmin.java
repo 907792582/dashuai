@@ -209,7 +209,7 @@ public class InfoAdmin extends Fragment {
             HashMap<String, String> map = new HashMap<>();
             map.put("stu_number", shopList.get(i).getShopid());
             map.put("stu_name", shopList.get(i).getBookname());
-            map.put("order_status", "1");
+            map.put("order_status", shopList.get(i).getShopstatus());
             goodsList.add(map);
         }
     }

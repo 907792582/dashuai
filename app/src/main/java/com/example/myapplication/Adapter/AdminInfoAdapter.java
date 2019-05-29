@@ -29,7 +29,7 @@ public class AdminInfoAdapter extends CommonAdapter<HashMap<String, String>> {
     @Override
     public void convert(final ViewHolder holder, HashMap<String, String> map) {
         holder.setText(R.id.tv_stu_info_admin,"单号："+map.get("stu_number")+"   书名："+map.get("stu_name"));
-        if(map.get("order_status").equals("1")) {
+        if(map.get("order_status").equals("yes")) {
             holder.setText(R.id.tv_order_status, "已提取");
             holder.setBackgroundColor(R.id.tv_order_status, Color.parseColor("#ffe4e4"));
         }
