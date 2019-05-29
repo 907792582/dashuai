@@ -89,11 +89,13 @@ public class LoginWithTokenActivity extends AppCompatActivity {
                                 Intent intent = new Intent(LoginWithTokenActivity.this, MainActivity.class);
                                 // intent.putExtra("user",(Serializable) user);
                                 startActivity(intent);
+                                finish();
                             }else{
                                 // 管理员登陆成功跳转
                                 Intent intent = new Intent(LoginWithTokenActivity.this, Admin_MainActivity.class);
                                 // intent.putExtra("user",(Serializable) user);
                                 startActivity(intent);
+                                finish();
                             }
                         }else{
                             // 操作失败

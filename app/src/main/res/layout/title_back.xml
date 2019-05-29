@@ -42,7 +42,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:textSize="22dp" />
+            android:textSize="19dp" />
     </RelativeLayout>
 
 

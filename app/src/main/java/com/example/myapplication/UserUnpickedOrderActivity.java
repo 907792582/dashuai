@@ -2,8 +2,10 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Adapter.AdminInfoAdapter;
 import com.example.myapplication.Adapter.OrderAdapter;
 import com.example.myapplication.Adapter.UnpickedOrderAdapter;
+import com.example.myapplication.Fragment.UserInfo_Fragment;
 import com.example.myapplication.model.Msg;
 import com.example.myapplication.model.Shop;
 import com.google.gson.Gson;
@@ -94,12 +97,27 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_back:
-               finish();
+                MainActivity.instance.finish();
+                Intent intent=new Intent(this,MainActivity.class);
+                intent.putExtra("toInfo","toInfo");
+                startActivity(intent);
+                finish();
                 break;
-
         }
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            MainActivity.instance.finish();
+            Intent intent=new Intent(this,MainActivity.class);
+            intent.putExtra("toInfo","toInfo");
+            startActivity(intent);
+            finish();
+            return true;
+        }
 
+        return super.onKeyDown(keyCode, event);
+    }
     @Override
     public void ConfirmPicked(final View view, final int position) {
         NDialog builder  = new NDialog(this);

@@ -206,7 +206,7 @@ public class UserInfo_Fragment extends Fragment {
 
     }
 
-    private void getOrder() {
+    public void getOrder() {
         String url = "http://47.100.226.176:8080/shopapp/bookbuy/getinform/"+tokenHelper.getToken();
         Log.e("##订单url:",url);
 
@@ -334,7 +334,6 @@ public class UserInfo_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String url = "http://47.100.226.176:8080/shopapp/user/logoff/"+tokenHelper.getToken();
-
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 
                     public void onResponse(org.json.JSONObject jsonObject) {
@@ -342,7 +341,7 @@ public class UserInfo_Fragment extends Fragment {
                         Intent intent =new Intent();
                         intent.setClass(mcontext, LoginActivity.class);
                         startActivity(intent);
-
+                        MainActivity.instance.finish();
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -353,6 +352,7 @@ public class UserInfo_Fragment extends Fragment {
                         Intent intent =new Intent();
                         intent.setClass(mcontext, LoginActivity.class);
                         startActivity(intent);
+                        MainActivity.instance.finish();
                     }
                 });
                 mQueue.add(jsonObjectRequest);

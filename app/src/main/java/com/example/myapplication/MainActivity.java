@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mTextCart;
     private TextView mTextUser;
     private String toCart;
+    private String toInfo;
     private boolean isExit;
     //3个Fragment
     private Fragment mHomePage_Fragment;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         instance=this;
         toCart=new String();
+        toInfo=new String();
         // 动态获取权限
         checkPermission();
 
@@ -62,19 +64,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent=getIntent();
         if(intent!=null) {
                 toCart =  intent.getStringExtra("toCart");
+                toInfo=intent.getStringExtra("toInfo");
         }
-         System.out.println(toCart);
         //初始化
         init();
         //根据传入的Bundle对象判断Activity是正常启动还是销毁重建
         if(savedInstanceState == null){
             //设置第一个Fragment默认选中
-            if(toCart==null)
+            if(toCart==null&&toInfo==null)
                 setFragment(0);
-            else
+            else if(toCart!=null)
             {
                 setFragment(1);
             }
+            else if (toInfo!=null)
+                setFragment(2);
         }
     }
 
@@ -250,8 +254,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (isExit) {
-                LoginActivity.instance.finish();
-                LoginWithTokenActivity.instance.finish();
+
                 this.finish();
 
             } else {

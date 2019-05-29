@@ -66,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         if(tokenHelper.getToken()!=null){
             Intent intent = new Intent(LoginActivity.this, LoginWithTokenActivity.class);
             startActivity(intent);
+            finish();
         }
     }
 
@@ -207,12 +208,14 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         //intent.putExtra("user",(Serializable) user);
                         startActivity(intent);
+                        finish();
 
                     }else{
                         // 管理员登陆成功跳转
                         Intent intent = new Intent(LoginActivity.this, Admin_MainActivity.class);
                         //intent.putExtra("user",(Serializable) user);
                         startActivity(intent);
+                        finish();
                     }
 
                 }else{
