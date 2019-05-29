@@ -150,7 +150,7 @@ public class InfoAdmin extends Fragment {
     }
 
     private void getTokenOrder() {
-        String url = "http://47.100.226.176:8080/shopapp/shop/findshopyes";
+        String url = "http://47.100.226.176:8080/shopapp/shop/getAll";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
 
@@ -163,19 +163,21 @@ public class InfoAdmin extends Fragment {
 
                     JSONArray temp = null;
                     try {
-                        temp = jsonObject.getJSONObject("extend").getJSONArray("shop");
+                        temp = jsonObject.getJSONObject("extend").getJSONArray("shoplist");
 
                         for(int i = 0;i<temp.length();i++){
                             Shop item = new Gson().fromJson(temp.get(i).toString(), Shop.class);
-                            shopList.add(item);
-                            setTokenOrder();
+
+                            // 将待领取订单和已领取订单放入list显示
+                            if(item.getShopstatus().compareTo("no")!=0)
+                                shopList.add(item);
 
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-
+                    setTokenOrder();
 
                 }else{
                     // 操作失败
