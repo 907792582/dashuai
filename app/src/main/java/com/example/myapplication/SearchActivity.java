@@ -22,6 +22,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.model.Book;
 import com.example.myapplication.model.Msg;
+import com.example.myapplication.model.Shop;
 import com.example.myapplication.model.User;
 import com.google.gson.Gson;
 
@@ -98,7 +99,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void search(String searchContent){
 
-        String url = "http://47.100.226.176:8080/shopapp/book/findbook/"+searchContent;
+        String url = "http://47.100.226.176:8080/shopapp/book/findbookbyname/"+searchContent;
         Log.e("##", "搜索书籍url:"+url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
@@ -107,16 +108,19 @@ public class SearchActivity extends AppCompatActivity {
                 Msg message = new Gson().fromJson(jsonObject.toString(), Msg.class);
                 if(message.getCode() == 100){
 
-                    Book temp = new Book();
-                    temp.setBookid((String) message.getExtend().get("bookId"));
-                    temp.setBookname((String) message.getExtend().get("bookname"));
-                    temp.setBookfrom((String) message.getExtend().get("bookForm"));
-                    temp.setBookimage((String) message.getExtend().get("bookImage"));
-                    temp.setBookintroduction((String) message.getExtend().get("bookIntro"));
-                    temp.setBookprice((Double) message.getExtend().get("bookprice"));
-                    temp.setBookstock("50");
+                    JSONArray temp = null;
+                    try {
+                        temp = jsonObject.getJSONObject("extend").getJSONArray("booklist");
 
-                    bookList.add(temp);
+                        for(int i = 0;i<temp.length();i++){
+                            Book item = new Gson().fromJson(temp.get(i).toString(), Book.class);
+
+                            bookList.add(item);
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                     setJumpFun();
 
