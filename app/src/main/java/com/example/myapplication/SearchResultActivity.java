@@ -129,6 +129,7 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
                                            Intent intent = new Intent(SearchResultActivity.this, SearchActivity.class);
                                            //intent.putExtra("user",(Serializable) user);
                                            startActivity(intent);
+                                           finish();
                                        }
                                    });
         mList=findViewById(R.id.listView);
