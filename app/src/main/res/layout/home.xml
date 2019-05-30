@@ -28,13 +28,16 @@
                 android:layout_marginRight="20dp"
                 android:orientation="vertical"
                 >
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/tag_pro"
+                    android:background="@drawable/tag"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-
+                    android:text="专业类书籍"
+                    android:textColor="#ffffff"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
                     />
                 <LinearLayout
                     android:id="@+id/professional_book_top1_linearLayout"
@@ -151,7 +154,7 @@
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="@dimen/small_margin"
-                        android:layout_weight="1.5"
+                        android:layout_weight="1.8"
                         android:background="@null"
                         android:text="> 查看更多"
                         android:textColor="#999999"
@@ -170,13 +173,16 @@
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical"
                 >
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/tag_pub"
+                    android:background="@drawable/tag"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-
+                    android:text="公共类书籍"
+                    android:textColor="#ffffff"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
                     />
                 <LinearLayout
                     android:id="@+id/public_book_top1_linearLayout"
@@ -291,7 +297,7 @@
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="@dimen/small_margin"
-                        android:layout_weight="1.5"
+                        android:layout_weight="1.8"
                         android:background="@null"
                         android:text="> 查看更多"
                         android:textColor="#999999"

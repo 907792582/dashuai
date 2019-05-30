@@ -29,13 +29,16 @@
                 android:layout_marginRight="20dp"
                 android:orientation="vertical"
                 >
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/tag_pro"
+                    android:background="@drawable/tag"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-
+                    android:text="专业类书籍"
+                    android:textColor="#ffffff"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
                     />
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -171,13 +174,16 @@
                 android:layout_marginBottom="10dp"
                 android:orientation="vertical"
                 >
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/tag_pub"
+                    android:background="@drawable/tag"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-
+                    android:text="公共类书籍"
+                    android:textColor="#ffffff"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
                     />
                 <LinearLayout
                     android:layout_width="match_parent"
