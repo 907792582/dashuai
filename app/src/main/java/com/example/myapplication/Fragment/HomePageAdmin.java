@@ -160,7 +160,7 @@ getPublicBooks();
         imageTitle = new ArrayList<>();
         imagePath.add("http://47.100.226.176:8080/shopapp/upload/cover_for_book_0.jpg");
         imagePath.add("http://47.100.226.176:8080/shopapp/upload/cover_for_book_1.jpg");
-        imagePath.add("http://47.100.226.176:8080/XueBaJun/upload/cover_for_book_2.jpg");
+        imagePath.add("http://47.100.226.176:8080/shopapp/upload/cover_for_book_2.jpg");
 
     }
 
