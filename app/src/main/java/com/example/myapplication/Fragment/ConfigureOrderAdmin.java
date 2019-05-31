@@ -274,6 +274,7 @@ public class ConfigureOrderAdmin extends Fragment{
             // map.put("inventory", paidList.get(i).get);
             map.put("price", String.valueOf(paidList.get(i).getBookprice()));
             map.put("count", paidList.get(i).getBookintroduction());
+            map.put("url","http://47.100.226.176:8080/shopapp/upload/"+paidList.get(i).getShopimage());
             goodsList.add(map);
         }
     }

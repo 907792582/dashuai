@@ -74,7 +74,7 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
             map.put("inventory", "50");
             map.put("price", String.valueOf(shop.getBookprice()));
             map.put("count",shop.getBookintroduction());
-            map.put("url","http://47.100.226.176:8080/shopapp/BookImage/"+shop.getShopimage());
+            map.put("url","http://47.100.226.176:8080/shopapp/upload/"+shop.getShopimage());
             goodsList_order.add(map);
         }
     }

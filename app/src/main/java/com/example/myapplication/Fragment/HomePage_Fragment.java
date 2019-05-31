@@ -391,15 +391,15 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
 
         NetImage netImage = new NetImage();
         Book topBook = professional_book_list.get(0);
-        netImage.setCoverImage(mQueue,professional_book_top1_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+topBook.getBookimage());
+        netImage.setCoverImage(mQueue,professional_book_top1_cover_image,"http://47.100.226.176:8080/shopapp/upload/"+topBook.getBookimage());
         professional_book_top1_name_text.setText(topBook.getBookname());
         professional_book_top1_num_text.setText("编号："+String.valueOf(topBook.getBookid()));
         professional_book_top1_inventory_text.setText("库存： "+topBook.getBookstock());
         professional_book_top1_price_text.setText("￥ "+String.valueOf(topBook.getBookprice()));
 
-        //netImage.setCoverImage(mQueue,professional_book_top1_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(1).getBookimage());
-        //netImage.setCoverImage(mQueue,professional_book_top1_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(2).getBookimage());
-        //netImage.setCoverImage(mQueue,professional_book_top1_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(3).getBookimage());
+        netImage.setCoverImage(mQueue,professional_book_top2_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(1).getBookimage());
+        netImage.setCoverImage(mQueue,professional_book_top3_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(2).getBookimage());
+        netImage.setCoverImage(mQueue,professional_book_top4_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(3).getBookimage());
 
     }
 
@@ -407,7 +407,7 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
 
         NetImage netImage = new NetImage();
         Book topBook = public_book_list.get(0);
-        netImage.setCoverImage(mQueue,public_book_top1_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+topBook.getBookimage());
+        netImage.setCoverImage(mQueue,public_book_top1_cover_image,"http://47.100.226.176:8080/shopapp/upload/"+topBook.getBookimage());
         public_book_top1_name_text.setText(topBook.getBookname());
         public_book_top1_num_text.setText("编号："+String.valueOf(topBook.getBookid()));
         public_book_top1_inventory_text.setText("库存： "+topBook.getBookstock());
@@ -415,7 +415,7 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
 
         //netImage.setCoverImage(mQueue, public_book_top2_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(1).getBookimage());
         //netImage.setCoverImage(mQueue, public_book_top3_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(2).getBookimage());
-        //netImage.setCoverImage(mQueue, public_book_top4_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(3).getBookimage());
+       // netImage.setCoverImage(mQueue, public_book_top4_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(3).getBookimage());
 
     }
 

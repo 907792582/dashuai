@@ -72,7 +72,7 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
     private List<HashMap<String, String>> goodsList_order;
     private CartAdapter adapter;
     private Context mcontext;
-
+    private TextView search;
     // fragment的view,为了数据返回后设置UI方便
     View mView;
     // volley
@@ -92,7 +92,8 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
         super.onViewCreated(view,savedInstanceState);
 
         mcontext=getActivity();
-
+search=view.findViewById(R.id.search_text);
+search.setVisibility(View.GONE);
         goodsList=new ArrayList<>();
 
         mQueue = Volley.newRequestQueue(mcontext);
@@ -140,7 +141,7 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
                             // map.put("count",item.getBookintroduction());// 书籍简介中存放数量
                             map.put("count","1");
                             map.put("id",item.getShopid());
-                            map.put("url","http://47.100.226.176:8080/shopapp/BookImage/"+item.getShopimage());
+                            map.put("url","http://47.100.226.176:8080/shopapp/upload/"+item.getShopimage());
                             goodsList.add(map);
 
                         }

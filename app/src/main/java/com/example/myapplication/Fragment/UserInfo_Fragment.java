@@ -268,7 +268,7 @@ public class UserInfo_Fragment extends Fragment {
 
     private void setOrderBlock() {
         NetImage netImage = new NetImage();
-        String baseUrl = "http://47.100.226.176:8080/shopapp/BookImage/";
+        String baseUrl = "http://47.100.226.176:8080/shopapp/upload/";
 
         if(paidList.size()>0)
             netImage.setCoverImage(mQueue,paid_shop_1_image,baseUrl+paidList.get(0).getShopimage());

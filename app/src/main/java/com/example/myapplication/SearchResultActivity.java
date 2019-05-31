@@ -115,7 +115,7 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
             map.put("inventory", book.getBookstock());
             map.put("price", book.getBookprice().toString());
             map.put("count","1");
-            map.put("url","http://47.100.226.176:8080/shopapp/BookImage/"+book.getBookimage());
+            map.put("url","http://47.100.226.176:8080/shopapp/upload/"+book.getBookimage());
             goodsList.add(map);
         }
     }
