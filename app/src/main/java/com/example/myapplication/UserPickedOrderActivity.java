@@ -77,7 +77,7 @@ public class UserPickedOrderActivity extends AppCompatActivity  {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_back:
-                this.finish();
+                finish();
                 break;
 
         }

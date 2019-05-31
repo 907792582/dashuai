@@ -30,14 +30,14 @@
             android:id="@+id/order_image_user1"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
 
             />
         <ImageView
             android:id="@+id/order_image_user2"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
 
             />
 
@@ -45,7 +45,7 @@
             android:id="@+id/order_image_user3"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
 
             />
 

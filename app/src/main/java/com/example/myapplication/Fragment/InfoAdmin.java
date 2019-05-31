@@ -212,6 +212,7 @@ public class InfoAdmin extends Fragment {
             map.put("stu_number", shopList.get(i).getShopid());
             map.put("stu_name", shopList.get(i).getBookname());
             map.put("order_status", shopList.get(i).getShopstatus());
+            map.put("url","http://47.100.226.176:8080/shopapp/upload/"+shopList.get(i).getShopimage());
             goodsList.add(map);
         }
     }
@@ -232,7 +233,7 @@ public class InfoAdmin extends Fragment {
                         Intent intent =new Intent();
                         intent.setClass(mcontext, LoginActivity.class);
                         startActivity(intent);
-
+                        MainActivity.instance.finish();
                     }
                 }, new Response.ErrorListener() {
                     @Override

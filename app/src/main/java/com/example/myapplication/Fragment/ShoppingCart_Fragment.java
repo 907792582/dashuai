@@ -92,8 +92,8 @@ public class ShoppingCart_Fragment extends Fragment implements CartAdapter.ItemC
         super.onViewCreated(view,savedInstanceState);
 
         mcontext=getActivity();
-search=view.findViewById(R.id.search_text);
-search.setVisibility(View.GONE);
+      search=view.findViewById(R.id.search_text);
+       search.setVisibility(View.GONE);
         goodsList=new ArrayList<>();
 
         mQueue = Volley.newRequestQueue(mcontext);

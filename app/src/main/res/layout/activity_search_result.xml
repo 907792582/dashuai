@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="5dp"
+
         android:layout_marginLeft="35dp"
         android:background="@color/sky_blue"
         android:clickable="true">
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:padding="11dp"
+            android:padding="13dp"
             android:text="去购物车结算"
             android:textSize="17dp"
             android:textColor="@color/white"

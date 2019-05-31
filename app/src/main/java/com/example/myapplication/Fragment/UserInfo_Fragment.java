@@ -26,6 +26,7 @@ import com.example.myapplication.LoginActivity;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.SearchActivity;
+import com.example.myapplication.StatusBarUtil;
 import com.example.myapplication.UserPickedOrderActivity;
 import com.example.myapplication.UserUnconfiguredOrderActivity;
 import com.example.myapplication.UserUnpickedOrderActivity;
@@ -95,12 +96,14 @@ public class UserInfo_Fragment extends Fragment {
         ButterKnife.bind(this,view);
         TextView tvsearch=view.findViewById(R.id.search_text);
         tvsearch.setVisibility(View.GONE);
+        StatusBarUtil.setTranslucentForImageViewInFragment(getActivity(), 0, null);
         TextView title=view.findViewById(R.id.titleView);
         title.setText("用户中心");
 
         init(view);
         getUser();
         getOrder();
+
         // setPage();
         setClickFunction();
     }
@@ -137,6 +140,7 @@ public class UserInfo_Fragment extends Fragment {
                 intent_unpicked.putExtra("untookList", message_3);
                 intent_unpicked.setClass(mcontext, UserUnpickedOrderActivity.class);
                 startActivity(intent_unpicked);
+                MainActivity.instance.finish();
                 break;
         }
     }

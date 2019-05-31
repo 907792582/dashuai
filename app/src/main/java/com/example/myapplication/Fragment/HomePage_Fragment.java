@@ -132,9 +132,7 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
         getUser();
 
         // 公共书籍获取并显示
-        getPublicBooks();
-
-
+    getPublicBooks();
     }
 
 
@@ -177,12 +175,12 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
     private void initData() {
         imagePath = new ArrayList<>();
         imageTitle = new ArrayList<>();
-        imagePath.add("http://47.100.226.176:8080/XueBaJun/head_image/cover_for_book_0.jpg");
-        imagePath.add("http://47.100.226.176:8080/XueBaJun/head_image/cover_for_book_1.jpg");
-        imagePath.add("http://47.100.226.176:8080/XueBaJun/head_image/cover_for_book_2.jpg");
+        imagePath.add("http://47.100.226.176:8080/shopapp/upload/cover_for_book_0.jpg");
+        imagePath.add("http://47.100.226.176:8080/shopapp/upload/cover_for_book_1.jpg");
+        imagePath.add("http://47.100.226.176:8080/shopapp/upload/cover_for_book_2.jpg");
         imageTitle.add("东华八角亭线上购书系统上线了！");
-        imageTitle.add("hhhh我是小傻子");
-        imageTitle.add("你也是~");
+        imageTitle.add("欢迎大家通过app购书！");
+        imageTitle.add("请大家多多指教！");
     }
 
     private void initBanner() {
@@ -296,6 +294,7 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
     }
 
     private void getProfessionalBooks() {
+        System.out.println(user.getUsermajor());
         // 服务器请求专业书籍
         org.json.JSONObject jsonObject = new org.json.JSONObject();
         try {
@@ -346,7 +345,6 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
 
     private void getPublicBooks() {
         // 服务器请求公共书籍
-
         String url = "http://47.100.226.176:8080/shopapp/book/getAllByMajor/public";
         // String url = "http://47.100.226.176:8080/shopapp/book/getAll";
 
@@ -397,9 +395,9 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
         professional_book_top1_inventory_text.setText("库存： "+topBook.getBookstock());
         professional_book_top1_price_text.setText("￥ "+String.valueOf(topBook.getBookprice()));
 
-        netImage.setCoverImage(mQueue,professional_book_top2_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(1).getBookimage());
-        netImage.setCoverImage(mQueue,professional_book_top3_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(2).getBookimage());
-        netImage.setCoverImage(mQueue,professional_book_top4_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(3).getBookimage());
+        netImage.setCoverImage(mQueue,professional_book_top2_cover_image,"http://47.100.226.176:8080/shopapp/upload/"+professional_book_list.get(1).getBookimage());
+        netImage.setCoverImage(mQueue,professional_book_top3_cover_image,"http://47.100.226.176:8080/shopapp/upload/"+professional_book_list.get(2).getBookimage());
+        netImage.setCoverImage(mQueue,professional_book_top4_cover_image,"http://47.100.226.176:8080/shopapp/upload/"+professional_book_list.get(3).getBookimage());
 
     }
 
@@ -413,9 +411,9 @@ public class HomePage_Fragment extends Fragment implements OnBannerListener{
         public_book_top1_inventory_text.setText("库存： "+topBook.getBookstock());
         public_book_top1_price_text.setText("￥ "+String.valueOf(topBook.getBookprice()));
 
-        //netImage.setCoverImage(mQueue, public_book_top2_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(1).getBookimage());
-        //netImage.setCoverImage(mQueue, public_book_top3_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(2).getBookimage());
-       // netImage.setCoverImage(mQueue, public_book_top4_cover_image,"http://47.100.226.176:8080/shopapp/BookImage/"+professional_book_list.get(3).getBookimage());
+        netImage.setCoverImage(mQueue, public_book_top2_cover_image,"http://47.100.226.176:8080/shopapp/upload/"+public_book_list.get(1).getBookimage());
+        netImage.setCoverImage(mQueue, public_book_top3_cover_image,"http://47.100.226.176:8080/shopapp/upload/"+public_book_list.get(2).getBookimage());
+       netImage.setCoverImage(mQueue, public_book_top4_cover_image,"http://47.100.226.176:8080/shopapp/upload/"+public_book_list.get(3).getBookimage());
 
     }
 

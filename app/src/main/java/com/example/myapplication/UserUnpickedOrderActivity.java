@@ -97,7 +97,6 @@ public class UserUnpickedOrderActivity extends AppCompatActivity implements Unpi
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_back:
-                MainActivity.instance.finish();
                 Intent intent=new Intent(this,MainActivity.class);
                 intent.putExtra("toInfo","toInfo");
                 startActivity(intent);
