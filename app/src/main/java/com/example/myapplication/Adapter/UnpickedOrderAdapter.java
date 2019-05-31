@@ -33,6 +33,7 @@ public class UnpickedOrderAdapter extends CommonAdapter<HashMap<String, String>>
         holder.setText(R.id.tv_order_number,"订单号："+map.get("id"));
         holder.setText(R.id.tv_book_count, "共"+map.get("number")+"本书");
         holder.setText(R.id.tv_book_price,"合计：￥"+map.get("price"));
+        holder.setImageUrl(R.id.order_image_user1,map.get("url"));
         holder.setOnClickListener(R.id.tv_confirm_picked, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
