@@ -92,6 +92,10 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
         Msg message = (Msg) getIntent().getSerializableExtra("bookList");
 
         bookList = (List<Book>) message.getExtend().get("bookList");
+
+        if(bookList.size() == 0){
+            Toast.makeText(getApplicationContext(), "没有找到相关书籍，换个关键词试试吧" , Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initDate() {
