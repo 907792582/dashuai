@@ -23,6 +23,8 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -115,7 +117,16 @@ public class CheckOrderActivity extends AppCompatActivity  {
     }
 
     private void sendToServer(final Shop shop){
-        String url = "http://47.100.226.176:8080/shopapp/bookbuy/buybook/"+shop.getShopid();
+
+        String url = " ";
+        try {
+            String param = URLEncoder.encode( shop.getShopid(),"utf-8").replaceAll("\\+","%20");
+            url = "http://47.100.226.176:8080/shopapp/bookbuy/buybook/"+param;
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         Log.e("##买书url:",url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {

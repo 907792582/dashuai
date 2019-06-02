@@ -30,6 +30,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,7 +101,14 @@ public class SearchActivity extends AppCompatActivity {
 
     private void search(String searchContent){
 
-        String url = "http://47.100.226.176:8080/shopapp/book/findbookbyname/"+searchContent;
+        String url = " ";
+        try {
+            String param = URLEncoder.encode( searchContent,"utf-8").replaceAll("\\+","%20");
+            url = "http://47.100.226.176:8080/shopapp/book/findbookbyname/"+param;
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         Log.e("##", "搜索书籍url:"+url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, new Response.Listener<org.json.JSONObject>() {
